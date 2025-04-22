@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            title
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <div class="logo-inner">
+                <div class="logo-core"></div>
+            </div>
+        </div>
+        <h1>
+            {% block heading %}
+            Heading
+            {% endblock %}
+        </h1>
+        {% block content %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="email" id="email" placeholder=" ">
+                <label for="email">Email Address</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder=" ">
+                <label for="password">Password</label>
+            </div>
+            <div class="forgot-password">
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit">Log In</button>
+        </form>
+        {% endblock %}
+        <div class="signup">
+            Don't have an account? <a href="#">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>
