@@ -7,3 +7,36 @@
 {% block heading %}
     Welcome
 {% endblock heading %}
+
+{% block content %}
+    <!-- Display Django messages -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST" action="login.html">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="email" id="email" name="username" placeholder=" " required>
+            <label for="email">Email Address</label>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" name="password" placeholder=" " required>
+            <label for="password">Password</label>
+        </div>
+        <div class="forgot-password">
+            <a href="/forgot">Forgot Password?</a>
+        </div>
+        <input type="submit"> 
+    </form>
+{% endblock content %}
+
+{% block signup %}
+    <div class="signup">
+        Don't have an account? <a href="/signup">Sign Up</a>
+    </div>
+{% endblock signup %}
