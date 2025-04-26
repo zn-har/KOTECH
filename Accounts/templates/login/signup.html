@@ -8,15 +8,11 @@
 <form action="/signup/" method="post">
 	{% csrf_token %}
 	<div class="input-group">
-	    <input type="text" id="Name" placeholder="" required>
-	    <label for="Name">First Name</label>
+	    <input type="text" id="Name" name = "fullname" placeholder="">
+	    <label for="email">Full Name</label>
 	</div>
 	<div class="input-group">
-	    <input type="text" id="Name" placeholder="">
-	    <label for="email">Last Name</label>
-	</div>
-	<div class="input-group">
-	    <input type="email" id="email" placeholder=" " required>
+	    <input type="email" id="email" name = "email" placeholder=" " required>
 	    <label for="email">Email Address</label>
 	</div>
 	<div class="input-group">
@@ -25,17 +21,24 @@
 	</div>	
 
 	<div class="input-group">
-	    <input type="password" id="password" placeholder=" " required>
+	    <input type="password" id="password" name = "password1" placeholder=" " required>
 	    <label for="password">Password</label>
 	</div>
 	<div class="input-group">
-	    <input type="password" id="password" placeholder=" " required>
+	    <input type="password" id="password" name = "Password0" placeholder=" " required>
 	    <label for="password">Confirm Password</label>
 	</div>
 	<input type="submit" value="Sign Up" class="submit_button">
 </form>
 {% endblock content %}
 {% block signup %}
+{% if messages %}
+<ul class="messages">
+	{% for message in messages %}
+		<li class="{{ message.tags }}">{{ message }}</li>
+	{% endfor %}
+</ul>
+{% endif %}
     <div class="signup">
         Already have an account? <a href="/login/">Login</a>
     </div>
