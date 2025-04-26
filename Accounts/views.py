@@ -39,9 +39,9 @@ class create_user(TemplateView):
         return redirect('home')  # Redirect to home after successful registration
 
 # Login View
-class login_user(TemplateView):
-    template_name = 'login/login.html'  # This is where the login form will be rendered
-
+class LoginUser(TemplateView):
+    template_name = 'login/login.html'
+    
     def post(self, request):
         email = request.POST.get("email")
         password = request.POST.get("password")
@@ -58,5 +58,8 @@ class login_user(TemplateView):
             return render(request, 'login/login.html')  # Show the login form again if authentication fails
 
 
-def forgot(request):
-    return render(request, 'login/forgot.html')
+class Signup(TemplateView):
+    template_name = 'login/signup.html'
+
+class Forgot(TemplateView):
+    template_name = 'login/forgot.html'
