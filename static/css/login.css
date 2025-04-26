@@ -114,7 +114,7 @@ input::placeholder {
     text-decoration: underline;
 }
 
-button {
+.submit_button {
     background: linear-gradient(to right, #48048d, #be6cff);
     color: white;
     border: none;
@@ -127,7 +127,7 @@ button {
     transition: all 0.3s;
 }
 
-button:hover {
+.submit_button:hover {
     opacity: 0.9;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(190, 108, 255, 0.4);

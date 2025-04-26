@@ -1,41 +1,43 @@
 {% extends 'login_layout.html' %}
 
-{% block title %}
-    Login Page
-{% endblock title %}
+{% block title %}Login Page{% endblock title %}
 
-{% block heading %}
-    Register
-{% endblock heading %}
+{% block heading %}Register{% endblock heading %}
 
 {% block content %}
-{% csrf_token %}
-<div class="input-group">
-    <input type="text" id="Name" placeholder=" " required>
-    <label for="Name">First Name</label>
-</div>
-<div class="input-group">
-    <input type="text" id="Name" placeholder=" ">
-    <label for="email">Last Name</label>
-</div>
-<div class="input-group">
-    <input type="email" id="email" placeholder=" " required>
-    <label for="email">Email Address</label>
-</div>
-<div class="input-group">
-    <input type="tel" id="phone" name="phone" placeholder=" " pattern="^\+?[0-9\s\-]{7,15}$" required>
-    <label for="phone">Phone Number</label>
-</div>
+<form action="/signup/" method="post">
+	{% csrf_token %}
+	<div class="input-group">
+	    <input type="text" id="Name" placeholder="" required>
+	    <label for="Name">First Name</label>
+	</div>
+	<div class="input-group">
+	    <input type="text" id="Name" placeholder="">
+	    <label for="email">Last Name</label>
+	</div>
+	<div class="input-group">
+	    <input type="email" id="email" placeholder=" " required>
+	    <label for="email">Email Address</label>
+	</div>
+	<div class="input-group">
+	    <input type="tel" id="phone" name="phone" placeholder=" " pattern="^\+?[0-9\s\-]{7,15}$" required>
+	    <label for="phone">Phone Number</label>
+	</div>	
 
-<div class="input-group">
-    <input type="password" id="password" placeholder=" " required>
-    <label for="password">Password</label>
-</div>
-<div class="input-group">
-    <input type="password" id="password" placeholder=" " required>
-    <label for="password">Confirm Password</label>
-</div>
-<button type = "submit" >Register</button>
+	<div class="input-group">
+	    <input type="password" id="password" placeholder=" " required>
+	    <label for="password">Password</label>
+	</div>
+	<div class="input-group">
+	    <input type="password" id="password" placeholder=" " required>
+	    <label for="password">Confirm Password</label>
+	</div>
+	<input type="submit" value="Sign Up" class="submit_button">
+</form>
 {% endblock content %}
 {% block signup %}
+    <div class="signup">
+        Already have an account? <a href="/login/">Login</a>
+    </div>
 {% endblock signup %}
+

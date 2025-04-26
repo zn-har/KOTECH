@@ -18,20 +18,20 @@
         </ul>
     {% endif %}
 
-    <form method="POST" action="login.html">
+    <form method="POST" action="/login/">
         {% csrf_token %}
         <div class="input-group">
-            <input type="email" id="email" name="username" placeholder=" " required>
+            <input type="email" id="email" name="username" placeholder="E-Mail" required>
             <label for="email">Email Address</label>
         </div>
         <div class="input-group">
-            <input type="password" id="password" name="password" placeholder=" " required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
             <label for="password">Password</label>
         </div>
         <div class="forgot-password">
             <a href="/forgot">Forgot Password?</a>
         </div>
-        <input type="submit"> 
+        <input type="submit" value="Login" class="submit_button"> 
     </form>
 {% endblock content %}
 

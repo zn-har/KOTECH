@@ -10,10 +10,12 @@
 
 {% block content %}
 <div class="input-group">
-    <input type="email" id="email" placeholder=" ">
-    <label for="email">Email Address</label>
+	<form action="/forgot/" method="post">
+		{% csrf_token %}
+    		<input type="email" id="email" placeholder="Enter the E-Mail" required>
+    		<label for="email">Email Address</label>
+		<input type="submit" value="login" class="submit_button">
+	</form>
 </div>
-
-<button type="submit">continue</button>
 {% endblock content %}
 

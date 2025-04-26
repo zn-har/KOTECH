@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login 
 from django.contrib import messages
+from django.views.generic import TemplateView
 
-def login_user(request):
-    if request.method == "POST":
+
+class login_user(TemplateView):
+    template_name = 'login/login.html'
+    
+    def post(request):
         print('post method tiggerd')
         username = request.POST["username"]
         password = request.POST["password"]
@@ -14,11 +18,10 @@ def login_user(request):
         else:
             messages.error(request, "Invalid username or password.")
             return render(request, 'login/login.html')
-    else:
-        return render(request, 'login/login.html')
 
 
 def signup(request):
     return render(request, 'login/signup.html')
+
 def forgot(request):
     return render(request, 'login/forgot.html')
