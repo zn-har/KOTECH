@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.views.generic import TemplateView
 
 
-class login_user(TemplateView):
+class LoginUser(TemplateView):
     template_name = 'login/login.html'
     
     def post(self, request):
@@ -20,8 +20,8 @@ class login_user(TemplateView):
             return render(request, 'login/login.html')
 
 
-def signup(request):
-    return render(request, 'login/signup.html')
+class Signup(TemplateView):
+    template_name = 'login/signup.html'
 
-def forgot(request):
-    return render(request, 'login/forgot.html')
+class Forgot(TemplateView):
+    template_name = 'login/forgot.html'
