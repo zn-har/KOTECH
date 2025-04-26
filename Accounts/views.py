@@ -7,11 +7,11 @@ from django.views.generic import TemplateView
 class login_user(TemplateView):
     template_name = 'login/login.html'
     
-    def post(request):
-        print('post method tiggerd')
-        username = request.POST["username"]
+    def post(self, request):
+        email = request.POST["email"]
         password = request.POST["password"]
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
+        print(user)
         if user is not None:
             login(request, user)
             return redirect('/admin/')  # or reverse('admin:index')
