@@ -23,13 +23,13 @@
             <a href="/forgot">Forgot Password?</a>
         </div>
     <!-- Display Django messages -->
+     <div class="message-class">
     {% if messages %}
-        <ul class="messages">
             {% for message in messages %}
-                <li class="{{ message.tags }}">{{ message }}</li>
+                <p class="message">{{ message }}</p>
             {% endfor %}
-        </ul>
     {% endif %}
+    </div>
         <input type="submit" value="Login" class="submit_button"> 
     </form>
 

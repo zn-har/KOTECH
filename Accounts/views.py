@@ -2,30 +2,29 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.views.generic import TemplateView
-from Accounts.models import User  # Import your custom User model
+from Accounts.models import User 
 
 # Create User View for Registration
-class create_user(TemplateView):
-    template_name = 'login/signup.html'  # This is where the signup form will be rendered
+class RegisterUser(TemplateView):
+    template_name = 'login/signup.html'  # Your template file
 
     def post(self, request, *args, **kwargs):
-        full_name = request.POST.get('full_name')
+        full_name = request.POST.get('fullname')
         email = request.POST.get('email')
-        password = request.POST.get('password1')
-        confirm_password = request.POST.get('password2') 
-        mobile_number = request.POST.get('phone')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        mobile_number = request.POST.get('mobile_number')
+        
+        print(f"Password: '{password}', Confirm Password: '{confirm_password}'")
 
-        # Check if the email already exists
-        if User.objects.filter(email=email).exists():
-            messages.error(request, "Email already exists")
-            return redirect('signup')  # Redirect to the signup page if the email exists
-
-        # Check if passwords match
         if password != confirm_password:
-            messages.error(request, "Passwords don't match")
-            return redirect('signup')  # Redirect if passwords don't match
+            messages.error(request, "Passwords do not match.")
+            return redirect('signup')
 
-        # Create the user
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already registered.")
+            return redirect('signup')
+
         user = User.objects.create_user(
             email=email,
             full_name=full_name,
@@ -33,10 +32,8 @@ class create_user(TemplateView):
             mobile_number=mobile_number
         )
 
-        # Log the user in after successful registration
-        login(request, user)
-        messages.success(request, "Registration successful")
-        return redirect('home')  # Redirect to home after successful registration
+        messages.success(request, "Account created successfully. Please log in.")
+        return redirect('login') # Redirect to home after successful registration
 
 # Login View
 class LoginUser(TemplateView):

@@ -1,6 +1,6 @@
 {% extends 'login_layout.html' %}
 
-{% block title %}Login Page{% endblock title %}
+{% block title %}Register{% endblock title %}
 
 {% block heading %}Register{% endblock heading %}
 
@@ -21,24 +21,25 @@
 	</div>	
 
 	<div class="input-group">
-	    <input type="password" id="password" name = "password1" placeholder=" " required>
+	    <input type="password" id="password" name = "password" placeholder=" " required>
 	    <label for="password">Password</label>
 	</div>
 	<div class="input-group">
-	    <input type="password" id="password" name = "Password0" placeholder=" " required>
+	    <input type="password" id="password" name = "confirm_password" placeholder=" " required>
 	    <label for="password">Confirm Password</label>
 	</div>
+	<div class="message-class">
+		{% if messages %}
+				{% for message in messages %}
+					<p class="message">{{ message }}</p>
+				{% endfor %}
+		{% endif %}
+		</div>
 	<input type="submit" value="Sign Up" class="submit_button">
 </form>
 {% endblock content %}
 {% block signup %}
-{% if messages %}
-<ul class="messages">
-	{% for message in messages %}
-		<li class="{{ message.tags }}">{{ message }}</li>
-	{% endfor %}
-</ul>
-{% endif %}
+
     <div class="signup">
         Already have an account? <a href="/login/">Login</a>
     </div>

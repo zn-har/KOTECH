@@ -149,37 +149,10 @@ input::placeholder {
     text-decoration: underline;
 }
 
-.social-login {
-    margin-top: 40px;
-    border-top: 1px solid #eee;
-    padding-top: 20px;
-}
 
-.social-login p {
-    color: #666;
-    margin-bottom: 15px;
-    font-size: 14px;
+.message-class{
+    padding-bottom: 10px;
 }
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.social-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.social-icon:hover {
-    background: #e0e0e0;
-    transform: translateY(-2px);
+.message{
+    color: red;
 }
