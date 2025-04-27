@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.views.generic import TemplateView
-from Accounts.models import User 
+from Accounts.models import User
+from django.conf import settings
+import requests
 
 # Create User View for Registration
+
 class RegisterUser(TemplateView):
-    template_name = 'login/signup.html'  # Your template file
+    template_name = 'login/signup.html'  # Your signup template
 
     def post(self, request, *args, **kwargs):
         full_name = request.POST.get('fullname')
@@ -14,17 +17,31 @@ class RegisterUser(TemplateView):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
         mobile_number = request.POST.get('mobile_number')
-        
-        print(f"Password: '{password}', Confirm Password: '{confirm_password}'")
+        recaptcha_response = request.POST.get('g-recaptcha-response')
 
+        # Verify reCAPTCHA
+        data = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+
+        if not result.get('success'):
+            messages.error(request, "Invalid reCAPTCHA. Please try again.")
+            return redirect('signup')
+
+        # Check passwords match
         if password != confirm_password:
             messages.error(request, "Passwords do not match.")
             return redirect('signup')
 
+        # Check if email already exists
         if User.objects.filter(email=email).exists():
             messages.error(request, "Email already registered.")
             return redirect('signup')
 
+        # Create user
         user = User.objects.create_user(
             email=email,
             full_name=full_name,
@@ -33,8 +50,7 @@ class RegisterUser(TemplateView):
         )
 
         messages.success(request, "Account created successfully. Please log in.")
-        return redirect('login') # Redirect to home after successful registration
-
+        return redirect('login')
 # Login View
 class LoginUser(TemplateView):
     template_name = 'login/login.html'

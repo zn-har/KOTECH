@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'captcha',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -128,3 +129,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'Accounts.User'
+
+RECAPTCHA_PUBLIC_KEY = '6LeKNiYrAAAAAJFaBNqu3qOODvtqHUcy2ajr_fEI'
+RECAPTCHA_PRIVATE_KEY = '6LeKNiYrAAAAAB6jDHfN_CkxtGjvolvJBm5e42GW'
+
