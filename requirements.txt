@@ -3,4 +3,4 @@ Django==5.2
 django-jazzmin==3.0.1
 sqlparse==0.5.3
 requests==2.31.0
-django-recaptcha==2.0.6
+django-recaptcha==4.1.0
