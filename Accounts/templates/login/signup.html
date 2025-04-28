@@ -1,4 +1,3 @@
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% extends 'login_layout.html' %}
 
 {% block title %}Register{% endblock title %}
@@ -35,9 +34,6 @@
 					<p class={{message.tags}}>{{ message }}</p>
 				{% endfor %}
 		{% endif %}
-		</div>
-		<div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}">
-
 		</div>
 	<input type="submit" value="Sign Up" class="submit_button">
 	

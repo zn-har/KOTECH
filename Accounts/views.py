@@ -17,19 +17,8 @@ class RegisterUser(TemplateView):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
         mobile_number = request.POST.get('mobile_number')
-        recaptcha_response = request.POST.get('g-recaptcha-response')
-
         # Verify reCAPTCHA
-        data = {
-            'secret': settings.RECAPTCHA_PRIVATE_KEY,
-            'response': recaptcha_response
-        }
-        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
-        result = r.json()
-
-        if not result.get('success'):
-            messages.error(request, "Invalid reCAPTCHA. Please try again.")
-            return redirect('signup')
+     
 
         # Check passwords match
         if password != confirm_password:
