@@ -1,1067 +1,256 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Fest Events</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #48048d 0%, #be6cff 100%);
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-        }
-        
-        .logo-inner {
-            width: 25px;
-            height: 25px;
-            background-color: #be6cff;
-            border-radius: 50%;
-        }
-        
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .page-title {
-            background-color: #f2f2f2;
-            padding: 30px 0;
-            text-align: center;
-            border-bottom: 1px solid #eaeaea;
-        }
-        
-        .page-title h1 {
-            color: #48048d;
-            font-size: 36px;
-            font-weight: 700;
-        }
-        
-        .page-title p {
-            color: #666;
-            max-width: 600px;
-            margin: 15px auto 0;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .filters {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .filter-options {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .filter-button {
-            padding: 8px 16px;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #666;
-        }
-        
-        .filter-button:hover, .filter-button.active {
-            background-color: #48048d;
-            color: white;
-            border-color: #48048d;
-        }
-        
-        .search-box {
-            position: relative;
-            width: 300px;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 10px 15px 10px 40px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            font-size: 14px;
-            transition: all 0.3s;
-            outline: none;
-        }
-        
-        .search-box input:focus {
-            border-color: #48048d;
-            box-shadow: 0 0 0 2px rgba(72, 4, 141, 0.1);
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-        }
-        
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .event-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-        }
-        
-        .event-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .event-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.5s;
-        }
-        
-        .event-card:hover .event-image img {
-            transform: scale(1.1);
-        }
-        
-        .event-date {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: rgba(72, 4, 141, 0.9);
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .event-info {
-            padding: 20px;
-        }
-        
-        .event-category {
-            color: #be6cff;
-            text-transform: uppercase;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .event-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .event-details {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .event-detail {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .event-detail svg {
-            margin-right: 5px;
-            min-width: 16px;
-        }
-        
-        .event-description {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        
-        .event-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .event-price {
-            font-weight: 700;
-            color: #48048d;
-            font-size: 18px;
-        }
-        
-        .register-button {
-            background: linear-gradient(to right, #48048d, #be6cff);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .register-button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(190, 108, 255, 0.3);
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 50px;
-        }
-        
-        .pagination-item {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #ddd;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .pagination-item:hover, .pagination-item.active {
-            background-color: #48048d;
-            color: white;
-            border-color: #48048d;
-        }
-        
-        /* Registration Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 10px;
-            width: 500px;
-            max-width: 90%;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        
-        .close-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-            color: #999;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .modal-header {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .modal-header h2 {
-            color: #48048d;
-            font-size: 24px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #666;
-            font-size: 14px;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        
-        .form-group input:focus, .form-group select:focus {
-            border-color: #48048d;
-            box-shadow: 0 0 0 2px rgba(72, 4, 141, 0.1);
-            outline: none;
-        }
-        
-        .submit-button {
-            background: linear-gradient(to right, #48048d, #be6cff);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 15px;
-            width: 100%;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-        
-        .submit-button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(190, 108, 255, 0.4);
-        }
-        
-        .modal-footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        footer {
-            background-color: #222;
-            color: #fff;
-            padding: 40px 0 20px;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-        
-        .footer-section h3 {
-            color: #fff;
-            margin-bottom: 20px;
-            font-size: 18px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background-color: #be6cff;
-        }
-        
-        .footer-section p {
-            color: #bbb;
-            line-height: 1.6;
-            font-size: 14px;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #bbb;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 14px;
-        }
-        
-        .footer-links a:hover {
-            color: #be6cff;
-            padding-left: 5px;
-        }
-        
-        .contact-info {
-            color: #bbb;
-            font-size: 14px;
-        }
-        
-        .contact-info p {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .contact-info svg {
-            margin-right: 10px;
-            min-width: 16px;
-            color: #be6cff;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: #333;
-            border-radius: 50%;
-            color: #fff;
-            transition: all 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: #be6cff;
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            margin-top: 40px;
-            border-top: 1px solid #444;
-            color: #999;
-            font-size: 14px;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .events-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-            
-            .filters {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .search-box {
-                width: 100%;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .mobile-menu-button {
-                display: block;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .filter-options {
-                flex-wrap: wrap;
-            }
-        }
-    </style>
+    <title>TechFest 2025</title>
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <div class="header-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <div class="logo-inner"></div>
-                </div>
-                <div class="logo-text">TechFest</div>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#" style="opacity: 0.8; text-decoration: underline;">Events</a></li>
-                    <li><a href="#">Schedule</a></li>
-                    <li><a href="#">Speakers</a></li>
-                    <li><a href="#">Sponsors</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="/login">Login</a></li>
-
-                </ul>
-            </nav>
-        </div>
+        <nav class="navbar">
+            <img class = "logo-png" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="Logo" style= "width:250px; height:auto;">   
+            <button class="hamburger" id="hamburger">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#speakers">Speakers</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="/signup">Register</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="page-title">
-        <h1>Tech Fest Events</h1>
-        <p>Discover innovative workshops, hackathons, tech talks, and competitions at our annual tech festival.</p>
-    </div>
-
-    <div class="container">
-        <div class="filters">
-            <div class="filter-options">
-                <button class="filter-button active">All</button>
-                <button class="filter-button">Hackathons</button>
-                <button class="filter-button">Workshops</button>
-                <button class="filter-button">Tech Talks</button>
-                <button class="filter-button">Competitions</button>
-            </div>
-            <div class="search-box">
-                <span class="search-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </span>
-                <input type="text" placeholder="Search events...">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img class = "logo-png1" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="Logo" style= "width:266px; height:auto; padding :0">   <h1>2025</h1>
+            <p>Join us for the biggest tech festival of the year. Explore innovation, connect with industry leaders, and experience cutting-edge technology.</p>
+            <div>
+                <a href="/signup" class="btn">Register Now</a>
+                <a href="#about" class="btn btn-outline">Learn More</a>
             </div>
         </div>
+    </section>
 
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">About TechFest</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>The Ultimate Technology Experience</h3>
+                <p>TechFest 2025 is a celebration of innovation, creativity, and technological advancement. For three days, join thousands of tech enthusiasts, industry professionals, and visionaries as we explore the future of technology.</p>
+                <p>From AI and machine learning to blockchain and virtual reality, our event covers all aspects of modern technology with hands-on workshops, insightful presentations, and networking opportunities.</p>
+                <p>Whether you're a professional developer, a tech enthusiast, or simply curious about the digital future, TechFest has something for everyone.</p>
+            </div>
+            <div class="about-img">
+                <img src="{% static 'images/KOTECH_LOGO-0.png' %}" alt="TechFest Event Image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="section" id="events">
+        <h2 class="section-title">Featured Events</h2>
         <div class="events-grid">
-            <!-- Event 1 -->
             <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Hackathon Event">
-                    <div class="event-date">May 5, 2025</div>
+                <div class="event-img">
+                    <img src="/api/placeholder/400/300" alt="Hackathon">
                 </div>
-                <div class="event-info">
-                    <div class="event-category">Hackathon</div>
-                    <h3 class="event-title">AI Innovation Challenge</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            36 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Main Campus
-                        </div>
-                    </div>
-                    <p class="event-description">Build cutting-edge AI solutions to solve real-world problems in this intensive 36-hour hackathon. Great prizes await!</p>
-                    <div class="event-footer">
-                        <div class="event-price">PAID</div>
-                        <button class="register-button" data-event="AI Innovation Challenge">Register Now</button>
+                <div class="event-content">
+                    <span class="event-date">Day 1 - 9:00 AM</span>
+                    <h3>24-Hour Hackathon</h3>
+                    <p>Join teams of developers, designers, and innovators to build solutions for real-world problems in just 24 hours. Prizes worth $10,000 up for grabs!</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="/api/placeholder/400/300" alt="AI Workshop">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">Day 2 - 10:30 AM</span>
+                    <h3>AI & Machine Learning Workshop</h3>
+                    <p>Learn practical applications of AI and ML from industry experts. Hands-on sessions with the latest technologies and frameworks.</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="/api/placeholder/400/300" alt="Startup Pitch">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">Day 2 - 2:00 PM</span>
+                    <h3>Startup Pitch Competition</h3>
+                    <p>Watch as innovative startups pitch their ideas to a panel of investors and industry leaders. The winning startup gets funding and mentorship.</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="/api/placeholder/400/300" alt="VR Experience">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">All Days</span>
+                    <h3>Virtual Reality Experience Zone</h3>
+                    <p>Experience the future with our VR zone featuring the latest in virtual and augmented reality technologies from leading companies.</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="/api/placeholder/400/300" alt="Tech Talks">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">Day 3 - 11:00 AM</span>
+                    <h3>Future Tech Talks</h3>
+                    <p>Listen to thought-provoking talks about future technologies, their impact on society, and how to prepare for the coming technological revolution.</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="/api/placeholder/400/300" alt="Networking">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">Day 3 - 6:00 PM</span>
+                    <h3>Networking Gala Dinner</h3>
+                    <p>Connect with fellow attendees, speakers, and industry professionals at our exclusive gala dinner. Build relationships that last beyond the event.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section class="section" id="speakers">
+        <h2 class="section-title">Keynote Speakers</h2>
+        <div class="speakers-grid">
+            <div class="speaker-card">
+                <div class="speaker-img">
+                    <img src="/api/placeholder/300/300" alt="Speaker 1">
+                </div>
+                <div class="speaker-content">
+                    <h3>Dr. Sarah Johnson</h3>
+                    <p class="speaker-position">AI Research Director, TechCorp</p>
+                    <p>Leading expert in artificial intelligence and neural networks with over 15 years of experience in developing cutting-edge AI solutions.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
-
-            <!-- Event 2 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Workshop Event">
-                    <div class="event-date">May 6, 2025</div>
+            <div class="speaker-card">
+                <div class="speaker-img">
+                    <img src="/api/placeholder/300/300" alt="Speaker 2">
                 </div>
-                <div class="event-info">
-                    <div class="event-category">Workshop</div>
-                    <h3 class="event-title">Blockchain Development</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            4 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Tech Lab B
-                        </div>
-                    </div>
-                    <p class="event-description">Learn how to build decentralized applications and smart contracts with our expert instructors. All skill levels welcome.</p>
-                    <div class="event-footer">
-                        <div class="event-price">PAID</div>
-                        <button class="register-button" data-event="Blockchain Development">Register Now</button>
+                <div class="speaker-content">
+                    <h3>Mark Daniels</h3>
+                    <p class="speaker-position">CTO, Future Innovations</p>
+                    <p>Pioneer in blockchain technology and cryptocurrency. Founded three successful tech startups and advised numerous Fortune 500 companies.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
-
-            <!-- Event 3 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Tech Talk Event">
-                    <div class="event-date">May 7, 2025</div>
+            <div class="speaker-card">
+                <div class="speaker-img">
+                    <img src="/api/placeholder/300/300" alt="Speaker 3">
                 </div>
-                <div class="event-info">
-                    <div class="event-category">Tech Talk</div>
-                    <h3 class="event-title">Future of Quantum Computing</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            2 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Auditorium
-                        </div>
-                    </div>
-                    <p class="event-description">Distinguished speakers from leading tech companies discuss the latest advances in quantum computing and its potential impact.</p>
-                    <div class="event-footer">
-                        <div class="event-price">Free</div>
-                        <button class="register-button" data-event="Future of Quantum Computing">Register Now</button>
+                <div class="speaker-content">
+                    <h3>Lisa Wong</h3>
+                    <p class="speaker-position">CEO, TechVentures</p>
+                    <p>Visionary tech entrepreneur who transformed a small startup into a global technology brand. Expert in technological innovation and business strategy.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
-
-            <!-- Event 4 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Competition Event">
-                    <div class="event-date">May 8, 2025</div>
+            <div class="speaker-card">
+                <div class="speaker-img">
+                    <img src="/api/placeholder/300/300" alt="Speaker 4">
                 </div>
-                <div class="event-info">
-                    <div class="event-category">Competition</div>
-                    <h3 class="event-title">Cybersecurity CTF Challenge</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            8 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Computer Science Building
-                        </div>
-                    </div>
-                    <p class="event-description">Test your hacking skills in this Capture The Flag competition with challenges ranging from cryptography to reverse engineering.</p>
-                    <div class="event-footer">
-                        <div class="event-price">PAID</div>
-                        <button class="register-button" data-event="Cybersecurity CTF Challenge">Register Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event 5 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Workshop Event">
-                    <div class="event-date">May 9, 2025</div>
-                </div>
-                <div class="event-info">
-                    <div class="event-category">Workshop</div>
-                    <h3 class="event-title">Web3 & Metaverse Development</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            6 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Innovation Hub
-                        </div>
-                    </div>
-                    <p class="event-description">Explore the technologies behind Web3 and metaverse applications. Hands-on session with VR/AR equipment provided.</p>
-                    <div class="event-footer">
-                        <div class="event-price">PAID</div>
-                        <button class="register-button" data-event="Web3 & Metaverse Development">Register Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event 6 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Hackathon Event">
-                    <div class="event-date">May 10, 2025</div>
-                </div>
-                <div class="event-info">
-                    <div class="event-category">Hackathon</div>
-                    <h3 class="event-title">Sustainable Tech Solutions</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            24 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Green Tech Center
-                        </div>
-                    </div>
-                    <p class="event-description">Develop innovative technological solutions for environmental challenges. Sponsored by leading sustainability-focused companies.</p>
-                    <div class="event-footer">
-                        <div class="event-price">PAID</div>
-                        <button class="register-button" data-event="Sustainable Tech Solutions">Register Now</button>
+                <div class="speaker-content">
+                    <h3>Dr. James Carter</h3>
+                    <p class="speaker-position">Professor, Tech University</p>
+                    <p>Award-winning researcher in quantum computing and cybersecurity. Author of multiple books on the future of technology and digital privacy.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="pagination">
-            <div class="pagination-item active">1</div>
-            <div class="pagination-item">2</div>
-            <div class="pagination-item">3</div>
-            <div class="pagination-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
+    <!-- Schedule Section -->
+    <section class="section" id="schedule">
+        <h2 class="section-title">Event Schedule</h2>
+        <div class="schedule-tabs">
+            <button class="tab-btn active" data-day="day1">Day 1</button>
+            <button class="tab-btn" data-day="day2">Day 2</button>
+            <button class="tab-btn" data-day="day3">Day 3</button>
         </div>
-    </div>
-        <div class="filters">
-            <div class="filter-options">
-                <button class="filter-button active">All</button>
-                <button class="filter-button">Hackathons</button>
-                <button class="filter-button">Workshops</button>
-                <button class="filter-button">Tech Talks</button>
-                <button class="filter-button">Competitions</button>
-            </div>
-            <div class="search-box">
-                <span class="search-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </span>
-                <input type="text" placeholder="Search events...">
-            </div>
-        </div>
-
-        <div class="events-grid">
-            <!-- Event 1 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Hackathon Event">
-                    <div class="event-date">May 5, 2025</div>
-                </div>
-                <div class="event-info">
-                    <div class="event-category">Hackathon</div>
-                    <h3 class="event-title">AI Innovation Challenge</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            36 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Main Campus
-                        </div>
+        <div class="schedule-content">
+            <div class="schedule-day active" id="day1">
+                <div class="schedule-item">
+                    <div class="schedule-time">
+                        <span>09:00 AM</span>
                     </div>
-                    <p class="event-description">Build cutting-edge AI solutions to solve real-world problems in this intensive 36-hour hackathon. Great prizes await!</p>
-                    <div class="event-footer">
-                        <div class="event-price">$20</div>
-                        <button class="register-button" data-event="AI Innovation Challenge">Register Now</button>
+                    <div class="schedule-info">
+                        <h3>Opening Ceremony</h3>
+                        <h4>Main Hall</h4>
+                        <p>Welcome address by the event organizers and introduction to TechFest 2025.</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Event 2 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Workshop Event">
-                    <div class="event-date">May 6, 2025</div>
-                </div>
-                <div class="event-info">
-                    <div class="event-category">Workshop</div>
-                    <h3 class="event-title">Blockchain Development</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            4 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Tech Lab B
-                        </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">
+                        <span>10:30 AM</span>
                     </div>
-                    <p class="event-description">Learn how to build decentralized applications and smart contracts with our expert instructors. All skill levels welcome.</p>
-                    <div class="event-footer">
-                        <div class="event-price">$15</div>
-                        <button class="register-button" data-event="Blockchain Development">Register Now</button>
+                    <div class="schedule-info">
+                        <h3>Keynote: The Future of AI</h3>
+                        <h4>Dr. Sarah Johnson - Main Hall</h4>
+                        <p>An insightful look into the future of artificial intelligence and its potential impact on various industries.</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Event 3 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Tech Talk Event">
-                    <div class="event-date">May 7, 2025</div>
-                </div>
-                <div class="event-info">
-                    <div class="event-category">Tech Talk</div>
-                    <h3 class="event-title">Future of Quantum Computing</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            2 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Auditorium
-                        </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">
+                        <span>12:00 PM</span>
                     </div>
-                    <p class="event-description">Distinguished speakers from leading tech companies discuss the latest advances in quantum computing and its potential impact.</p>
-                    <div class="event-footer">
-                        <div class="event-price">Free</div>
-                        <button class="register-button" data-event="Future of Quantum Computing">Register Now</button>
+                    <div class="schedule-info">
+                        <h3>Lunch Break</h3>
+                        <h4>Dining Area</h4>
+                        <p>Networking lunch with fellow attendees and speakers.</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Event 4 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Competition Event">
-                    <div class="event-date">May 8, 2025</div>
-                </div>
-                <div class="event-info">
-                    <div class="event-category">Competition</div>
-                    <h3 class="event-title">Cybersecurity CTF Challenge</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            8 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Computer Science Building
-                        </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">
+                        <span>01:30 PM</span>
                     </div>
-                    <p class="event-description">Test your hacking skills in this Capture The Flag competition with challenges ranging from cryptography to reverse engineering.</p>
-                    <div class="event-footer">
-                        <div class="event-price">$10</div>
-                        <button class="register-button" data-event="Cybersecurity CTF Challenge">Register Now</button>
+                    <div class="schedule-info">
+                        <h3>Hackathon Kickoff</h3>
+                        <h4>Innovation Lab</h4>
+                        <p>Teams form and begin working on their hackathon projects.</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Event 5 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Workshop Event">
-                    <div class="event-date">May 9, 2025</div>
-                </div>
-                <div class="event-info">
-                    <div class="event-category">Workshop</div>
-                    <h3 class="event-title">Web3 & Metaverse Development</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            6 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Innovation Hub
-                        </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">
+                        <span>03:00 PM</span>
                     </div>
-                    <p class="event-description">Explore the technologies behind Web3 and metaverse applications. Hands-on session with VR/AR equipment provided.</p>
-                    <div class="event-footer">
-                        <div class="event-price">$25</div>
-                        <button class="register-button" data-event="Web3 & Metaverse Development">Register Now</button>
+                    <div class="schedule-info">
+                        <h3>Workshop: Blockchain Basics</h3>
+                        <h4>Room 101</h4>
+                        <p>Learn the fundamentals of blockchain technology and its applications beyond cryptocurrency.</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Event 6 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="/api/placeholder/400/320" alt="Hackathon Event">
-                    <div class="event-date">May 10, 2025</div>
-                </div>
-                <div class="event-info">
-                    <div class="event-category">Hackathon</div>
-                    <h3 class="event-title">Sustainable Tech Solutions</h3>
-                    <div class="event-details">
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            24 Hours
-                        </div>
-                        <div class="event-detail">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            Green Tech Center
-                        </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">
+                        <span>05:30 PM</span>
                     </div>
-                    <p class="event-description">Develop innovative technological solutions for environmental challenges. Sponsored by leading sustainability-focused companies.</p>
-                    <div class="event-footer">
-                        <div class="event-price">$15</div>
-                        <button class="register-button" data-event="Sustainable Tech Solutions">Register Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="pagination">
-            <div class="pagination-item active">1</div>
-            <div class="pagination-item">2</div>
-            <div class="pagination-item">3</div>
-            <div class="pagination-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        </div>
-    </div>
-
-    <!-- Registration Modal -->
-    <div class="modal" id="registrationModal">
-        <div class="modal-content">
-            <button class="close-button">&times;</button>
-            <div class="modal-header">
-                <h2>Register for <span id="eventName"></span></h2>
-            </div>
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone">
+                    <div class="schedule-info">
+                        <h3>Panel Discussion: Tech Ethics</h3>
+                        <h4>Conference Room A</h4>
+                        <p>Industry experts discuss ethical considerations in technology development and implementation.</p>
