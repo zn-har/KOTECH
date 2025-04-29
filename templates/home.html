@@ -56,66 +56,19 @@
     <section class="section" id="events">
         <h2 class="section-title">Featured Events</h2>
         <div class="events-grid">
+            {% for event in events %}
             <div class="event-card">
                 <div class="event-img">
-                    <img src="/api/placeholder/400/300" alt="Hackathon">
+                    <img src="{{ event.image.url }}" alt="Hackathon">
                 </div>
                 <div class="event-content">
-                    <span class="event-date">Day 1 - 9:00 AM</span>
-                    <h3>24-Hour Hackathon</h3>
-                    <p>Join teams of developers, designers, and innovators to build solutions for real-world problems in just 24 hours. Prizes worth $10,000 up for grabs!</p>
+                    <span class="event-date">{{ event.time }}</span>
+                    <span class="event-price">₹{{ event.price }}</span>
+                    <h3>{{ event.name }}</h3>
+                    <p>{{ event.description }}</p>
                 </div>
             </div>
-            <div class="event-card">
-                <div class="event-img">
-                    <img src="/api/placeholder/400/300" alt="AI Workshop">
-                </div>
-                <div class="event-content">
-                    <span class="event-date">Day 2 - 10:30 AM</span>
-                    <h3>AI & Machine Learning Workshop</h3>
-                    <p>Learn practical applications of AI and ML from industry experts. Hands-on sessions with the latest technologies and frameworks.</p>
-                </div>
-            </div>
-            <div class="event-card">
-                <div class="event-img">
-                    <img src="/api/placeholder/400/300" alt="Startup Pitch">
-                </div>
-                <div class="event-content">
-                    <span class="event-date">Day 2 - 2:00 PM</span>
-                    <h3>Startup Pitch Competition</h3>
-                    <p>Watch as innovative startups pitch their ideas to a panel of investors and industry leaders. The winning startup gets funding and mentorship.</p>
-                </div>
-            </div>
-            <div class="event-card">
-                <div class="event-img">
-                    <img src="/api/placeholder/400/300" alt="VR Experience">
-                </div>
-                <div class="event-content">
-                    <span class="event-date">All Days</span>
-                    <h3>Virtual Reality Experience Zone</h3>
-                    <p>Experience the future with our VR zone featuring the latest in virtual and augmented reality technologies from leading companies.</p>
-                </div>
-            </div>
-            <div class="event-card">
-                <div class="event-img">
-                    <img src="/api/placeholder/400/300" alt="Tech Talks">
-                </div>
-                <div class="event-content">
-                    <span class="event-date">Day 3 - 11:00 AM</span>
-                    <h3>Future Tech Talks</h3>
-                    <p>Listen to thought-provoking talks about future technologies, their impact on society, and how to prepare for the coming technological revolution.</p>
-                </div>
-            </div>
-            <div class="event-card">
-                <div class="event-img">
-                    <img src="/api/placeholder/400/300" alt="Networking">
-                </div>
-                <div class="event-content">
-                    <span class="event-date">Day 3 - 6:00 PM</span>
-                    <h3>Networking Gala Dinner</h3>
-                    <p>Connect with fellow attendees, speakers, and industry professionals at our exclusive gala dinner. Build relationships that last beyond the event.</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 
@@ -123,66 +76,18 @@
     <section class="section" id="speakers">
         <h2 class="section-title">Keynote Speakers</h2>
         <div class="speakers-grid">
-            <div class="speaker-card">
+            {% for speaker in speakers %}
+             <div class="speaker-card">
                 <div class="speaker-img">
-                    <img src="/api/placeholder/300/300" alt="Speaker 1">
+                    <img src="{{ speaker.image.url}}" alt="{{ speaker.name }}">
                 </div>
                 <div class="speaker-content">
-                    <h3>Dr. Sarah Johnson</h3>
-                    <p class="speaker-position">AI Research Director, TechCorp</p>
-                    <p>Leading expert in artificial intelligence and neural networks with over 15 years of experience in developing cutting-edge AI solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
+                    <h3>{{ speaker.name }}</h3>
+                    <p class="speaker-position">{{ speaker.position }}</p>
+                    <p>{{ speaker.description }}</p>
                 </div>
             </div>
-            <div class="speaker-card">
-                <div class="speaker-img">
-                    <img src="/api/placeholder/300/300" alt="Speaker 2">
-                </div>
-                <div class="speaker-content">
-                    <h3>Mark Daniels</h3>
-                    <p class="speaker-position">CTO, Future Innovations</p>
-                    <p>Pioneer in blockchain technology and cryptocurrency. Founded three successful tech startups and advised numerous Fortune 500 companies.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="speaker-card">
-                <div class="speaker-img">
-                    <img src="/api/placeholder/300/300" alt="Speaker 3">
-                </div>
-                <div class="speaker-content">
-                    <h3>Lisa Wong</h3>
-                    <p class="speaker-position">CEO, TechVentures</p>
-                    <p>Visionary tech entrepreneur who transformed a small startup into a global technology brand. Expert in technological innovation and business strategy.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="speaker-card">
-                <div class="speaker-img">
-                    <img src="/api/placeholder/300/300" alt="Speaker 4">
-                </div>
-                <div class="speaker-content">
-                    <h3>Dr. James Carter</h3>
-                    <p class="speaker-position">Professor, Tech University</p>
-                    <p>Award-winning researcher in quantum computing and cybersecurity. Author of multiple books on the future of technology and digital privacy.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 
