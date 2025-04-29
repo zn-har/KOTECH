@@ -17,7 +17,7 @@ body {
     background-color: var(--light);
     color: #333;
     line-height: 1.6;
-    background-image: url("/static/images/KOTECH_LOGO-01.png");
+    /*background-image: url("/static/images/KOTECH_LOGO-01.png");*/
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -242,6 +242,15 @@ header {
 .event-date {
     display: inline-block;
     background-color: var(--secondary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+.event-price {
+    display: inline-block;
+    background-color: mediumseagreen;
     color: white;
     padding: 0.3rem 0.8rem;
     border-radius: 50px;
