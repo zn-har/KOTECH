@@ -17,7 +17,7 @@ body {
     background-color: var(--light);
     color: #333;
     line-height: 1.6;
-    background-image: url("/static/KOTECH_LOGO-01.png");
+    background-image: url("/static/images/KOTECH_LOGO-01.png");
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
