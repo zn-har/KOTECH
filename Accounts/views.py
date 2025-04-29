@@ -2,7 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.views.generic import TemplateView
-from Accounts.models import User 
+from Accounts.models import User
+from django.conf import settings
+
+
+>>>>>>> 2173dd5 (Added Event model, need further updation.)
 
 # Create User View for Registration
 class RegisterUser(TemplateView):

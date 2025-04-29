@@ -67,3 +67,14 @@ class User(BaseUser):
     Final User model
     """
     mobile_number = models.CharField(max_length=20, blank=True, null=True)
+
+
+class Events(models.Model):
+    name = models.CharField(max_length=100)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    description = models.TextField()
+    venue = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
