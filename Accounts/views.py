@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.views.generic import TemplateView
 from Accounts.models import User
 from django.conf import settings
-import requests
+
+
 
 # Create User View for Registration
 
