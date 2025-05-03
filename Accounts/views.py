@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.views.generic import TemplateView
 from Accounts.models import User
+import captcha
 from django.conf import settings
 
 

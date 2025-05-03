@@ -2,6 +2,9 @@ from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from Accounts.models import Speaker, Event, EventRegistration
+import requests
+from django.conf import settings
+from django.contrib import messages
 
 
 class HomeView(TemplateView):
@@ -26,6 +29,19 @@ class ExpoRegisterView(TemplateView):
 		description = request.POST.get('description')
 		abstract_pdf = request.FILES.get('abstract_pdf')
 		print(abstract_pdf)
+		recaptcha_response = request.POST.get('g-recaptcha-response')
+
+		# Verify reCAPTCHA
+		data = {
+			'secret': settings.RECAPTCHA_PRIVATE_KEY,
+			'response': recaptcha_response
+		}
+		r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+		result = r.json()
+
+		if not result.get('success'):
+			messages.error(request, "Invalid reCAPTCHA. Please try again.")
+			return redirect('register')
 
 		# --- Basic validations ---
 		if not all([leader_name, email, phone, team_name, number_of_members, description, abstract_pdf]):
@@ -54,6 +70,9 @@ class ExpoRegisterView(TemplateView):
 		)
 
 		return redirect('registration_success')
+
+	def get(self, request):
+		return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
 
 
 def registration_success(request):
