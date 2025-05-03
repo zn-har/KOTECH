@@ -19,11 +19,11 @@
 
     <div class="header">
       <h1>Project Exhibition Registration</h1>
-      <p>Showcase your innovation at KOTECh 2025. Complete the form below to register your project.</p>
+      <p>Showcase your innovation at KOTECH 2025. Complete the form below to register your project.</p>
     </div>
 
     <div class="card">
-      <form id="registration-form" method="POST">
+      <form id="registration-form" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
         <div class="form-group">
           <label for="team-name">Team Name</label>
@@ -65,25 +65,17 @@
         <div class="form-group">
           <label for="abstract">Project Abstract (PDF only)</label>
           <div class="file-input">
-            <label class="file-input-label">
-              Upload Abstract
+            <label class="file-input-label">Upload Abstract</label>
               <input type="file" id="abstract" name="abstract_pdf" accept=".pdf" required>
-            </label>
           </div>
         </div>
 
-        <button type="submit" class="submit-btn">Submit Registration</button>
+        <button type="submit" class="submit-btn">Register</button>
       </form>
     </div>
   </div>
 
   <script>
-    document.getElementById('registration-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // Form submission logic would go here
-      alert('Registration submitted successfully!');
-    });
-
     // Display file name when selected
     document.getElementById('abstract').addEventListener('change', function() {
       if (this.files && this.files.length > 0) {

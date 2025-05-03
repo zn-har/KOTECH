@@ -5,6 +5,7 @@ from django.core import mail
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import FileExtensionValidator
 
 
 class CustomUserManager(BaseUserManager):
@@ -96,14 +97,20 @@ class Event(models.Model):
         return self.name
 
 class EventRegistration(models.Model):
-    name = models.CharField(max_length=100)
+    leader_name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
     team_name = models.CharField(max_length=100)
     number_of_members = models.IntegerField()
     description = models.CharField(max_length=300)
-    abstract_pdf = models.FileField(upload_to='abstracts/')
+    abstract_pdf = models.FileField(
+			upload_to='abstracts/',
+			validators=[
+				FileExtensionValidator(allowed_extensions=['pdf'])
+			]
+		   )
+
 
     def __str__(self):
-        return f"{self.team_name} - {self.name}"
+        return f"{self.team_name} - {self.leader_name}"
 
