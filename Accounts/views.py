@@ -6,7 +6,6 @@ from Accounts.models import User
 from django.conf import settings
 
 
->>>>>>> 2173dd5 (Added Event model, need further updation.)
 
 # Create User View for Registration
 class RegisterUser(TemplateView):
