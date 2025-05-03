@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Tech Fest 2025 Project Exhibition Registration Page">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="{% static "css/expo.css" %}">
+  <title>Tech Fest Project Exhibition - Registration</title>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-header">
+      <img src="{% static 'images/KOTECH_LOGO-02.png' %}" style="width: 300px">
+    </div>
+
+    <div class="header">
+      <h1>Project Exhibition Registration</h1>
+      <p>Showcase your innovation at KOTECh 2025. Complete the form below to register your project.</p>
+    </div>
+
+    <div class="card">
+      <form id="registration-form" method="POST">
+            {% csrf_token %}
+        <div class="form-group">
+          <label for="team-name">Team Name</label>
+          <input type="text" id="team-name" name="team_name" required placeholder="Enter your team name">
+        </div>
+
+        <div class="form-group">
+          <label for="leader-name">Team Leader Name</label>
+          <input type="text" id="leader-name" name="leader_name" required placeholder="Enter team leader's full name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email address">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+        </div>
+
+
+        <div class="form-group">
+          <label for="project-description">Project Description</label>
+          <textarea id="project-description" name="description" required placeholder="Describe your project in detail (max 300 words)"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="team-members">Number of Team Members</label>
+          <select id="team-members" name="number_of_members" required>
+            <option value="" disabled selected>Select number of members</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="abstract">Project Abstract (PDF only)</label>
+          <div class="file-input">
+            <label class="file-input-label">
+              Upload Abstract
+              <input type="file" id="abstract" name="abstract_pdf" accept=".pdf" required>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Registration</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registration-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Form submission logic would go here
+      alert('Registration submitted successfully!');
+    });
+
+    // Display file name when selected
+    document.getElementById('abstract').addEventListener('change', function() {
+      if (this.files && this.files.length > 0) {
+        const fileName = this.files[0].name;
+        const fileLabel = this.closest('.file-input').querySelector('.file-input-label');
+        fileLabel.textContent = fileName;
+      }
+    });
+
+    // Check viewport width and adjust spacing on resize
+    function adjustLayoutForViewport() {
+      const viewportWidth = window.innerWidth;
+      const root = document.documentElement;
+
+      if (viewportWidth < 360) {
+        root.style.setProperty('--border-radius', '6px');
+      } else {
+        root.style.setProperty('--border-radius', '12px');
+      }
+    }
+
+    // Initialize and add event listener for resize
+    window.addEventListener('resize', adjustLayoutForViewport);
+    adjustLayoutForViewport();
+  </script>
+</body>
+</html>
