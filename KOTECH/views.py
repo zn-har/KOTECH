@@ -28,8 +28,11 @@ class ExpoRegisterView(TemplateView):
 		number_of_members = request.POST.get('number_of_members')
 		description = request.POST.get('description')
 		abstract_pdf = request.FILES.get('abstract_pdf')
-		print(abstract_pdf)
+		district = request.POST.get('district')
+		university = request.POST.get('university')
+		abstract_link = request.POST.get('abstract_link')
 		recaptcha_response = request.POST.get('g-recaptcha-response')
+
 
 		# Verify reCAPTCHA
 		data = {
@@ -66,7 +69,12 @@ class ExpoRegisterView(TemplateView):
 			team_name=team_name,
 			number_of_members=number_of_members,
 			description=description,
-			abstract_pdf=abstract_pdf
+			abstract_pdf=abstract_pdf,
+			district=district,
+			university=university,
+			abstract_link=abstract_link,
+
+
 		)
 
 		return redirect('registration_success')
@@ -76,7 +84,7 @@ class ExpoRegisterView(TemplateView):
 
 
 def registration_success(request):
-	return render(request, 'registration_success.html')
+	return render(request, 'success.html')
 
 
 def Register(request):

@@ -103,6 +103,9 @@ class EventRegistration(models.Model):
     team_name = models.CharField(max_length=100)
     number_of_members = models.IntegerField()
     description = models.CharField(max_length=300)
+    district = models.CharField(max_length=100,)
+    university = models.CharField(max_length=100,)
+    abstract_link = models.URLField(max_length=300, default="")
     abstract_pdf = models.FileField(
 			upload_to='abstracts/',
 			validators=[
