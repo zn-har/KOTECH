@@ -26,7 +26,7 @@ urlpatterns = [
     path('register', views.ExpoRegisterView.as_view(), name='register'),
     path('', include('Accounts.urls')),
     path('',views.HomeView.as_view(), name='home'),
-    path('registration_success', views.registration_success)
+    path('registration_success', views.registration_success, name="registration_success")
 ]
 
 if settings.DEBUG:

@@ -20,7 +20,6 @@ class RegisterUser(TemplateView):
         confirm_password = request.POST.get('confirm_password')
         mobile_number = request.POST.get('mobile_number')
         
-        print(f"Password: '{password}', Confirm Password: '{confirm_password}'")
 
         if password != confirm_password:
             messages.error(request, "Passwords do not match.")

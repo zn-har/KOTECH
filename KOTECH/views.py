@@ -50,6 +50,9 @@ class ExpoRegisterView(TemplateView):
 		if not all([leader_name, email, phone, team_name, number_of_members, description, abstract_pdf]):
 			return render(request, 'expo_register.html', {'error': 'All fields are required!'})
 
+		if number_of_members > 4:
+			return redirect("register")
+
 		if len(description) > 300:
 			return render(request, 'expo_register.html', {'error': 'Description must be 300 characters or less.'})
 
