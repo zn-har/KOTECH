@@ -15,6 +15,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import os
+import environ
+
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -89,15 +94,15 @@ DATABASES = {
 
 if BUILD == "prod":
 	DATABASES = {
-		'default': {
-			'ENGINE': 'django.db.backends.postgresql',
-			'NAME': os.getenv("POSTGRES_DB"),
-			'USER': os.getenv("POSTGRES_USER"),
-			'PASSWORD': os.getenv("POSTGRES_PASSWROD"),
-			'HOST': os.getenv("DB_HOST"),
-			'PORT': os.getenv("DB_PORT", 5432),
-		}
-	}
+	    'default': {
+        	'ENGINE': 'django.db.backends.postgresql',
+        	'NAME': env.str('POSTGRES_DB'),
+	        'USER': env.str('POSTGRES_USER'),
+        	'PASSWORD': env.str('POSTGRES_PASSWORD'),
+	        'HOST': env.str('DB_HOST'),
+        	'PORT': env.str('DB_PORT'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

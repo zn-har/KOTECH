@@ -9,9 +9,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 copy . /app/
-RUN mkdir /app/static/
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 expose 8000
 
