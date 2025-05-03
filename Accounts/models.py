@@ -94,3 +94,16 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+class EventRegistration(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15)
+    team_name = models.CharField(max_length=100)
+    number_of_members = models.IntegerField()
+    description = models.CharField(max_length=300)
+    abstract_pdf = models.FileField(upload_to='abstracts/')
+
+    def __str__(self):
+        return f"{self.team_name} - {self.name}"
+
