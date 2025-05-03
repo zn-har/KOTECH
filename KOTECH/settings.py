@@ -13,7 +13,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
+
 import os
+import environ
+
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +32,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6wjtxo(66vyru*lhf9asne(d8ed#^g-odv)t=(lx_78%73_(mr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG_TRUE", 'False') == "True"
+BUILD = os.getenv("BUILD")
 
 ALLOWED_HOSTS = []
 
@@ -78,6 +85,7 @@ WSGI_APPLICATION = 'KOTECH.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -85,6 +93,17 @@ DATABASES = {
     }
 }
 
+if BUILD == "prod":
+	DATABASES = {
+	    'default': {
+        	'ENGINE': 'django.db.backends.postgresql',
+        	'NAME': env.str('POSTGRES_DB'),
+	        'USER': env.str('POSTGRES_USER'),
+        	'PASSWORD': env.str('POSTGRES_PASSWORD'),
+	        'HOST': env.str('DB_HOST'),
+        	'PORT': env.str('DB_PORT'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -134,6 +153,11 @@ AUTH_USER_MODEL = 'Accounts.User'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 # recaptcha
 RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
+
