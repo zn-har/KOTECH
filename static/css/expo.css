@@ -246,13 +246,3 @@
         height: 50px;
       }
       }
-  .message.error{
-    color: red;
-}
-.message.success {
-    color: green;
-}
-
-.error{
-    color: red;
-}

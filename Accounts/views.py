@@ -11,7 +11,7 @@ from django.conf import settings
 # Create User View for Registration
 
 class RegisterUser(TemplateView):
-    template_name = 'login/signup.html'  # Your signup template
+    template_name = 'login/signup.html'  # Your template file
 
     def post(self, request, *args, **kwargs):
         full_name = request.POST.get('fullname')
@@ -19,20 +19,17 @@ class RegisterUser(TemplateView):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
         mobile_number = request.POST.get('mobile_number')
-        # Verify reCAPTCHA
-     
+        
+        print(f"Password: '{password}', Confirm Password: '{confirm_password}'")
 
-        # Check passwords match
         if password != confirm_password:
             messages.error(request, "Passwords do not match.")
             return redirect('signup')
 
-        # Check if email already exists
         if User.objects.filter(email=email).exists():
             messages.error(request, "Email already registered.")
             return redirect('signup')
 
-        # Create user
         user = User.objects.create_user(
             email=email,
             full_name=full_name,
@@ -41,7 +38,8 @@ class RegisterUser(TemplateView):
         )
 
         messages.success(request, "Account created successfully. Please log in.")
-        return redirect('login')
+        return redirect('login') # Redirect to home after successful registration
+
 # Login View
 class LoginUser(TemplateView):
     template_name = 'login/login.html'
