@@ -3,11 +3,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.views.generic import TemplateView
 from Accounts.models import User
+import captcha
 from django.conf import settings
 
 
 
 # Create User View for Registration
+
 class RegisterUser(TemplateView):
     template_name = 'login/signup.html'  # Your template file
 
@@ -17,6 +19,8 @@ class RegisterUser(TemplateView):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
         mobile_number = request.POST.get('mobile_number')
+        
+        print(f"Password: '{password}', Confirm Password: '{confirm_password}'")
 
         if password != confirm_password:
             messages.error(request, "Passwords do not match.")

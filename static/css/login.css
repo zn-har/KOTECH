@@ -149,6 +149,13 @@ input::placeholder {
 .message-class{
     padding-bottom: 10px;
 }
-.message{
+.message.error{
     color: red;
+}
+.message.success{
+    color:green;
+}
+.g-recaptcha {
+    display: block;  
+    visibility: visible;
 }
