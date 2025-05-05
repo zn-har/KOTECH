@@ -10,6 +10,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="{% static "css/expo.css" %}">
   <title>Tech Fest Project Exhibition - Registration</title>
+  <style>
+    .required-star {
+      color: red;
+      margin-left: 4px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -21,72 +27,71 @@
       <h1>Project Exhibition Registration</h1>
       <p>Showcase your innovation at KOTECH 2025. Complete the form below to register your project.</p>
     </div>
-  {% endblock %}
+    {% endblock %}
     {% block form %}
     <div class="card">
       <form id="registration-form" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-
+        {% csrf_token %}
 
         <div class="form-group">
-          <label for="leader-name">Team Leader Name</label>
+          <label for="leader-name">Team Leader Name<span class="required-star">*</span></label>
           <input type="text" id="leader-name" name="leader_name" required placeholder="Enter team leader's full name">
         </div>
-       <div class="form-group">
-          <label for="team-name">Team Name</label>
+        <div class="form-group">
+          <label for="team-name">Team Name<span class="required-star">*</span></label>
           <input type="text" id="team-name" name="team_name" required placeholder="Enter your team name">
         </div>
 
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email">Email<span class="required-star">*</span></label>
           <input type="email" id="email" name="email" required placeholder="Enter your email address">
         </div>
 
         <div class="form-group">
-          <label for="phone">Phone Number</label>
+          <label for="phone">Phone Number<span class="required-star">*</span></label>
           <input type="tel"
-       name="phone"
-       id="phone"
-       pattern="[0-9]*"
-       maxlength="10"
-       minlength="10"
-       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-       required>
-        </div>
-      
-        <div class="form-group">
-            <label for="district">District</label>
-            <select id="district" name="district" required>
-                <option value="" disabled selected>Select your district</option>
-                <option value="Alappuzha">Alappuzha</option>
-                <option value="Ernakulam">Ernakulam</option>
-                <option value="Idukki">Idukki</option>
-                <option value="Kannur">Kannur</option>
-                <option value="Kasaragod">Kasaragod</option>
-                <option value="Kollam">Kollam</option>
-                <option value="Kottayam">Kottayam</option>
-                <option value="Kozhikode">Kozhikode</option>
-                <option value="Malappuram">Malappuram</option>
-                <option value="Palakkad">Palakkad</option>
-                <option value="Pathanamthitta">Pathanamthitta</option>
-                <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-                <option value="Thrissur">Thrissur</option>
-                <option value="Wayanad">Wayanad</option>
-            </select>
-        </div>
-      
-        <div class="form-group">
-            <label for="university">University</label>
-            <input type="text" id="university" name="university" required placeholder="Enter your university name">
+                 name="phone"
+                 id="phone"
+                 pattern="[0-9]*"
+                 maxlength="10"
+                 minlength="10"
+                 oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                 required>
         </div>
 
-          <div class="form-group">
-          <label for="project-description">Project Description</label>
+        <div class="form-group">
+          <label for="district">District<span class="required-star">*</span></label>
+          <select id="district" name="district" required>
+            <option value="" disabled selected>Select your district</option>
+            <option value="Alappuzha">Alappuzha</option>
+            <option value="Ernakulam">Ernakulam</option>
+            <option value="Idukki">Idukki</option>
+            <option value="Kannur">Kannur</option>
+            <option value="Kasaragod">Kasaragod</option>
+            <option value="Kollam">Kollam</option>
+            <option value="Kottayam">Kottayam</option>
+            <option value="Kozhikode">Kozhikode</option>
+            <option value="Malappuram">Malappuram</option>
+            <option value="Palakkad">Palakkad</option>
+            <option value="Pathanamthitta">Pathanamthitta</option>
+            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+            <option value="Thrissur">Thrissur</option>
+            <option value="Wayanad">Wayanad</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="university">University<span class="required-star">*</span></label>
+          <input type="text" id="university" name="university" required placeholder="Enter your university name">
+        </div>
+
+        <div class="form-group">
+          <label for="project-description">Project Description<span class="required-star">*</span></label>
           <textarea id="project-description" name="description" required placeholder="Describe your project in detail (max 300 words)"></textarea>
         </div>
 
         <div class="form-group">
-          <label for="team-members">Number of Team Members</label>
+          <label for="team-members">Number of Team Members<span class="required-star">*</span></label>
           <select id="team-members" name="number_of_members" required>
             <option value="" disabled selected>Select number of members</option>
             <option value="1">1</option>
@@ -95,34 +100,30 @@
             <option value="4">4</option>
           </select>
         </div>
-    
-      
-      
-
 
         <div class="form-group">
-          <label for="abstract">Project Abstract (PDF only)</label>
+          <label for="abstract">Project Abstract (PDF only)<span class="required-star">*</span></label>
           <div class="file-input">
             <label class="file-input-label">Upload Abstract</label>
-              <input type="file" id="abstract" name="abstract_pdf" accept=".pdf" required>
+            <input type="file" id="abstract" name="abstract_pdf" accept=".pdf" required>
           </div>
         </div>
 
-          <div class="form-group">
-              <label for="abstract-video">Abstract Video Link</label>
-              <input type="url" id="abstract-video" name="abstract_link" required
-                     placeholder="Enter your project video link">
-              <small class="form-text">Please provide a public Google Drive link for your project video.</small>
-          </div>
-          <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
-          <button type="submit" class="submit-btn">Register</button>
-          <div class="message-class">
- 		    {% if messages %}
-                {% for message in messages %}
- 					<p class={{message.tags}}>{{ message }}</p>
- 				{% endfor %}
-            {% endif %}
-          </div>
+        <div class="form-group">
+          <label for="abstract-video">Abstract Video Link<span class="required-star">*</span></label>
+          <input type="url" id="abstract-video" name="abstract_link" required placeholder="Enter your project video link">
+          <small class="form-text">Please provide a public Google Drive link for your project video.</small>
+        </div>
+
+        <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
+        <button type="submit" class="submit-btn">Register</button>
+        <div class="message-class">
+          {% if messages %}
+            {% for message in messages %}
+              <p class={{message.tags}}>{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
       </form>
     </div>
     {% endblock %}
