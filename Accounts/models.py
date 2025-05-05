@@ -116,4 +116,19 @@ class EventRegistration(models.Model):
 
     def __str__(self):
         return f"{self.team_name} - {self.leader_name}"
+    
+class HackathonRegistration(models.Model):
+    team_lead_name = models.CharField(max_length=255)
+    other_members = models.TextField(blank=True, null=True)  # Optional field
+    institution = models.CharField(max_length=255)
+    district = models.CharField(max_length=100)
+    email = models.EmailField()
+    contact_number = models.CharField(max_length=15)
+    github_profile = models.URLField()
+    linkedin_profile = models.URLField() 
+    portfolio = models.URLField(blank=True, null=True) 
+    resume_link = models.URLField()
+
+    def __str__(self):
+        return f"{self.team_lead_name} - {self.institution}"
 

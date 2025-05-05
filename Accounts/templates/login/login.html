@@ -31,6 +31,7 @@
                 <p class="message{{message.tags}}">{{ message }}</p>
             {% endfor %}
     {% endif %}
+    <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
     </div>
         <input type="submit" value="Login" class="submit_button"> 
     </form>

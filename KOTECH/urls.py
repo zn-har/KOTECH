@@ -26,6 +26,7 @@ urlpatterns = [
     path('register', views.ExpoRegisterView.as_view(), name='register'),
     path('', include('Accounts.urls')),
     path('',views.HomeView.as_view(), name='home'),
+    path('register/hackathon/', views.HackathonRegistrationView.as_view(), name='hackathon_registration'),
     path('registration_success', views.registration_success, name="registration_success")
 ]
 
