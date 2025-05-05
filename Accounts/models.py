@@ -119,9 +119,9 @@ class EventRegistration(models.Model):
     
 class HackathonRegistration(models.Model):
     team_lead_name = models.CharField(max_length=255)
-    other_members = models.TextField(blank=True, null=True)  # Optional field
     institution = models.CharField(max_length=255)
     district = models.CharField(max_length=100)
+    number_of_members = models.IntegerField()
     email = models.EmailField()
     contact_number = models.CharField(max_length=15)
     github_profile = models.URLField()

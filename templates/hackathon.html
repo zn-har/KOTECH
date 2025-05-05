@@ -20,10 +20,6 @@
       <input type="text" id="team-lead-name" name="team_lead_name" required placeholder="Enter team lead's full name">
     </div>
     <div class="form-group">
-      <label for="other-members">Other Members (Names)</label>
-      <textarea id="other-members" name="other_members" placeholder="Enter names of other team members"></textarea>
-    </div>
-    <div class="form-group">
       <label for="institution">Institution (College)</label>
       <input type="text" id="institution" name="institution" required placeholder="Enter your institution name">
     </div>
@@ -71,8 +67,8 @@
       <label for="resume-link">Resume (Drive Link)</label>
       <input type="url" id="resume-link" name="resume_link" required placeholder="Enter your resume drive link">
     </div>
+	<div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
     <button type="submit" class="submit-btn">Register</button>
   </form>
 </div>
-<div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
 {% endblock %}

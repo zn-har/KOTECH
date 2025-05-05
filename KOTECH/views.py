@@ -6,15 +6,14 @@ import requests
 from django.conf import settings
 from django.contrib import messages
 
-class HackathonRegistrationView(View):
+
+class HackathonRegistrationView(TemplateView):
     template_name = 'hackathon.html'
 
     def get(self, request):
-        # Render the form with the reCAPTCHA public key
         return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
 
     def post(self, request):
-        # Extract form data
         team_lead_name = request.POST.get('team_lead_name')
         other_members = request.POST.get('other_members')
         institution = request.POST.get('institution')
@@ -27,7 +26,6 @@ class HackathonRegistrationView(View):
         resume_link = request.POST.get('resume_link')
         recaptcha_response = request.POST.get('g-recaptcha-response')
 
-        # Verify reCAPTCHA
         data = {
             'secret': settings.RECAPTCHA_PRIVATE_KEY,
             'response': recaptcha_response
@@ -39,11 +37,24 @@ class HackathonRegistrationView(View):
             messages.error(request, "Invalid reCAPTCHA. Please try again.")
             return redirect('hackathon_registration')
 
-        # --- Basic validations ---
         if not all([team_lead_name, institution, district, email, contact_number, resume_link]):
             return render(request, self.template_name, {'error': 'All required fields must be filled!'})
 
-        # --- Save the object ---
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            return render(request, self.template_name, {'error': 'Invalid email format.'})
+
+        if not re.match(r"^\d{10,15}$", contact_number):
+            return render(request, self.template_name, {'error': 'Contact number must be 10 to 15 digits.'})
+
+        if not resume_link.startswith(('http://', 'https://')):
+            return render(request, self.template_name, {'error': 'Resume link must be a valid URL.'})
+
+        if len(team_lead_name) > 100:
+            return render(request, self.template_name, {'error': 'Team lead name too long.'})
+
+        if institution and len(institution) > 150:
+            return render(request, self.template_name, {'error': 'Institution name too long.'})
+
         HackathonRegistration.objects.create(
             team_lead_name=team_lead_name,
             other_members=other_members,
@@ -57,7 +68,6 @@ class HackathonRegistrationView(View):
             resume_link=resume_link,
         )
 
-        # Redirect to success page
         return redirect('registration_success')
 
 class HomeView(TemplateView):
