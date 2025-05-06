@@ -6,6 +6,11 @@ import requests
 import re
 from django.conf import settings
 from django.contrib import messages
+from datetime import date, timedelta
+
+
+
+
 
 
 class HackathonRegistrationView(TemplateView):
@@ -78,6 +83,17 @@ class HomeView(TemplateView):
 		context = super(HomeView, self).get_context_data(**kwargs)
 		context['speakers'] = Speaker.objects.all()
 		context['events'] = Event.objects.all()
+		base_date = date(2025, 5, 29)
+        
+		day1 = base_date
+		day2 = base_date + timedelta(days=1)
+		day3 = base_date + timedelta(days=2)
+
+        # Filter events by date
+		context['day1_events'] = Event.objects.filter(date=day1).order_by('time')
+		context['day2_events'] = Event.objects.filter(date=day2).order_by('time')
+		context['day3_events'] = Event.objects.filter(date=day3).order_by('time')
+
 		return context
 
 

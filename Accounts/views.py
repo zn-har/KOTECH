@@ -14,6 +14,8 @@ from django.conf import settings
 
 class RegisterUser(TemplateView):
     template_name = 'login/signup.html'  # Your template file
+    def get (self, request, *args, **kwargs):
+        return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
 
     def post(self, request, *args, **kwargs):
         full_name = request.POST.get('fullname')
@@ -57,6 +59,9 @@ class RegisterUser(TemplateView):
 # Login View
 class LoginUser(TemplateView):
     template_name = 'login/login.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
     
     def post(self, request):
         email = request.POST.get("email")

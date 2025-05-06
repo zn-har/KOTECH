@@ -171,3 +171,15 @@ input::placeholder {
     display: block;  
     visibility: visible;
 }
+.schedule-day {
+    display: none;
+}
+
+.schedule-day.active {
+    display: block;
+}
+
+.tab-btn.active {
+    background-color: #48048d;
+    color: white;
+}

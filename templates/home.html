@@ -94,68 +94,84 @@
     <!-- Schedule Section -->
     <section class="section" id="schedule">
         <h2 class="section-title">Event Schedule</h2>
+        
         <div class="schedule-tabs">
             <button class="tab-btn active" data-day="day1">Day 1</button>
             <button class="tab-btn" data-day="day2">Day 2</button>
             <button class="tab-btn" data-day="day3">Day 3</button>
         </div>
-        <div class="schedule-content">
-            <div class="schedule-day active" id="day1">
-                <div class="schedule-item">
-                    <div class="schedule-time">
-                        <span>09:00 AM</span>
-                    </div>
-                    <div class="schedule-info">
-                        <h3>Opening Ceremony</h3>
-                        <h4>Main Hall</h4>
-                        <p>Welcome address by the event organizers and introduction to TechFest 2025.</p>
-                    </div>
+
+        <!-- Day 1 Events -->
+        <div class="schedule-day active" id="day1">
+            {% for event in day1_events %}
+            <div class="schedule-item">
+                <div class="schedule-time">
+                    <span>{{ event.time }}</span>
                 </div>
-                <div class="schedule-item">
-                    <div class="schedule-time">
-                        <span>10:30 AM</span>
-                    </div>
-                    <div class="schedule-info">
-                        <h3>Keynote: The Future of AI</h3>
-                        <h4>Dr. Sarah Johnson - Main Hall</h4>
-                        <p>An insightful look into the future of artificial intelligence and its potential impact on various industries.</p>
-                    </div>
+                <div class="schedule-info">
+                    <h3>{{ event.name }}</h3>
+                    <h4>{{ event.venue.name }}</h4>
+                    <p>{{ event.description }}</p>
                 </div>
-                <div class="schedule-item">
-                    <div class="schedule-time">
-                        <span>12:00 PM</span>
-                    </div>
-                    <div class="schedule-info">
-                        <h3>Lunch Break</h3>
-                        <h4>Dining Area</h4>
-                        <p>Networking lunch with fellow attendees and speakers.</p>
-                    </div>
+            </div>
+            {% empty %}
+            <p>No events scheduled for Day 1.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Day 2 Events -->
+        <div class="schedule-day" id="day2">
+            {% for event in day2_events %}
+            <div class="schedule-item">
+                <div class="schedule-time">
+                    <span>{{ event.time }}</span>
                 </div>
-                <div class="schedule-item">
-                    <div class="schedule-time">
-                        <span>01:30 PM</span>
-                    </div>
-                    <div class="schedule-info">
-                        <h3>Hackathon Kickoff</h3>
-                        <h4>Innovation Lab</h4>
-                        <p>Teams form and begin working on their hackathon projects.</p>
-                    </div>
+                <div class="schedule-info">
+                    <h3>{{ event.name }}</h3>
+                    <h4>{{ event.venue.name }}</h4>
+                    <p>{{ event.description }}</p>
                 </div>
-                <div class="schedule-item">
-                    <div class="schedule-time">
-                        <span>03:00 PM</span>
-                    </div>
-                    <div class="schedule-info">
-                        <h3>Workshop: Blockchain Basics</h3>
-                        <h4>Room 101</h4>
-                        <p>Learn the fundamentals of blockchain technology and its applications beyond cryptocurrency.</p>
-                    </div>
+            </div>
+            {% empty %}
+            <p>No events scheduled for Day 2.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Day 3 Events -->
+        <div class="schedule-day" id="day3">
+            {% for event in day3_events %}
+            <div class="schedule-item">
+                <div class="schedule-time">
+                    <span>{{ event.time }}</span>
                 </div>
-                <div class="schedule-item">
-                    <div class="schedule-time">
-                        <span>05:30 PM</span>
-                    </div>
-                    <div class="schedule-info">
-                        <h3>Panel Discussion: Tech Ethics</h3>
-                        <h4>Conference Room A</h4>
-                        <p>Industry experts discuss ethical considerations in technology development and implementation.</p>
+                <div class="schedule-info">
+                    <h3>{{ event.name }}</h3>
+                    <h4>{{ event.venue.name }}</h4>
+                    <p>{{ event.description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p>No events scheduled for Day 3.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script>
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const scheduleDays = document.querySelectorAll('.schedule-day');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove 'active' class from all buttons and days
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                scheduleDays.forEach(day => day.classList.remove('active'));
+
+                // Add 'active' class to the clicked button and corresponding day
+                button.classList.add('active');
+                const dayId = button.getAttribute('data-day');
+                document.getElementById(dayId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

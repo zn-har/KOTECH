@@ -24,16 +24,18 @@
         <div class="forgot-password">
             <a href="/forgot">Forgot Password?</a>
         </div>
+        <div class="g-recaptcha" style = "display: flex; flex-direction: column; align-items: center; justify-content: center; " data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
     <!-- Display Django messages -->
      <div class="message-class">
+        
     {% if messages %}
             {% for message in messages %}
                 <p class="message{{message.tags}}">{{ message }}</p>
             {% endfor %}
     {% endif %}
-    <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
-    </div>
-        <input type="submit" value="Login" class="submit_button"> 
+     </div>
+
+    <input type="submit" value="Login" class="submit_button"> 
     </form>
 
 {% endblock content %}
@@ -43,3 +45,4 @@
         Don't have an account? <a href="/signup">Sign Up</a>
     </div>
 {% endblock signup %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>

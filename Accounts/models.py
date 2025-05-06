@@ -75,6 +75,8 @@ class Venue(models.Model):
 
     def __str__(self):
         return self.name
+class Day(models.Model):
+    day = models.IntegerField(_(""))
 
 class Speaker(models.Model):
     name = models.CharField(max_length=100)
@@ -87,7 +89,8 @@ class Speaker(models.Model):
 
 class Event(models.Model):
     name = models.CharField(max_length=100)
-    time = models.CharField(max_length=20)
+    time = models.TimeField(default=timezone.now)
+    date = models.DateField(default=timezone.now)
     description = models.TextField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="images/", null=True, blank=True)
