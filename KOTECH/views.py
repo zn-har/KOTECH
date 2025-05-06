@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView , View
 from Accounts.models import Speaker, Event, EventRegistration, HackathonRegistration
 import requests
+import re
 from django.conf import settings
 from django.contrib import messages
 
@@ -15,7 +16,7 @@ class HackathonRegistrationView(TemplateView):
 
     def post(self, request):
         team_lead_name = request.POST.get('team_lead_name')
-        other_members = request.POST.get('other_members')
+        other_members = request.POST.get('number_of_members')
         institution = request.POST.get('institution')
         district = request.POST.get('district')
         email = request.POST.get('email')
@@ -57,7 +58,7 @@ class HackathonRegistrationView(TemplateView):
 
         HackathonRegistration.objects.create(
             team_lead_name=team_lead_name,
-            other_members=other_members,
+            number_of_members=other_members,
             institution=institution,
             district=district,
             email=email,
