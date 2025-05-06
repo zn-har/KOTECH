@@ -36,7 +36,10 @@ DEBUG = os.getenv("DEBUG_TRUE", 'False') == "True"
 BUILD = os.getenv("BUILD")
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '69.62.79.240', 'kotech.io', 'www.kotech.io']
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://kotech.io',
+    'https://www.kotech.io',
+]
 
 # Application definition   
 
