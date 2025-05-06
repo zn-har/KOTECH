@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-6wjtxo(66vyru*lhf9asne(d8ed#^g-odv)t=(lx_78%73_(mr
 DEBUG = os.getenv("DEBUG_TRUE", 'False') == "True"
 BUILD = os.getenv("BUILD")
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '69.62.79.240', 'kotech.io', 'www.kotech.io']
 
 
 # Application definition   
