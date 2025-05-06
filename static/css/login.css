@@ -11,23 +11,24 @@
 body {
     background-color: #f5f5f5;
     display: flex;
+    margin: 0px;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    /*background: linear-gradient(135deg, #48048d 0%, #be6cff 100%); */
-    background-image: url("/static/images/KOTECH_LOGO-01.png");
+    background: linear-gradient(135deg, #48048d 0%, #be6cff 100%);
+    /* background-image: url("/static/images/KOTECH_LOGO-01.png"); */
     background-attachment: fixed;
-    background-size: 75%;
     background-position: center;
     background-repeat: no-repeat;
 }
 
+
 .login-container {
     background: white;
-    margin-right: 1000px;
+    margin-right:0px;
     border-radius: 10px;    
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    width: 450px;
+    width: 28%;
     padding: 40px;
     text-align: center;
 }
@@ -67,7 +68,18 @@ input {
     transition: all 0.3s;
     outline: none;
 }
-
+@media screen and (max-width: 811px) {
+    .login-container {
+        position: absolute; /* Allow precise positioning */
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Adjust for the element's size */
+        width: 90%; /* Adjust width for smaller screens */
+        max-width: 400px; /* Limit maximum width */
+        padding: 20px; /* Add padding for better spacing */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adjust shadow for smaller screens */
+    }
+}
 input:focus {
     border-color:#48048d;
     box-shadow: 0 0 0 2px rgba(72, 4, 141, 0.2);
