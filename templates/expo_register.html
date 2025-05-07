@@ -9,12 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="{% static "css/expo.css" %}">
+  <link rel="icon" href="">
   <title>Tech Fest Project Exhibition - Registration</title>
   <style>
-    .required-star {
-      color: red;
-      margin-left: 4px;
-    }
+    
   </style>
 </head>
 <body>
@@ -34,12 +32,13 @@
         {% csrf_token %}
 
         <div class="form-group">
-          <label for="leader-name">Team Leader Name<span class="required-star">*</span></label>
-          <input type="text" id="leader-name" name="leader_name" required placeholder="Enter team leader's full name">
-        </div>
-        <div class="form-group">
           <label for="team-name">Team Name<span class="required-star">*</span></label>
           <input type="text" id="team-name" name="team_name" required placeholder="Enter your team name">
+        </div>
+
+        <div class="form-group">
+          <label for="leader-name">Team Leader Name<span class="required-star">*</span></label>
+          <input type="text" id="leader-name" name="leader_name" required placeholder="Enter team leader's full name">
         </div>
 
         <div class="form-group">
@@ -81,13 +80,8 @@
         </div>
 
         <div class="form-group">
-          <label for="university">University<span class="required-star">*</span></label>
+          <label for="university">Institution/Organization<span class="required-star">*</span></label>
           <input type="text" id="university" name="university" required placeholder="Enter your university name">
-        </div>
-
-        <div class="form-group">
-          <label for="project-description">Project Description<span class="required-star">*</span></label>
-          <textarea id="project-description" name="description" required placeholder="Describe your project in detail (max 300 words)"></textarea>
         </div>
 
         <div class="form-group">

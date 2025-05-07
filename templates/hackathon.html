@@ -7,7 +7,7 @@
 {% block header %}
 <div class="header">
   <h1>Hackathon Registration</h1>
-  <p>Showcase your innovation at KOTECH 2025. Complete the form below to register your project.</p>
+  <p>Join Kotech Hackathon 2025 to solve real-world challenges and showcase your skills. Team up and let your ideas take flight!</p>
 </div>
 {% endblock %}
 
@@ -16,11 +16,11 @@
   <form id="hackathon-registration-form" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
-      <label for="team-lead-name">Name (Team Lead)</label>
+      <label for="team-lead-name" >Name (Team Lead)<span class="required-star">*</span></label>
       <input type="text" id="team-lead-name" name="team_lead_name" required placeholder="Enter team lead's full name">
     </div>
     <div class="form-group">
-      <label for="institution">Institution (College)</label>
+      <label for="institution">Institution/Organization <span class="required-star">*</span></label>
       <input type="text" id="institution" name="institution" required placeholder="Enter your institution name">
     </div>
         <div class="form-group">
@@ -36,7 +36,7 @@
     <div class="form-group">
       <label for="district">District</label>
       <select id="district" name="district" required>
-        <option value="" disabled selected>Select your district</option>
+        <option value="" disabled selected>Select your district <span class="required-star">*</span></option>
         <option value="Alappuzha">Alappuzha</option>
         <option value="Ernakulam">Ernakulam</option>
         <option value="Idukki">Idukki</option>
@@ -54,11 +54,11 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="email">E-mail ID</label>
+      <label for="email">E-mail ID <span class="required-star">*</span></label>
       <input type="email" id="email" name="email" required placeholder="Enter your email address">
     </div>
     <div class="form-group">
-      <label for="contact-number">Contact Number</label>
+      <label for="contact-number">Contact Number <span class="required-star">*</span></label>
       <input type="tel" id="contact-number" name="contact_number" required placeholder="Enter your contact number">
     </div>
     <div class="form-group">

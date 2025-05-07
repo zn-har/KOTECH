@@ -36,7 +36,10 @@
       justify-content: center;
       padding: 40px 0;
     }
-    
+    .required-star {
+      color: red;
+      margin-left: 4px;
+    }
     .container {
       max-width: 650px;
       width: 100%;
