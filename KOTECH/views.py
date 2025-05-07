@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
-from Accounts.models import Speaker, Event, ProductExhibitionRegistration, HackathonRegistration
+from Accounts.models import Speaker, Event, ProjectExhibitionRegistration, HackathonRegistration
 import requests
 import re
 from django.conf import settings
@@ -141,7 +141,7 @@ class ExpoRegisterView(TemplateView):
             messages.error(request, 'Only PDF files are allowed for abstract.')
             return redirect('register')
 
-        ProductExhibitionRegistration.objects.create(
+        ProjectExhibitionRegistration.objects.create(
             leader_name=leader_name,
             email=email,
             phone=phone,
