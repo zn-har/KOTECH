@@ -99,13 +99,12 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
-class EventRegistration(models.Model):
+class ProductExhibitionRegistration(models.Model):
     leader_name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
     team_name = models.CharField(max_length=100)
     number_of_members = models.IntegerField()
-    description = models.CharField(max_length=300)
     district = models.CharField(max_length=100,)
     university = models.CharField(max_length=100,)
     abstract_link = models.URLField(max_length=300, default="")
