@@ -158,6 +158,9 @@ class ExpoRegisterView(TemplateView):
     def get(self, request):
         return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
 
+def under_construction(request):
+    return render(request, 'under_construction.html')
+
 def registration_success(request):
     return render(request, 'success.html')
 

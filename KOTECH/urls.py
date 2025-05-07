@@ -15,19 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.urls import include
+from django.urls import path, include, re_path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/project_exhibition', views.ExpoRegisterView.as_view(), name='register'),
-    path('', include('Accounts.urls')),
-    path('',views.HomeView.as_view(), name='home'),
+#    path('', include('Accounts.urls')),
+#    path('',views.HomeView.as_view(), name='home'),
     path('register/hackathon/', views.HackathonRegistrationView.as_view(), name='hackathon_registration'),
-    path('registration_success', views.registration_success, name="registration_success")
+    path('register/project_exhibition', views.ExpoRegisterView.as_view(), name='register'),
+    path('register/hackathon', views.HackathonRegistrationView.as_view(), name='hackathon_registration'),
+    path('register/project_exhibition/', views.ExpoRegisterView.as_view(), name='register'),
+    path('registration_success', views.registration_success, name="registration_success"),
+    re_path(r'^.*$', views.under_construction, name='under_construction'),
 ]
 
 if settings.DEBUG:
