@@ -34,9 +34,9 @@
           </select>
         </div>
     <div class="form-group">
-      <label for="district">District</label>
+      <label for="district">District<span class="required-star">*</span></label>
       <select id="district" name="district" required>
-        <option value="" disabled selected>Select your district <span class="required-star">*</span></option>
+        <option value="" disabled selected>Select your district </option>
         <option value="Alappuzha">Alappuzha</option>
         <option value="Ernakulam">Ernakulam</option>
         <option value="Idukki">Idukki</option>
@@ -59,15 +59,23 @@
     </div>
     <div class="form-group">
       <label for="contact-number">Contact Number <span class="required-star">*</span></label>
-      <input type="tel" id="contact-number" name="contact_number" required placeholder="Enter your contact number">
+      <input type="tel"
+      name="contact_number"
+      id="contact-number"
+      pattern="[0-9]*"
+      maxlength="10"
+      minlength="10"
+      oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+      required
+      placeholder="Enter your contact number">
     </div>
     <div class="form-group">
-      <label for="github-profile">GitHub Profile</label>
-      <input type="url" id="github-profile" name="github_profile" placeholder="Enter your GitHub profile link">
+      <label for="github-profile">GitHub Profile<span class="required-star">*</span></label>
+      <input type="url" id="github-profile" name="github_profile" placeholder="Enter your GitHub profile link" required>
     </div>
     <div class="form-group">
-      <label for="linkedin-profile">LinkedIn Profile</label>
-      <input type="url" id="linkedin-profile" name="linkedin_profile" placeholder="Enter your LinkedIn profile link">
+      <label for="linkedin-profile">LinkedIn Profile<span class="required-star">*</span></label>
+      <input type="url" id="linkedin-profile" name="linkedin_profile" placeholder="Enter your LinkedIn profile link" required>
     </div>
     <div class="form-group">
       <label for="portfolio">Portfolio (if available)</label>
@@ -75,7 +83,7 @@
     </div>
     <div class="form-group">
       <label for="resume-link">Resume (Drive Link)</label>
-      <input type="url" id="resume-link" name="resume_link" required placeholder="Enter your resume drive link">
+      <input type="url" id="resume-link" name="resume_link" placeholder="Enter your resume drive link">
     </div>
 	<div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
     <button type="submit" class="submit-btn">Register</button>
