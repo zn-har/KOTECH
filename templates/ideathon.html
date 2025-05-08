@@ -1,0 +1,72 @@
+{% extends "registration_template.html" %}
+
+{% block title %}
+    <title>Ideathon Registration</title>
+{% endblock title %}
+
+{% block header %}
+<div class="header">
+  <h1>Hackathon Registration</h1>
+  <p>Join Kotech Hackathon 2025 to solve real-world challenges and showcase your skills. Team up and let your ideas take flight!</p>
+</div>
+{% endblock %}
+
+{% block form %}
+<div class="card">
+  <form id="Ideathon-registration-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+      <div class="form-group">
+      <label for="team-name" >Team Name<span class="required-star">*</span></label>
+      <input type="text" id="team-name" name="team_name" required placeholder="Enter Team name">
+    </div>
+    <div class="form-group">
+      <label for="team-lead-name" >Name (Team Lead)<span class="required-star">*</span></label>
+      <input type="text" id="team-lead-name" name="team_lead_name" required placeholder="Enter team lead's full name">
+    </div>
+    <div class="form-group">
+      <label for="institution">Institution/Organization <span class="required-star">*</span></label>
+      <input type="text" id="institution" name="institution" required placeholder="Enter your institution name">
+    </div>
+        <div class="form-group">
+          <label for="team-members">Number of Team Members<span class="required-star">*</span></label>
+          <select id="team-members" name="no_of_members" required>
+            <option value="" disabled selected>Select number of members</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+
+    <div class="form-group">
+      <label for="email">E-mail ID <span class="required-star">*</span></label>
+      <input type="email" id="email" name="email" required placeholder="Enter your email address">
+    </div>
+    <div class="form-group">
+      <label for="contact-number">Contact Number <span class="required-star">*</span></label>
+      <input type="tel"
+      name="contact_number"
+      id="contact-number"
+      pattern="[0-9]*"
+      maxlength="10"
+      minlength="10"
+      oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+      required
+      placeholder="Enter your contact number">
+    </div>
+      <div class="message-class" style="display: flex; justify-content: center;">
+ 		    {% if messages %}
+                {% for message in messages %}
+ 					<p class={{message.tags}}>{{ message }}</p>
+ 				{% endfor %}
+            {% endif %}
+          </div>
+	<div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
+
+    <button type="submit" class="submit-btn">Register</button>
+
+  </form>
+
+</div>
+{% endblock %}
+

@@ -118,7 +118,19 @@ class ProjectExhibitionRegistration(models.Model):
 
     def __str__(self):
         return f"{self.team_name} - {self.leader_name}"
-    
+
+class IdeathonRegistration(models.Model):
+    team_name = models.CharField(max_length=100)
+    team_lead_name = models.CharField(max_length=100)
+    contact_number = models.CharField(max_length=15)
+    email = models.EmailField()
+    institution = models.CharField(max_length=50)
+    number_of_members = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.team_name} - {self.team_lead_name}"
+
+
 class HackathonRegistration(models.Model):
     team_lead_name = models.CharField(max_length=255)
     institution = models.CharField(max_length=255)

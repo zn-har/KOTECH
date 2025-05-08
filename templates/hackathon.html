@@ -88,5 +88,12 @@
 	<div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
     <button type="submit" class="submit-btn">Register</button>
   </form>
+<div class="message-class">
+ 		    {% if messages %}
+                {% for message in messages %}
+ 					<p class={{message.tags}}>{{ message }}</p>
+ 				{% endfor %}
+            {% endif %}
+          </div>
 </div>
 {% endblock %}

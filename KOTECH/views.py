@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
-from Accounts.models import Speaker, Event, ProjectExhibitionRegistration, HackathonRegistration
+from Accounts.models import Speaker, Event, ProjectExhibitionRegistration, HackathonRegistration, IdeathonRegistration
 import requests
 import re
 from django.conf import settings
@@ -95,6 +95,63 @@ class HomeView(TemplateView):
         context['day3_events'] = Event.objects.filter(date=day3).order_by('time')
 
         return context
+
+
+class IdeathonRegistrationView(TemplateView):
+    template_name = 'ideathon.html'
+
+    def post(self, request):
+        team_lead_name = request.POST.get('team_lead_name')
+        team_name = request.POST.get('team_name')
+        institution = request.POST.get('institution')
+        no_of_members = request.POST.get('no_of_members')
+        email = request.POST.get('email')
+        phone = request.POST.get('contact_number')
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+
+
+        data = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+
+        if not result.get('success'):
+            messages.error(request, "Invalid reCAPTCHA. Please try again.")
+            return redirect('Ideathon')
+
+        if not all([team_lead_name, team_name, institution, no_of_members, email, phone]):
+            messages.error(request, 'All required fields must be filled!')
+            return redirect('Ideathon')
+
+        try:
+            no_of_members = int(no_of_members)
+        except ValueError:
+            messages.error(request, 'Number of members must be a number!')
+            return redirect('register')
+
+        if no_of_members > 4:
+            messages.error(request, 'Number of members cannot be more than 4!')
+            return redirect('Ideathon')
+
+
+
+        IdeathonRegistration.objects.create(
+            team_lead_name=team_lead_name,
+            team_name=team_name,
+            institution=institution,
+            number_of_members=no_of_members,
+            email=email,
+            contact_number=phone,
+        )
+        return redirect('registration_success')
+
+    def get(self, request):
+        return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
+
+
+
 
 class ExpoRegisterView(TemplateView):
     template_name = 'expo_register.html'
