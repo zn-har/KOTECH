@@ -23,6 +23,27 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+       
+    }
+    .hero{
+        display: flex;
+        border-radius: 0px;
+    }
+    .navbar {
+        display: flex;
+        padding: 0.5rem 1rem;
+        margin-left: 30px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-items: center;
+    }
+    
+}
 
 /* Header Styles */
 header {
@@ -37,12 +58,14 @@ header {
 }
 
 .navbar {
+    z-index: 1000;
+    color: var(--primary);
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 1rem;
 }
 
 .logo {
@@ -66,7 +89,7 @@ header {
 }
 
 .nav-links a {
-    color: white;
+    color:var(--dark);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
@@ -88,13 +111,16 @@ header {
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
-    height: 100vh;
+    height: 87vh;
+    margin: 0 17px 0 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
     padding: 0 1rem;
+    /* margin: 20px; */
+    border-radius: 30px;
     position: relative;
     overflow: hidden;
 }
@@ -590,6 +616,9 @@ footer {
     .about-content {
         grid-template-columns: 1fr;
     }
+    .logo-png{
+        margin-left: 57px;
+    }
     
     .about-img {
         order: -1;
@@ -604,6 +633,9 @@ footer {
 @media (max-width: 768px) {
     .hamburger {
         display: block;
+    }
+    .logo-png{
+        margin-left: 57px;
     }
     
     .nav-links {
@@ -687,5 +719,5 @@ footer {
 }
 
 .logo-png{
-    margin-left: -120px;
+    margin-left: -15%;
 }
