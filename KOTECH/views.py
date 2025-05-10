@@ -84,7 +84,7 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['speakers'] = Speaker.objects.all()
         context['events'] = Event.objects.all()
-        base_date = date(2025, 5, 29)
+        base_date = date(2025, 5, 3)
 
         day1 = base_date
         day2 = base_date + timedelta(days=1)
