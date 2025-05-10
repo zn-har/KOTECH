@@ -66,6 +66,8 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
+    transition: all 0.3s ease;
+    
 }
 
 .logo {
@@ -78,25 +80,58 @@ header {
 .logo span {
     color: var(--secondary);
 }
+.btn-class{
+    display: flex;
+    align-items:end ;
+}
+.register-btn{
+        background-color: var(--primary);
+        border-radius: 100px;
+        box-shadow: rgba(156, 44, 187, 0.2) 0 -25px 18px -14px inset,rgba(161, 44, 187, 0.15) 0 1px 2px,rgba(49, 44, 187, 0.15) 0 2px 4px,rgba(85, 18, 124, 0.15) 0 4px 8px,rgba(187, 44, 182, 0.15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+        color: rgb(172, 140, 194);
+        cursor: pointer;
+        display: inline-block;
+        font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+        padding: 7px 20px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 250ms;
+        border: 0;
+        font-size: 16px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      
+}
+.register-btn:hover{
+    box-shadow: rgba(156, 44, 187, 0.525) 0 -25px 18px -14px inset,rgba(161, 44, 187, 0.15) 0 1px 2px,rgba(49, 44, 187, 0.15) 0 2px 4px,rgba(85, 18, 124, 0.15) 0 4px 8px,rgba(187, 44, 182, 0.15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  
+}
+
+
 
 .nav-links {
     display: flex;
     list-style: none;
+    transition: all 0.3s ease;
 }
 
 .nav-links li {
     margin-left: 1.5rem;
+    transition: all 0.4s ease;
 }
 
 .nav-links a {
     color:var(--dark);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: all 0.4s ease;
 }
 
-.nav-links a:hover {
+.nav-links  a:hover {
     color: var(--secondary);
+    font-size: 1.125rem;
 }
 
 .hamburger {
@@ -111,7 +146,7 @@ header {
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
-    height: 87vh;
+    height: 88vh;
     margin: 0 17px 0 15px;
     display: flex;
     align-items: center;
@@ -152,26 +187,55 @@ header {
 }
 
 .btn {
-    display: inline-block;
-    background-color: white;
-    color: var(--primary);
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s;
-    border: 2px solid white;
-    margin: 0 0.5rem 1rem 0.5rem;
+    align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+
 }
 
-.btn-outline {
+.btn:active{
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+ .btn-outline {
     background-color: transparent;
     color: white;
 }
+btn:focus{
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 
+}
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+     box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
 }
 
 /* About Section */
@@ -639,7 +703,7 @@ footer {
     }
     
     .nav-links {
-        position: fixed;
+        position:relative;
         top: 70px;
         left: 0;
         right: 0;
