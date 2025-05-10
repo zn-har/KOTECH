@@ -84,11 +84,11 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['speakers'] = Speaker.objects.all()
         context['events'] = Event.objects.all()
-        base_date = date(2025, 5, 3)
+        base_date = date(2025, 5, 30)
 
         day1 = base_date
         day2 = base_date + timedelta(days=1)
-        day3 = base_date + timedelta(days=2)
+        day3 = date(2025, 6, 1)
 
         context['day1_events'] = Event.objects.filter(date=day1).order_by('time')
         context['day2_events'] = Event.objects.filter(date=day2).order_by('time')
