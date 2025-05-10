@@ -66,14 +66,46 @@
     <section class="section" id="events">
         <h2 class="section-title">Featured Events</h2>
         <div class="events-grid">
-            {% for event in events %}
+            {% for event in day1_events %}
             <div class="event-card">
                 <div class="event-img">
-                    <img src="{{ event.image.url }}" alt="Hackathon">
+                    <img src="{{ event.image.url }}" alt="Event_img">
                 </div>
                 <div class="event-content">
-                    <span class="event-date">{{ event.time }}</span>
+                    <span class="event-date">Day 1, {{ event.time }}</span>
+		    {% if event.price != 0 %}
                     <span class="event-price">₹{{ event.price }}</span>
+		    {% endif %}
+                    <h3>{{ event.name }}</h3>
+                    <p>{{ event.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% for event in day2_events %}
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="{{ event.image.url }}" alt="Event_img">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">Day 2, {{ event.time }}</span>
+		    {% if event.price != 0 %}
+                    <span class="event-price">₹{{ event.price }}</span>
+		    {% endif %}
+                    <h3>{{ event.name }}</h3>
+                    <p>{{ event.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% for event in day3_events %}
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="{{ event.image.url }}" alt="Event_img">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">Day 3, {{ event.time }}</span>
+		    {% if event.price != 0 %}
+                    <span class="event-price">₹{{ event.price }}</span>
+		    {% endif %}
                     <h3>{{ event.name }}</h3>
                     <p>{{ event.description }}</p>
                 </div>
