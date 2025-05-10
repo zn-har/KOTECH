@@ -7,6 +7,16 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import FileExtensionValidator
 
+def generate_unique_code():
+    model = User
+    while True:
+        code = str(uuid.uuid4()).replace("-", "").upper()[:6]
+        try:
+            if not model.objects.filter(pk=code).exists():
+                break
+        except Exception as e:
+            return code
+    return code
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, full_name, password=None, mobile_number=None, **extra_fields):
@@ -29,7 +39,7 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, full_name, password, mobile_number, **extra_fields)
 
 class BaseUser(AbstractBaseUser, PermissionsMixin):
-    id = models.CharField(max_length=255, primary_key=True)
+    id = models.CharField(max_length=255, primary_key=True, default=generate_unique_code)
     full_name = models.CharField(_("full name"), max_length=255, blank=True)
     email = models.EmailField(_("email address"), blank=True, unique=True)
     is_staff = models.BooleanField(_("staff status"), default=False)
