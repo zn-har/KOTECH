@@ -6,17 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechFest 2025</title>
     <link rel="stylesheet" href="{% static "css/home.css" %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static "images/favicon-32x32.png" %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static "images/favicon-16x16x" %}">
-    <link rel="manifest" href="{% static "images/site.webmanifest" %}">
 </head>
 <body>
     <!-- Header -->
         <nav class="navbar">
-            <div class = "logo-class">
             <img class = "logo-png" src="{% static 'images/KOTECH_LOGO-01.png' %}" alt="Logo" style= "width:250px; height:auto;">
-            </div>
             <button class="hamburger" id="hamburger">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
@@ -26,10 +20,6 @@
                 <li><a href="/signup">Register</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="btn-class">
-                <button class = "register-btn">Register</button>
-            </div>
-
         </nav>
 
     <!-- Hero Section -->
@@ -71,9 +61,7 @@
                 </div>
                 <div class="event-content">
                     <span class="event-date">{{ event.time }}</span>
-		    {% if event.price != 0 %}
                     <span class="event-price">₹{{ event.price }}</span>
-		    {% endif %}
                     <h3>{{ event.name }}</h3>
                     <p>{{ event.description }}</p>
                 </div>
