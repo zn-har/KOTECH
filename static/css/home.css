@@ -17,7 +17,7 @@ body {
     background-color: var(--light);
     color: #333;
     line-height: 1.6;
-    /*background-image: url("/static/images/KOTECH_LOGO-01.png");*/
+    /* background-image: url("/static/images/Standie\ -\ -img_page-0001.png"); */
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -147,6 +147,7 @@ header {
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background-blend-mode: overlay;
     height: 88vh;
     margin: 0 17px 0 15px;
     display: flex;
@@ -160,20 +161,33 @@ header {
     position: relative;
     overflow: hidden;
 }
+.hero-background{
+    /* height: 70vh;
+    
+    background-attachment: fixed;
+    background-size: 30%;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-image: url("/static/images/Standie\ -\ -img_page-0001.png"); */
+}
 
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
+     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/api/placeholder/1200/800') center/cover no-repeat;
-    opacity: 0.1;
+    background-attachment: fixed;
+    background-size: 35%;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-image: url("/static/images/Standie\ -\ -img_page-0001.png");
+    /* background: url('/api/placeholder/1200/800') center/cover no-repeat; */
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 750px;
     z-index: 1;
 }
 .hero h1 {
