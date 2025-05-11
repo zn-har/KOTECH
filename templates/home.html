@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
     <title>TechFest 2025</title>
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
@@ -34,16 +37,15 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class = "hero-background">
-        <div class="hero-content">
-            <img class = "logo-png1" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="Logo" style= "width:266px; height:auto; padding :0">   <h1>2025</h1>
+         <div class="hero-content">
+            <img class="logo-png1" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="Logo" style="width:266px; height:auto; padding:0">
+            <h1>2025</h1>
             <p>Join us for the biggest tech festival of the year. Explore innovation, connect with industry leaders, and experience cutting-edge technology.</p>
-            <div>
+            <div class="button-container">
                 <a href="/signup" class="btn">Register Now</a>
                 <a href="#about" class="btn btn-outline">Learn More</a>
             </div>
         </div>
-    </div>
     </section>
 
     <!-- About Section -->
@@ -214,6 +216,104 @@
                 document.getElementById(dayId).classList.add('active');
             });
         });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+         
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Intersection Observer
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Add fade-in class when element enters viewport
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                } else {
+                    // Remove fade-in class when element leaves viewport
+                    entry.target.classList.remove('fade-in');
+                }
+                // Don't unobserve - keep watching for changes
+            });
+        }, options);
+
+        // Apply animations to sections and their children
+        const sections = document.querySelectorAll('.section');
+        sections.forEach((section, index) => {
+            // Animate section title
+            const title = section.querySelector('.section-title');
+            if (title) {
+                title.classList.add('scroll-animate', 'zoom-fade');
+                observer.observe(title);
+            }
+
+            // Animate cards with stagger effect
+            const cards = section.querySelectorAll('.event-card, .speaker-card');
+            cards.forEach((card, cardIndex) => {
+                card.classList.add('scroll-animate', 'from-bottom', `stagger-${(cardIndex % 5) + 1}`);
+                observer.observe(card);
+            });
+
+            // Animate schedule items
+            const scheduleItems = section.querySelectorAll('.schedule-item');
+            scheduleItems.forEach((item, itemIndex) => {
+                item.classList.add('scroll-animate', 'from-bottom', `stagger-${(itemIndex % 5) + 1}`);
+                observer.observe(item);
+            });
+
+            // Animate about section content
+            const aboutContent = section.querySelector('.about-content');
+            if (aboutContent) {
+                const elements = aboutContent.children;
+                Array.from(elements).forEach((el, elIndex) => {
+                    el.classList.add('scroll-animate', 'zoom-fade', `stagger-${(elIndex % 5) + 1}`);
+                    observer.observe(el);
+                });
+            }
+        });
+
+        // Animate hero section elements
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+            const elements = heroContent.children;
+            Array.from(elements).forEach((el, index) => {
+                el.classList.add('scroll-animate', 'zoom-fade', `stagger-${(index % 5) + 1}`);
+                observer.observe(el);
+            });
+        }
+    });
+
+    // Add smooth scroll behavior for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
 </body>
 </html>

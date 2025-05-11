@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),    
     # path('', include('Accounts.urls')),
     path('',views.HomeView.as_view(), name='home'),
     path('register/ideathon', views.IdeathonRegistrationView.as_view(), name='Ideathon'),
@@ -31,7 +31,7 @@ urlpatterns = [
     path('register/project_exhibition/', views.ExpoRegisterView.as_view(), name='register'),
     path('registration_success', views.registration_success, name="registration_success"),
 
-    re_path(r'^.*$', views.under_construction, name='under_construction'),
+   # re_path(r'^.*$', views.under_construction, name='under_construction'),
 ]
 
 if settings.DEBUG:
