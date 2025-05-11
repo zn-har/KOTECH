@@ -161,15 +161,6 @@ header {
     position: relative;
     overflow: hidden;
 }
-.hero-background{
-    /* height: 70vh;
-    
-    background-attachment: fixed;
-    background-size: 30%;
-    background-position: right;
-    background-repeat: no-repeat;
-    background-image: url("/static/images/Standie\ -\ -img_page-0001.png"); */
-}
 
 .hero::before {
     content: '';
@@ -713,8 +704,40 @@ footer {
     .hamburger {
         display: block;
     }
+    .navbar{
+        width: 80%;
+        height: 10vh;
+    }
+    
+    .hero .btn {
+        width: 120px;
+        padding-left: 12px;
+        padding-right: 12px;
+        font-size: 16px;
+        height: 40px;
+        margin: 5px;
+    }
+
+    .hero-content div {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .hero{
+        height: 78vh;
+    }
+    .hero::before{
+        background-position:bottom;
+        background-size: 90%;
+        height: 78vh;
+    }
+    .register-btn{
+        display: none;
+    }
     .logo-png{
-        margin-left: 57px;
+        margin-left: 10%;
     }
     
     .nav-links {
