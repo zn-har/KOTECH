@@ -1,4 +1,5 @@
 {% extends "registration_template.html" %}
+{% load static %}
 
 {% block title %}
     <title>Hackathon Registration</title>
@@ -8,6 +9,7 @@
 <div class="header">
   <h1>Hackathon Registration</h1>
   <p>Join Kotech Hackathon 2025 to solve real-world challenges and showcase your skills. Team up and let your ideas take flight!</p>
+  <p><strong>Read the guidelines <a href="{% static 'guidelines/hguidelines.pdf' %}">here</a></strong></p>
 </div>
 {% endblock %}
 
