@@ -25,6 +25,7 @@ urlpatterns = [
     # path('', include('Accounts.urls')),
     path('',views.HomeView.as_view(), name='home'),
     path('register/ideathon', views.IdeathonRegistrationView.as_view(), name='Ideathon'),
+    path('register/ideathon/', views.IdeathonRegistrationView.as_view(), name='Ideathon'),
     path('register/hackathon/', views.HackathonRegistrationView.as_view(), name='hackathon_registration'),
     path('register/project_exhibition', views.ExpoRegisterView.as_view(), name='register'),
     path('register/hackathon', views.HackathonRegistrationView.as_view(), name='hackathon_registration'),
