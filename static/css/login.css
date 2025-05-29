@@ -1,5 +1,3 @@
-
-
 * {
     margin: 0;
     padding: 0;
@@ -29,6 +27,7 @@ body {
     border-radius: 10px;    
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     width: 28%;
+    min-width: 320px;
     padding: 40px;
     text-align: center;
 }
@@ -76,6 +75,7 @@ input {
         transform: translate(-50%, -50%); /* Adjust for the element's size */
         width: 90%; /* Adjust width for smaller screens */
         max-width: 400px; /* Limit maximum width */
+        min-width: 280px; /* Ensure minimum width on mobile */
         padding: 20px; /* Add padding for better spacing */
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adjust shadow for smaller screens */
     }

@@ -7,7 +7,7 @@ media/
 # Environments
 .env
 .idea
-.venv1
+.venv
 
 db.sqlite3
 

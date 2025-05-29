@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
     <!-- Futuristic Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>TechFest 2025</title>
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
@@ -61,7 +63,7 @@
                 <p>Whether you're a professional developer, a tech enthusiast, or simply curious about the digital future, TechFest has something for everyone.</p>
             </div>
             <div class="about-img">
-                <img src="{% static 'images/KOTECH_LOGO-0.png' %}" alt="TechFest Event Image">
+                <img src="{% static 'images/ChatGPT Image May 29, 2025, 10_58_54 AM.png' %}" alt="TechFest Event Image">
             </div>
         </div>
     </section>
@@ -76,12 +78,21 @@
                     <img src="{{ event.image.url }}" alt="Event_img">
                 </div>
                 <div class="event-content">
-                    <span class="event-date">Day 1, {{ event.time }}</span>
-		    {% if event.price != 0 %}
-                    <span class="event-price">₹{{ event.price }}</span>
-		    {% endif %}
-                    <h3>{{ event.name }}</h3>
-                    <p>{{ event.description }}</p>
+                    <h3>DAY 1</h3>
+                    <span class="event-date">{{ event.time }}</span>
+                    <p>{{ event.name }}</p>
+                    {% if event.price != 0 %}
+                    <span class="event-price">₹{{ event.price|floatformat:0 }}/-</span>
+                    {% endif %}
+                    {% if event.price != 0 %}
+                        <a href="{{ event.redirect }}">
+                            <button class="event-btn">BUY NOW - ₹{{ event.price|floatformat:0 }}/-</button>
+                        </a>
+                    {% else %}
+                        <a href="{{ event.redirect }}">
+                            <button class="event-btn">REGISTER</button>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
@@ -91,12 +102,21 @@
                     <img src="{{ event.image.url }}" alt="Event_img">
                 </div>
                 <div class="event-content">
-                    <span class="event-date">Day 2, {{ event.time }}</span>
-		    {% if event.price != 0 %}
-                    <span class="event-price">₹{{ event.price }}</span>
-		    {% endif %}
-                    <h3>{{ event.name }}</h3>
-                    <p>{{ event.description }}</p>
+                    <h3>DAY 2</h3>
+                    <span class="event-date">{{ event.time }}</span>
+                    <p>{{ event.name }}</p>
+                    {% if event.price != 0 %}
+                    <span class="event-price">₹{{ event.price|floatformat:0 }}/-</span>
+                    {% endif %}
+                    {% if event.price != 0 %}
+                        <a href="{{ event.redirect }}">
+                            <button class="event-btn">BUY NOW - ₹{{ event.price|floatformat:0 }}/-</button>
+                        </a>
+                    {% else %}
+                        <a href="{{ event.redirect }}">
+                            <button class="event-btn">REGISTER</button>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
@@ -106,12 +126,21 @@
                     <img src="{{ event.image.url }}" alt="Event_img">
                 </div>
                 <div class="event-content">
-                    <span class="event-date">Day 3, {{ event.time }}</span>
-		    {% if event.price != 0 %}
-                    <span class="event-price">₹{{ event.price }}</span>
-		    {% endif %}
-                    <h3>{{ event.name }}</h3>
-                    <p>{{ event.description }}</p>
+                    <h3>DAY 3</h3>
+                    <span class="event-date">{{ event.time }}</span>
+                    <p>{{ event.name }}</p>
+                    {% if event.price != 0 %}
+                    <span class="event-price">₹{{ event.price|floatformat:0 }}/-</span>
+                    {% endif %}
+                    {% if event.price != 0 %}
+                        <a href="{{ event.redirect }}">
+                            <button class="event-btn">BUY NOW - ₹{{ event.price|floatformat:0 }}/-</button>
+                        </a>
+                    {% else %}
+                        <a href="{{ event.redirect }}">
+                            <button class="event-btn">REGISTER</button>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
@@ -317,5 +346,44 @@
         });
     });
 </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#events">Events</a>
+                <a href="#speakers">Speakers</a>
+                <a href="#schedule">Schedule</a>
+                <a href="/signup">Register</a>
+                <a href="#contact">Contact</a>
+            </div>
+        
+            <div class="footer-social">
+                <a href="https://facebook.com/kotech" aria-label="Facebook" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/kotech" aria-label="Twitter" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://linkedin.com/company/kotech" aria-label="LinkedIn" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://instagram.com/kotech" aria-label="Instagram" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://youtube.com/kotech" aria-label="YouTube" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+            
+            <div class="footer-info">
+                <img class="footer-logo" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="KOTECH Logo" style="width:150px; height:auto; margin-bottom:1rem;">
+                <p>&copy; 2025 KOTECH TechFest. All rights reserved.</p>
+                <p>Empowering the future through technology and innovation.</p>
+                <p>Contact: <a href="mailto:hello@kotech.io" style="text-decoration: none;">hello@kotech.io</a></p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
