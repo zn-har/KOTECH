@@ -78,15 +78,22 @@
                     <img src="{{ event.image.url }}" alt="Event_img">
                 </div>
                 <div class="event-content">
-                    <h3>DAY 1</h3>
+                    <h3>{{event.name}}</h3>
                     <span class="event-date">{{ event.time }}</span>
-                    <p>{{ event.name }}</p>
-                    {% if event.price != 0 %}
-                    <span class="event-price">₹{{ event.price|floatformat:0 }}/-</span>
+                    {% if event.description %}
+                        <p class="event-description">{{ event.description }}</p>
+                    {% else %}
+                        <p class="event-description">No description available.</p>
                     {% endif %}
+                    {% if event.venue %}
+                        <p class="event-venue">Venue: {{ event.venue.name }}</p>
+                    {% else %}
+                        <p class="event-venue">Venue: Not specified</p>
+                    {% endif %}
+                    <p>DAY 1</p>
                     {% if event.price != 0 %}
                         <a href="{{ event.redirect }}">
-                            <button class="event-btn">BUY NOW - ₹{{ event.price|floatformat:0 }}/-</button>
+                            <button class="event-btn">BUY NOW  ₹{{ event.price|floatformat:0 }}/-</button>
                         </a>
                     {% else %}
                         <a href="{{ event.redirect }}">
@@ -102,15 +109,22 @@
                     <img src="{{ event.image.url }}" alt="Event_img">
                 </div>
                 <div class="event-content">
-                    <h3>DAY 2</h3>
+                    <h3>{{event.name}}</h3>
                     <span class="event-date">{{ event.time }}</span>
-                    <p>{{ event.name }}</p>
-                    {% if event.price != 0 %}
-                    <span class="event-price">₹{{ event.price|floatformat:0 }}/-</span>
+                    {% if event.description %}
+                        <p class="event-description">{{ event.description }}</p>
+                    {% else %}
+                        <p class="event-description">No description available.</p>
                     {% endif %}
+                    {% if event.venue %}
+                        <p class="event-venue">Venue: {{ event.venue.name }}</p>
+                    {% else %}
+                        <p class="event-venue">Venue: Not specified</p>
+                    {% endif %}
+                    <p>DAY 2</p>
                     {% if event.price != 0 %}
                         <a href="{{ event.redirect }}">
-                            <button class="event-btn">BUY NOW - ₹{{ event.price|floatformat:0 }}/-</button>
+                            <button class="event-btn">BUY NOW ₹{{ event.price|floatformat:0 }}/-</button>
                         </a>
                     {% else %}
                         <a href="{{ event.redirect }}">
@@ -126,15 +140,22 @@
                     <img src="{{ event.image.url }}" alt="Event_img">
                 </div>
                 <div class="event-content">
-                    <h3>DAY 3</h3>
+                    <h3>{{event.name}}</h3>
                     <span class="event-date">{{ event.time }}</span>
-                    <p>{{ event.name }}</p>
-                    {% if event.price != 0 %}
-                    <span class="event-price">₹{{ event.price|floatformat:0 }}/-</span>
+                    {% if event.description %}
+                        <p class="event-description">{{ event.description }}</p>
+                    {% else %}
+                        <p class="event-description">No description available.</p>
                     {% endif %}
+                    {% if event.venue %}
+                        <p class="event-venue">Venue: {{ event.venue.name }}</p>
+                    {% else %}
+                        <p class="event-venue">Venue: Not specified</p>
+                    {% endif %}
+                    <p>DAY 3</p>
                     {% if event.price != 0 %}
                         <a href="{{ event.redirect }}">
-                            <button class="event-btn">BUY NOW - ₹{{ event.price|floatformat:0 }}/-</button>
+                            <button class="event-btn">BUY NOW ₹{{ event.price|floatformat:0 }}/-</button>
                         </a>
                     {% else %}
                         <a href="{{ event.redirect }}">
