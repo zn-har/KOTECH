@@ -30,7 +30,7 @@
                 <li><a href="#events">Events</a></li>
                 <li><a href="#speakers">Speakers</a></li>
                 <li><a href="#schedule">Schedule</a></li>
-                <li><a href="/signup">Register</a></li>
+                {% comment %} <li><a href="/signup">Register</a></li> {% endcomment %}
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="btn-class">
@@ -46,7 +46,7 @@
             <h1>2025</h1>
             <p>Join us for the biggest tech festival of the year. Explore innovation, connect with industry leaders, and experience cutting-edge technology.</p>
             <div class="button-container">
-                <a href="/signup" class="btn">Register Now</a>
+                {% comment %} <a href="/signup" class="btn">Register Now</a> {% endcomment %}
                 <a href="#about" class="btn btn-outline">Learn More</a>
             </div>
         </div>
@@ -79,28 +79,30 @@
                 </div>
                 <div class="event-content">
                     <h3>{{event.name}}</h3>
-                    <span class="event-date">{{ event.time }}</span>
+                    <span class="event-date">
+                        {{ event.time }}
+                    </span>
                     {% if event.description %}
                         <p class="event-description">{{ event.description }}</p>
                     {% else %}
                         <p class="event-description">No description available.</p>
                     {% endif %}
                     {% if event.venue %}
-                        <p class="event-venue">Venue: {{ event.venue.name }}</p>
+                        <p class="event-venue">📍 {{ event.venue.name }}</p>
                     {% else %}
-                        <p class="event-venue">Venue: Not specified</p>
+                        <p class="event-venue">📍 Venue: Not specified</p>
                     {% endif %}
                     <p>DAY 1</p>
-                    {% if event.price != 0 %}
-                        <a href="{{ event.redirect }}">
-                            <button class="event-btn">BUY NOW  ₹{{ event.price|floatformat:0 }}/-</button>
-                        </a>
-                    {% else %}
-                        <a href="{{ event.redirect }}">
-                            <button class="event-btn">REGISTER</button>
-                        </a>
-                    {% endif %}
                 </div>
+                {% if event.price != 0 %}
+                    <a href="{{ event.redirect }}" class="event-btn">
+                        BUY NOW  ₹{{ event.price|floatformat:0 }}/-
+                    </a>
+                {% else %}
+                    <a href="{{ event.redirect }}" class="event-btn">
+                        REGISTER FREE
+                    </a>
+                {% endif %}
             </div>
             {% endfor %}
             {% for event in day2_events %}
@@ -117,21 +119,21 @@
                         <p class="event-description">No description available.</p>
                     {% endif %}
                     {% if event.venue %}
-                        <p class="event-venue">Venue: {{ event.venue.name }}</p>
+                        <p class="event-venue">📍 {{ event.venue.name }}</p>
                     {% else %}
-                        <p class="event-venue">Venue: Not specified</p>
+                        <p class="event-venue">📍 Venue: Not specified</p>
                     {% endif %}
                     <p>DAY 2</p>
-                    {% if event.price != 0 %}
-                        <a href="{{ event.redirect }}">
-                            <button class="event-btn">BUY NOW ₹{{ event.price|floatformat:0 }}/-</button>
-                        </a>
-                    {% else %}
-                        <a href="{{ event.redirect }}">
-                            <button class="event-btn">REGISTER</button>
-                        </a>
-                    {% endif %}
                 </div>
+                {% if event.price != 0 %}
+                    <a href="{{ event.redirect }}" class="event-btn">
+                        BUY NOW ₹{{ event.price|floatformat:0 }}/-
+                    </a>
+                {% else %}
+                    <a href="{{ event.redirect }}" class="event-btn">
+                        REGISTER FREE
+                    </a>
+                {% endif %}
             </div>
             {% endfor %}
             {% for event in day3_events %}
@@ -148,21 +150,21 @@
                         <p class="event-description">No description available.</p>
                     {% endif %}
                     {% if event.venue %}
-                        <p class="event-venue">Venue: {{ event.venue.name }}</p>
+                        <p class="event-venue">📍 {{ event.venue.name }}</p>
                     {% else %}
-                        <p class="event-venue">Venue: Not specified</p>
+                        <p class="event-venue">📍 Venue: Not specified</p>
                     {% endif %}
                     <p>DAY 3</p>
-                    {% if event.price != 0 %}
-                        <a href="{{ event.redirect }}">
-                            <button class="event-btn">BUY NOW ₹{{ event.price|floatformat:0 }}/-</button>
-                        </a>
-                    {% else %}
-                        <a href="{{ event.redirect }}">
-                            <button class="event-btn">REGISTER</button>
-                        </a>
-                    {% endif %}
                 </div>
+                {% if event.price != 0 %}
+                    <a href="{{ event.redirect }}" class="event-btn">
+                        BUY NOW ₹{{ event.price|floatformat:0 }}/-
+                    </a>
+                {% else %}
+                    <a href="{{ event.redirect }}" class="event-btn">
+                        REGISTER FREE
+                    </a>
+                {% endif %}
             </div>
             {% endfor %}
         </div>
@@ -396,6 +398,16 @@
                 <a href="https://youtube.com/kotech" aria-label="YouTube" target="_blank">
                     <i class="fab fa-youtube"></i>
                 </a>
+            </div>
+
+            <div class="footer-sponsors">
+                <h4>Our Sponsors</h4>
+                <div class="sponsor-logos">
+                    <img src="{% static 'images/sponsor1.png' %}" alt="Sponsor 1" style="height:40px; margin:0 10px;">
+                    <img src="{% static 'images/sponsor2.png' %}" alt="Sponsor 2" style="height:40px; margin:0 10px;">
+                    <img src="{% static 'images/sponsor3.png' %}" alt="Sponsor 3" style="height:40px; margin:0 10px;">
+                    <!-- Add more sponsors as needed -->
+                </div>
             </div>
             
             <div class="footer-info">
