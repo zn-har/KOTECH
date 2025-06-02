@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
     <!-- Futuristic Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>TechFest 2025</title>
@@ -19,63 +22,119 @@
     <link rel="manifest" href="{% static "images/site.webmanifest" %}">
 </head>
 <body>
-    <!-- Header -->
-        <nav class="navbar">
-            <div class = "logo-class">
-            <img class = "logo-png" src="{% static 'images/KOTECH_LOGO-01.png' %}" alt="Logo" style= "width:250px; height:auto;">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <img class="loader-logo" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="KOTECH Logo">
+            <div class="loader-spinner"></div>
+            <div class="loader-text" id="loadingText">Loading TechFest 2025</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
-            <button class="hamburger" id="hamburger">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#about">About</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#speakers">Speakers</a></li>
-                <li><a href="#schedule">Schedule</a></li>
-                {% comment %} <li><a href="/signup">Register</a></li> {% endcomment %}
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="btn-class">
-                <button class = "register-btn">Register</button>
-            </div>
+        </div>
+    </div>
 
-        </nav>
+    <!-- Header -->
+
+
+    <nav class="navbar">
+        <div class="logo-class">
+            <img class="logo-png" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="Logo" style="width:250px; height:auto;">
+        </div>
+        <button class="hamburger" id="hamburger">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-         <div class="hero-content">
-            <img class="logo-png1" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="Logo" style="width:266px; height:auto; padding:0">
-            <h1>2025</h1>
-            <p>Join us for the biggest tech festival of the year. Explore innovation, connect with industry leaders, and experience cutting-edge technology.</p>
-            <div class="button-container">
-                {% comment %} <a href="/signup" class="btn">Register Now</a> {% endcomment %}
-                <a href="#about" class="btn btn-outline">Learn More</a>
+
+        
+        <div class="hero-content">
+            <img class="logo-png1 hero-element" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="Logo" style="width:266px; height:auto; padding:0">
+            <h1 class="hero-element">2025</h1>
+            <p class="hero-element">Experience the Future of Technology. Join thousands of innovators, developers, and tech enthusiasts for three days of cutting-edge discoveries, groundbreaking workshops, and revolutionary connections.</p>
+            <div class="button-container hero-element">
+                <a href="#about" class="btn btn-outline">Explore the Future</a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="section" id="about">
-        <h2 class="section-title">About TechFest</h2>
+        <h2 class="section-title">About TechFest 2025</h2>
         <div class="about-content">
             <div class="about-text">
-                <h3>The Ultimate Technology Experience</h3>
-                <p>TechFest 2025 is a celebration of innovation, creativity, and technological advancement. For three days, join thousands of tech enthusiasts, industry professionals, and visionaries as we explore the future of technology.</p>
-                <p>From AI and machine learning to blockchain and virtual reality, our event covers all aspects of modern technology with hands-on workshops, insightful presentations, and networking opportunities.</p>
-                <p>Whether you're a professional developer, a tech enthusiast, or simply curious about the digital future, TechFest has something for everyone.</p>
+                <h3>Shaping Tomorrow's Digital Landscape</h3>
+                <p>TechFest 2025 stands as the premier technology convergence where innovation meets opportunity. For three transformative days, immerse yourself in the latest technological breakthroughs that are reshaping our digital world.</p>
+                <p>From artificial intelligence and quantum computing to blockchain revolution and metaverse experiences, our festival showcases the technologies that will define the next decade. Connect with industry pioneers, learn from thought leaders, and be part of the technological renaissance.</p>
+                <p>Whether you're a seasoned developer, emerging entrepreneur, tech investor, or simply passionate about the future, TechFest 2025 offers unparalleled opportunities to learn, network, and innovate.</p>
             </div>
             <div class="about-img">
                 <img src="{% static 'images/ChatGPT Image May 29, 2025, 10_58_54 AM.png' %}" alt="TechFest Event Image">
+            </div>
+        </div>
+        
+        <!-- Enhanced Features Grid -->
+        <div class="about-features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h4>AI & Machine Learning</h4>
+                <p>Dive deep into artificial intelligence breakthroughs, neural networks, and machine learning algorithms that are revolutionizing industries worldwide.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h4>Blockchain & Web3</h4>
+                <p>Explore decentralized technologies, smart contracts, and the Web3 ecosystem that's creating new paradigms for digital ownership and interaction.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-vr-cardboard"></i>
+                </div>
+                <h4>VR & Metaverse</h4>
+                <p>Step into immersive virtual worlds and discover how extended reality technologies are creating new dimensions of human experience.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h4>IoT & Edge Computing</h4>
+                <p>Understand how interconnected devices and edge computing are building smarter cities and more intelligent systems.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>Cybersecurity</h4>
+                <p>Learn cutting-edge security strategies, threat detection methods, and defense mechanisms for protecting digital assets in our connected world.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h4>Innovation Hub</h4>
+                <p>Connect with visionary startups, breakthrough technologies, and investment opportunities that are driving the next wave of technological disruption.</p>
             </div>
         </div>
     </section>
 
     <!-- Events Section -->
     <section class="section" id="events">
-        <h2 class="section-title">Featured Events</h2>
+        <h2 class="section-title">Flagship Events & Experiences</h2>
         <div class="events-grid">
             {% for event in day1_events %}
             <div class="event-card">
                 <div class="event-img">
-                    <img src="{{ event.image.url }}" alt="Event_img">
+                    <img src="{{ event.image.url }}" alt="{{event.name}} Event">
                 </div>
                 <div class="event-content">
                     <h3>{{event.name}}</h3>
@@ -85,22 +144,22 @@
                     {% if event.description %}
                         <p class="event-description">{{ event.description }}</p>
                     {% else %}
-                        <p class="event-description">No description available.</p>
+                        <p class="event-description">Join us for an exclusive technology experience designed to expand your knowledge and network.</p>
                     {% endif %}
                     {% if event.venue %}
                         <p class="event-venue">📍 {{ event.venue.name }}</p>
                     {% else %}
-                        <p class="event-venue">📍 Venue: Not specified</p>
+                        <p class="event-venue">📍 Main Conference Hall</p>
                     {% endif %}
-                    <p>DAY 1</p>
+                    <p>DAY 1 • INNOVATION</p>
                 </div>
                 {% if event.price != 0 %}
                     <a href="{{ event.redirect }}" class="event-btn">
-                        BUY NOW  ₹{{ event.price|floatformat:0 }}/-
+                        Secure Your Spot • ₹{{ event.price|floatformat:0 }}
                     </a>
                 {% else %}
                     <a href="{{ event.redirect }}" class="event-btn">
-                        REGISTER FREE
+                        Join Free Experience
                     </a>
                 {% endif %}
             </div>
@@ -108,7 +167,7 @@
             {% for event in day2_events %}
             <div class="event-card">
                 <div class="event-img">
-                    <img src="{{ event.image.url }}" alt="Event_img">
+                    <img src="{{ event.image.url }}" alt="{{event.name}} Event">
                 </div>
                 <div class="event-content">
                     <h3>{{event.name}}</h3>
@@ -116,22 +175,22 @@
                     {% if event.description %}
                         <p class="event-description">{{ event.description }}</p>
                     {% else %}
-                        <p class="event-description">No description available.</p>
+                        <p class="event-description">Discover cutting-edge technologies and connect with industry leaders in this immersive session.</p>
                     {% endif %}
                     {% if event.venue %}
                         <p class="event-venue">📍 {{ event.venue.name }}</p>
                     {% else %}
-                        <p class="event-venue">📍 Venue: Not specified</p>
+                        <p class="event-venue">📍 Tech Innovation Center</p>
                     {% endif %}
-                    <p>DAY 2</p>
+                    <p>DAY 2 • COLLABORATION</p>
                 </div>
                 {% if event.price != 0 %}
                     <a href="{{ event.redirect }}" class="event-btn">
-                        BUY NOW ₹{{ event.price|floatformat:0 }}/-
+                        Reserve Now • ₹{{ event.price|floatformat:0 }}
                     </a>
                 {% else %}
                     <a href="{{ event.redirect }}" class="event-btn">
-                        REGISTER FREE
+                        Access Free Content
                     </a>
                 {% endif %}
             </div>
@@ -139,7 +198,7 @@
             {% for event in day3_events %}
             <div class="event-card">
                 <div class="event-img">
-                    <img src="{{ event.image.url }}" alt="Event_img">
+                    <img src="{{ event.image.url }}" alt="{{event.name}} Event">
                 </div>
                 <div class="event-content">
                     <h3>{{event.name}}</h3>
@@ -147,22 +206,22 @@
                     {% if event.description %}
                         <p class="event-description">{{ event.description }}</p>
                     {% else %}
-                        <p class="event-description">No description available.</p>
+                        <p class="event-description">Cap off your TechFest journey with groundbreaking insights and future-focused discussions.</p>
                     {% endif %}
                     {% if event.venue %}
                         <p class="event-venue">📍 {{ event.venue.name }}</p>
                     {% else %}
-                        <p class="event-venue">📍 Venue: Not specified</p>
+                        <p class="event-venue">📍 Future Tech Auditorium</p>
                     {% endif %}
-                    <p>DAY 3</p>
+                    <p>DAY 3 • TRANSFORMATION</p>
                 </div>
                 {% if event.price != 0 %}
                     <a href="{{ event.redirect }}" class="event-btn">
-                        BUY NOW ₹{{ event.price|floatformat:0 }}/-
+                        Get Tickets • ₹{{ event.price|floatformat:0 }}
                     </a>
                 {% else %}
                     <a href="{{ event.redirect }}" class="event-btn">
-                        REGISTER FREE
+                        Join the Future
                     </a>
                 {% endif %}
             </div>
@@ -172,12 +231,12 @@
 
     <!-- Speakers Section -->
     <section class="section" id="speakers">
-        <h2 class="section-title">Keynote Speakers</h2>
+        <h2 class="section-title">Visionary Speakers & Tech Leaders</h2>
         <div class="speakers-grid">
             {% for speaker in speakers %}
              <div class="speaker-card">
                 <div class="speaker-img">
-                    <img src="{{ speaker.image.url}}" alt="{{ speaker.name }}">
+                    <img src="{{ speaker.image.url}}" alt="{{ speaker.name }} - Technology Leader">
                 </div>
                 <div class="speaker-content">
                     <h3>{{ speaker.name }}</h3>
@@ -191,12 +250,12 @@
 
     <!-- Schedule Section -->
     <section class="section" id="schedule">
-        <h2 class="section-title">Event Schedule</h2>
+        <h2 class="section-title">Technology Timeline</h2>
         
         <div class="schedule-tabs">
-            <button class="tab-btn active" data-day="day1">Day 1</button>
-            <button class="tab-btn" data-day="day2">Day 2</button>
-            <button class="tab-btn" data-day="day3">Day 3</button>
+            <button class="tab-btn active" data-day="day1">Day 1 • Innovation</button>
+            <button class="tab-btn" data-day="day2">Day 2 • Collaboration</button>
+            <button class="tab-btn" data-day="day3">Day 3 • Transformation</button>
         </div>
 
         <!-- Day 1 Events -->
@@ -213,7 +272,7 @@
                 </div>
             </div>
             {% empty %}
-            <p>No events scheduled for Day 1.</p>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.7); font-family: 'Space Grotesk', sans-serif;">Exciting innovations are being planned for Day 1. Stay tuned for updates!</p>
             {% endfor %}
         </div>
 
@@ -231,7 +290,7 @@
                 </div>
             </div>
             {% empty %}
-            <p>No events scheduled for Day 2.</p>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.7); font-family: 'Space Grotesk', sans-serif;">Collaborative experiences are being curated for Day 2. More details coming soon!</p>
             {% endfor %}
         </div>
 
@@ -249,12 +308,209 @@
                 </div>
             </div>
             {% empty %}
-            <p>No events scheduled for Day 3.</p>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.7); font-family: 'Space Grotesk', sans-serif;">Transformative sessions are being finalized for Day 3. Watch this space!</p>
             {% endfor %}
         </div>
     </section>
 
     <script>
+        // Enhanced Hero Parallax Scroll Effects
+        let heroElements = [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize hero elements for parallax
+            const heroLogo = document.querySelector('.hero-content .logo-png1');
+            const heroTitle = document.querySelector('.hero-content h1');
+            const heroText = document.querySelector('.hero-content p');
+            const heroButton = document.querySelector('.hero-content .button-container');
+            
+            heroElements = [
+                { element: heroLogo, speed: 0.3, rotation: 0.2 },
+                { element: heroTitle, speed: 0.5, rotation: 0.1 },
+                { element: heroText, speed: 0.4, translation: 0.3 },
+                { element: heroButton, speed: 0.6, scale: 0.1 }
+            ];
+            
+            // Add scroll event listener for hero parallax
+            window.addEventListener('scroll', updateHeroParallax);
+            
+            // Initial call
+            updateHeroParallax();
+        });
+        
+        function updateHeroParallax() {
+            const scrollY = window.pageYOffset;
+            const heroSection = document.querySelector('.hero');
+            
+            if (!heroSection) return;
+            
+            const heroRect = heroSection.getBoundingClientRect();
+            const heroVisible = heroRect.bottom > 0 && heroRect.top < window.innerHeight;
+            
+            if (heroVisible) {
+                heroElements.forEach((item, index) => {
+                    if (!item.element) return;
+                    
+                    const speed = item.speed || 0.5;
+                    const moveY = scrollY * speed;
+                    
+                    let transform = `translateY(${moveY}px)`;
+                    
+                    // Add rotation effect
+                    if (item.rotation) {
+                        const rotation = scrollY * item.rotation;
+                        transform += ` rotateX(${rotation}deg)`;
+                    }
+                    
+                    // Add horizontal translation effect
+                    if (item.translation) {
+                        const moveX = Math.sin(scrollY * 0.01) * (scrollY * item.translation);
+                        transform += ` translateX(${moveX}px)`;
+                    }
+                    
+                    // Add scale effect
+                    if (item.scale) {
+                        const scale = 1 + (scrollY * item.scale * 0.001);
+                        transform += ` scale(${Math.max(0.8, Math.min(1.2, scale))})`;
+                    }
+                    
+                    // Add opacity fade effect
+                    const opacity = Math.max(0.3, 1 - (scrollY * 0.002));
+                    
+                    item.element.style.transform = transform;
+                    item.element.style.opacity = opacity;
+                });
+                
+                // Background elements parallax
+                const bgElements = document.querySelectorAll('.floating-shape, .geometric-shape');
+                bgElements.forEach((element, index) => {
+                    const speed = 0.1 + (index * 0.05);
+                    const moveY = scrollY * speed;
+                    const rotate = scrollY * (0.1 + index * 0.02);
+                    element.style.transform = `translateY(${moveY}px) rotate(${rotate}deg)`;
+                });
+                
+                // Particles parallax
+                const particles = document.querySelectorAll('.hero-particles .particle');
+                particles.forEach((particle, index) => {
+                    const speed = 0.2 + (index * 0.03);
+                    const moveY = scrollY * speed;
+                    const moveX = Math.sin(scrollY * 0.01 + index) * 10;
+                    particle.style.transform = `translateY(${moveY}px) translateX(${moveX}px)`;
+                });
+            }
+        }
+
+        // Loading Screen Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const progressFill = document.getElementById('progressFill');
+            const loadingText = document.getElementById('loadingText');
+            
+            let progress = 0;
+            let loadedImages = 0;
+            let totalImages = 0;
+            
+            // Loading messages
+            const loadingMessages = [
+                'Loading TechFest 2025',
+                'Preparing Innovation',
+                'Connecting the Future',
+                'Almost Ready',
+                'Welcome to TechFest'
+            ];
+            
+            // Update loading text
+            function updateLoadingText() {
+                const messageIndex = Math.floor(progress / 20);
+                if (messageIndex < loadingMessages.length) {
+                    loadingText.textContent = loadingMessages[messageIndex];
+                }
+            }
+            
+            // Update progress bar
+            function updateProgress(newProgress) {
+                progress = Math.min(newProgress, 100);
+                progressFill.style.width = progress + '%';
+                updateLoadingText();
+                
+                if (progress >= 100) {
+                    setTimeout(hideLoadingScreen, 500);
+                }
+            }
+            
+            // Hide loading screen
+            function hideLoadingScreen() {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }
+            
+            // Count all images on the page
+            function countImages() {
+                const images = document.querySelectorAll('img');
+                totalImages = images.length;
+                
+                if (totalImages === 0) {
+                    updateProgress(100);
+                    return;
+                }
+                
+                images.forEach(img => {
+                    if (img.complete) {
+                        loadedImages++;
+                    } else {
+                        img.addEventListener('load', imageLoaded);
+                        img.addEventListener('error', imageLoaded);
+                    }
+                });
+                
+                // Initial progress update
+                updateProgress((loadedImages / totalImages) * 80);
+            }
+            
+            // Handle image load
+            function imageLoaded() {
+                loadedImages++;
+                const imageProgress = (loadedImages / totalImages) * 80;
+                updateProgress(imageProgress);
+            }
+            
+            // Simulate additional loading time for content
+            function simulateContentLoad() {
+                let contentProgress = 80;
+                const contentInterval = setInterval(() => {
+                    contentProgress += 4;
+                    updateProgress(contentProgress);
+                    
+                    if (contentProgress >= 100) {
+                        clearInterval(contentInterval);
+                    }
+                }, 100);
+            }
+            
+            // Start loading process
+            setTimeout(() => {
+                countImages();
+                
+                // Minimum loading time
+                setTimeout(() => {
+                    if (progress < 80) {
+                        updateProgress(80);
+                    }
+                    simulateContentLoad();
+                }, 1000);
+            }, 100);
+            
+            // Fallback - hide loading screen after 5 seconds regardless
+            setTimeout(() => {
+                if (!loadingScreen.classList.contains('hidden')) {
+                    updateProgress(100);
+                }
+            }, 5000);
+        });
+
         const tabButtons = document.querySelectorAll('.tab-btn');
         const scheduleDays = document.querySelectorAll('.schedule-day');
 
@@ -320,7 +576,7 @@
             }
 
             // Animate cards with stagger effect
-            const cards = section.querySelectorAll('.event-card, .speaker-card');
+            const cards = section.querySelectorAll('.event-card, .speaker-card, .feature-card');
             cards.forEach((card, cardIndex) => {
                 card.classList.add('scroll-animate', 'from-bottom', `stagger-${(cardIndex % 5) + 1}`);
                 observer.observe(card);
@@ -374,12 +630,11 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#about">About</a>
+                <a href="#about">About TechFest</a>
                 <a href="#events">Events</a>
                 <a href="#speakers">Speakers</a>
                 <a href="#schedule">Schedule</a>
-                <a href="/signup">Register</a>
-                <a href="#contact">Contact</a>
+                <a href="mailto:hello@kotech.io">Contact Us</a>
             </div>
         
             <div class="footer-social">
@@ -401,20 +656,19 @@
             </div>
 
             <div class="footer-sponsors">
-                <h4>Our Sponsors</h4>
+                <h4>Technology Partners</h4>
                 <div class="sponsor-logos">
-                    <img src="{% static 'images/sponsor1.png' %}" alt="Sponsor 1" style="height:40px; margin:0 10px;">
-                    <img src="{% static 'images/sponsor2.png' %}" alt="Sponsor 2" style="height:40px; margin:0 10px;">
-                    <img src="{% static 'images/sponsor3.png' %}" alt="Sponsor 3" style="height:40px; margin:0 10px;">
-                    <!-- Add more sponsors as needed -->
+                    <img class = "sponsor-img" src="{% static 'images/sponsor1.png' %}" alt="Technology Partner 1" style="height:40px; margin:0 10px;">
+                    <img class = "sponsor-img" src="{% static 'images/sponsor2.png' %}" alt="Technology Partner 2" style="height:40px; margin:0 10px;">
+                    <img class = "sponsor-img" src="{% static 'images/sponsor3.png' %}" alt="Technology Partner 3" style="height:40px; margin:0 10px;">
                 </div>
             </div>
             
             <div class="footer-info">
                 <img class="footer-logo" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="KOTECH Logo" style="width:150px; height:auto; margin-bottom:1rem;">
-                <p>&copy; 2025 KOTECH TechFest. All rights reserved.</p>
-                <p>Empowering the future through technology and innovation.</p>
-                <p>Contact: <a href="mailto:hello@kotech.io" style="text-decoration: none;">hello@kotech.io</a></p>
+                <p>&copy; 2025 KOTECH TechFest. Pioneering the Future of Technology.</p>
+                <p>Empowering innovation through cutting-edge technology and global collaboration.</p>
+                <p>Connect: <a href="mailto:hello@kotech.io" style="color: var(--secondary); text-decoration: none;">hello@kotech.io</a></p>
             </div>
         </div>
     </footer>

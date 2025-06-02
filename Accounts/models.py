@@ -156,3 +156,13 @@ class HackathonRegistration(models.Model):
     def __str__(self):
         return f"{self.team_lead_name} - {self.institution}"
 
+class MediaRegistration(models.Model):
+    name = models.CharField(max_length=100)
+    institution = models.CharField(max_length=100)
+    contact_no = models.CharField(max_length=15)
+    email = models.EmailField(max_length=254)
+    intrested_area = models.CharField(max_length=50)
+    portfolio = models.URLField(max_length=250)
+
+    def __str__(self):
+        return f"{self.name} - {self.intrested_area}"

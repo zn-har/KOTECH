@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
-from Accounts.models import Speaker, Event, ProjectExhibitionRegistration, HackathonRegistration, IdeathonRegistration
+from Accounts.models import Speaker, Event, ProjectExhibitionRegistration, HackathonRegistration, IdeathonRegistration, MediaRegistration
 import requests
 import re
 from django.conf import settings
@@ -96,6 +96,46 @@ class HomeView(TemplateView):
 
         return context
 
+class MediaRegisterView(TemplateView):
+    template_name = 'media_register.html'
+
+    def post(self,request):
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        contact_no = request.POST.get('contact_number')
+        Institution = request.POST.get('institution')
+        area = request.POST.get('area')
+        portfolio = request.POST.get('portfolio')
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+
+        data = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+
+        if not result.get('success'):
+            messages.error(request, "Invalid reCAPTCHA. Please try again.")
+            return redirect('media')
+        
+        if not all([name, Institution, email, contact_no]):
+            messages.error(request, 'All required fields must be filled!')
+            return redirect('media')
+        
+        MediaRegistration.objects.create(
+            name = name,
+            institution = Institution,
+            contact_no = contact_no,
+            email = email,
+            intrested_area = area,
+            portfolio = portfolio,
+        )
+
+        return redirect('registration_success')
+    def get(self, request):
+        return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
+       
 
 class IdeathonRegistrationView(TemplateView):
     template_name = 'ideathon.html'
