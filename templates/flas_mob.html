@@ -1,0 +1,49 @@
+{% extends "registration_template.html" %}
+{% load static %}
+
+{% block title %}
+    <title>FlasMob Registration</title>
+{% endblock title %}
+
+{% block header %}
+<div class="header">
+  <h1>FlashMob Registration</h1>
+<p>Be part of the electrifying FlashMob event! Unleash your creativity, dance with energy, and make unforgettable memories with friends. No experience needed—just bring your enthusiasm and join the fun!</p>
+</div>
+{% endblock %}
+{% block form %}
+    <div class="card">
+        <form id="flashmob-registration-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name <span class="required-star">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">  
+            </div>
+            <div class="form-group">
+                <label for="year">Year <span class="required-star">*</span></label>
+                <select id="year" name="year" required>
+                    <option value="" disabled selected>Select your year of study</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="contact_no">Contact Number <span class="required-star">*</span></label>
+                <input type="text" id="contact_no" name="contact_no" required placeholder="Enter your contact number">
+            </div>
+            <div class="form-group">
+                <label for="department">Department <span class="required-star">*</span></label>
+                <input type="text" id="department" name="department" required placeholder="Enter your department">  
+            </div>
+            <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+        <div class="message-class" style="display: flex; justify-content: center;">
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+    </div>
+{% endblock form %}

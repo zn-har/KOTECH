@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
-from Accounts.models import Speaker, Event, ProjectExhibitionRegistration, HackathonRegistration, IdeathonRegistration, MediaRegistration
+from Accounts.models import Speaker, Event, ProjectExhibitionRegistration, HackathonRegistration, IdeathonRegistration, MediaRegistration, FlashMobRegistration
 import requests
 import re
 from django.conf import settings
@@ -96,6 +96,43 @@ class HomeView(TemplateView):
 
         return context
 
+class FlashMobRegistrationView(TemplateView):
+    template_name = 'flas_mob.html'
+
+    def post(self, request):
+        name = request.POST.get('name')
+        year = request.POST.get('year')
+        contact_no = request.POST.get('contact_no')
+        department = request.POST.get('department')
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+
+        data = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+        if not result.get('success'):
+            messages.error(request, "Invalid reCAPTCHA. Please try again.")
+            return redirect('flashmob_registration')
+        if not all([name, year, contact_no, department]):
+            messages.error(request, 'All fields are required!')
+            return redirect('flashmob_registration')
+
+        if not re.match(r"^\d{10,15}$", contact_no):
+            messages.error(request, 'Contact number must be 10 digits.')
+            return redirect('flashmob_registration')
+
+        FlashMobRegistration.objects.create(
+            name=name,
+            year=year,
+            contact_no=contact_no,
+            department=department,
+        )
+        return redirect('registration_success')
+
+    def get(self, request):
+        return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
 class MediaRegisterView(TemplateView):
     template_name = 'media_register.html'
 
@@ -131,7 +168,6 @@ class MediaRegisterView(TemplateView):
             intrested_area = area,
             portfolio = portfolio,
         )
-
         return redirect('registration_success')
     def get(self, request):
         return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})

@@ -22,21 +22,61 @@
     <link rel="manifest" href="{% static "images/site.webmanifest" %}">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loader-container">
-            <img class="loader-logo" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="KOTECH Logo">
-            <div class="loader-spinner"></div>
-            <div class="loader-text" id="loadingText">Loading TechFest 2025</div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+    <!-- BIOS/MS-DOS Loading Screen - Redesigned -->
+    <div class="bios-loading-screen" id="biosLoadingScreen">
+        <div class="bios-loader-container">
+            <div class="bios-header">
+                <div class="bios-title">KOTECH SYSTEM BIOS</div>
+                <div class="bios-version">Version 2.025.01 - TechFest Edition</div>
+            </div>
+            
+            <div class="bios-content">
+                <div class="bios-line">
+                    <span>Initializing Web Interface...</span>
+                    <span class="bios-status">OK</span>
+                </div>
+                
+                <div class="bios-line">
+                    <span>Loading Assets</span>
+                    <div class="bios-progress-container">
+                        <div class="bios-progress-bar">
+                            <div class="bios-progress-fill" id="biosProgressFill"></div>
+                            <div class="bios-progress-text" id="biosProgressText">0%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bios-line">
+                    <span>Verifying Content...</span>
+                    <span class="bios-status">DONE</span>
+                </div>
+                
+                <div class="bios-line">
+                    <span>Scanning for Tech Events...</span>
+                    <span class="bios-status">FOUND</span>
+                </div>
+                
+                <div class="bios-line">
+                    <span>Loading Speaker Database...</span>
+                    <span class="bios-status">READY</span>
+                </div>
+                
+                <div class="bios-line">
+                    <span>Press any key to continue</span>
+                    <span class="bios-cursor"></span>
+                </div>
+            </div>
+            
+            <div class="bios-final-message">
+                SYSTEM READY - LAUNCHING TECHFEST 2025
             </div>
         </div>
     </div>
+    
+    <!-- Enhanced BIOS sprite on window -->
+    <div id="windowBios" class="window-bios"></div>
 
     <!-- Header -->
-
-
     <nav class="navbar">
         <div class="logo-class">
             <img class="logo-png" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="Logo" style="width:250px; height:auto;">
@@ -401,116 +441,6 @@
             }
         }
 
-        // Loading Screen Script
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingScreen = document.getElementById('loadingScreen');
-            const progressFill = document.getElementById('progressFill');
-            const loadingText = document.getElementById('loadingText');
-            
-            let progress = 0;
-            let loadedImages = 0;
-            let totalImages = 0;
-            
-            // Loading messages
-            const loadingMessages = [
-                'Loading TechFest 2025',
-                'Preparing Innovation',
-                'Connecting the Future',
-                'Almost Ready',
-                'Welcome to TechFest'
-            ];
-            
-            // Update loading text
-            function updateLoadingText() {
-                const messageIndex = Math.floor(progress / 20);
-                if (messageIndex < loadingMessages.length) {
-                    loadingText.textContent = loadingMessages[messageIndex];
-                }
-            }
-            
-            // Update progress bar
-            function updateProgress(newProgress) {
-                progress = Math.min(newProgress, 100);
-                progressFill.style.width = progress + '%';
-                updateLoadingText();
-                
-                if (progress >= 100) {
-                    setTimeout(hideLoadingScreen, 500);
-                }
-            }
-            
-            // Hide loading screen
-            function hideLoadingScreen() {
-                loadingScreen.classList.add('hidden');
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }
-            
-            // Count all images on the page
-            function countImages() {
-                const images = document.querySelectorAll('img');
-                totalImages = images.length;
-                
-                if (totalImages === 0) {
-                    updateProgress(100);
-                    return;
-                }
-                
-                images.forEach(img => {
-                    if (img.complete) {
-                        loadedImages++;
-                    } else {
-                        img.addEventListener('load', imageLoaded);
-                        img.addEventListener('error', imageLoaded);
-                    }
-                });
-                
-                // Initial progress update
-                updateProgress((loadedImages / totalImages) * 80);
-            }
-            
-            // Handle image load
-            function imageLoaded() {
-                loadedImages++;
-                const imageProgress = (loadedImages / totalImages) * 80;
-                updateProgress(imageProgress);
-            }
-            
-            // Simulate additional loading time for content
-            function simulateContentLoad() {
-                let contentProgress = 80;
-                const contentInterval = setInterval(() => {
-                    contentProgress += 4;
-                    updateProgress(contentProgress);
-                    
-                    if (contentProgress >= 100) {
-                        clearInterval(contentInterval);
-                    }
-                }, 100);
-            }
-            
-            // Start loading process
-            setTimeout(() => {
-                countImages();
-                
-                // Minimum loading time
-                setTimeout(() => {
-                    if (progress < 80) {
-                        updateProgress(80);
-                    }
-                    simulateContentLoad();
-                }, 1000);
-            }, 100);
-            
-            // Fallback - hide loading screen after 5 seconds regardless
-            setTimeout(() => {
-                if (!loadingScreen.classList.contains('hidden')) {
-                    updateProgress(100);
-                }
-            }, 5000);
-        });
-
         const tabButtons = document.querySelectorAll('.tab-btn');
         const scheduleDays = document.querySelectorAll('.schedule-day');
 
@@ -541,7 +471,37 @@
             }
         });
 
-         
+        // BIOS Loading Screen Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const biosScreen = document.getElementById('biosLoadingScreen');
+            const progressFill = document.getElementById('biosProgressFill');
+            const progressText = document.getElementById('biosProgressText');
+            
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15 + 5; // Random increment between 5-20
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                }
+                
+                progressFill.style.width = progress + '%';
+                progressText.textContent = Math.floor(progress) + '%';
+            }, 200);
+
+            setTimeout(() => {
+                biosScreen.classList.add('hidden');
+                setTimeout(() => {
+                    biosScreen.style.display = 'none';
+                    // Show window BIOS after loading
+                    document.getElementById('windowBios').style.opacity = '1';
+                }, 600);
+            }, 5500);
+            
+            // Hide window BIOS initially
+            document.getElementById('windowBios').style.opacity = '0';
+        });
+
     </script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -638,19 +598,16 @@
             </div>
         
             <div class="footer-social">
-                <a href="https://facebook.com/kotech" aria-label="Facebook" target="_blank">
+                <a href="https://www.facebook.com/profile.php?id=61575986151266" aria-label="Facebook" target="_blank">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://twitter.com/kotech" aria-label="Twitter" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://linkedin.com/company/kotech" aria-label="LinkedIn" target="_blank">
+                <a href="https://www.linkedin.com/company/kotech-fest" aria-label="LinkedIn" target="_blank">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://instagram.com/kotech" aria-label="Instagram" target="_blank">
+                <a href="https://www.instagram.com/kotech_fest/" aria-label="Instagram" target="_blank">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://youtube.com/kotech" aria-label="YouTube" target="_blank">
+                <a href="https://www.youtube.com/@kotechfest" aria-label="YouTube" target="_blank">
                     <i class="fab fa-youtube"></i>
                 </a>
             </div>

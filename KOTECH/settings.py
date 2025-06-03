@@ -17,7 +17,7 @@ load_dotenv()
 import os
 import environ
 
-# Initialize environment variables
+# Initialize environment variablesc
 env = environ.Env()
 environ.Env.read_env()
 
