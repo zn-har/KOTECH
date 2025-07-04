@@ -21,8 +21,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "images/favicon-16x16.png" %}">
     <link rel="manifest" href="{% static "images/site.webmanifest" %}">
 </head>
-<body>
-    <!-- BIOS/MS-DOS Loading Screen - Redesigned -->
+<body>    <!-- BIOS/MS-DOS Loading Screen - Redesigned -->
     <div class="bios-loading-screen" id="biosLoadingScreen">
         <div class="bios-loader-container">
             <div class="bios-header">
@@ -83,7 +82,7 @@
         </div>
         <button class="hamburger" id="hamburger">☰</button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#about">About</a></li>
+            <!-- Removed the "About" link -->
             <li><a href="#events">Events</a></li>
             <li><a href="#speakers">Speakers</a></li>
             <li><a href="#schedule">Schedule</a></li>
@@ -101,68 +100,6 @@
             <p class="hero-element">Experience the Future of Technology. Join thousands of innovators, developers, and tech enthusiasts for three days of cutting-edge discoveries, groundbreaking workshops, and revolutionary connections.</p>
             <div class="button-container hero-element">
                 <a href="#about" class="btn btn-outline">Explore the Future</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-        <h2 class="section-title">About TechFest 2025</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Shaping Tomorrow's Digital Landscape</h3>
-                <p>TechFest 2025 stands as the premier technology convergence where innovation meets opportunity. For three transformative days, immerse yourself in the latest technological breakthroughs that are reshaping our digital world.</p>
-                <p>From artificial intelligence and quantum computing to blockchain revolution and metaverse experiences, our festival showcases the technologies that will define the next decade. Connect with industry pioneers, learn from thought leaders, and be part of the technological renaissance.</p>
-                <p>Whether you're a seasoned developer, emerging entrepreneur, tech investor, or simply passionate about the future, TechFest 2025 offers unparalleled opportunities to learn, network, and innovate.</p>
-            </div>
-            <div class="about-img">
-                <img src="{% static 'images/ChatGPT Image May 29, 2025, 10_58_54 AM.png' %}" alt="TechFest Event Image">
-            </div>
-        </div>
-        
-        <!-- Enhanced Features Grid -->
-        <div class="about-features">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <h4>AI & Machine Learning</h4>
-                <p>Dive deep into artificial intelligence breakthroughs, neural networks, and machine learning algorithms that are revolutionizing industries worldwide.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-cube"></i>
-                </div>
-                <h4>Blockchain & Web3</h4>
-                <p>Explore decentralized technologies, smart contracts, and the Web3 ecosystem that's creating new paradigms for digital ownership and interaction.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-vr-cardboard"></i>
-                </div>
-                <h4>VR & Metaverse</h4>
-                <p>Step into immersive virtual worlds and discover how extended reality technologies are creating new dimensions of human experience.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-network-wired"></i>
-                </div>
-                <h4>IoT & Edge Computing</h4>
-                <p>Understand how interconnected devices and edge computing are building smarter cities and more intelligent systems.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h4>Cybersecurity</h4>
-                <p>Learn cutting-edge security strategies, threat detection methods, and defense mechanisms for protecting digital assets in our connected world.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h4>Innovation Hub</h4>
-                <p>Connect with visionary startups, breakthrough technologies, and investment opportunities that are driving the next wave of technological disruption.</p>
             </div>
         </div>
     </section>
@@ -191,7 +128,7 @@
                     {% else %}
                         <p class="event-venue">📍 Main Conference Hall</p>
                     {% endif %}
-                    <p>DAY 1 • INNOVATION</p>
+                    <p>DAY 1</p>
                 </div>
                 {% if event.price != 0 %}
                     <a href="{{ event.redirect }}" class="event-btn">
@@ -222,7 +159,7 @@
                     {% else %}
                         <p class="event-venue">📍 Tech Innovation Center</p>
                     {% endif %}
-                    <p>DAY 2 • COLLABORATION</p>
+                    <p>DAY 2</p>
                 </div>
                 {% if event.price != 0 %}
                     <a href="{{ event.redirect }}" class="event-btn">
@@ -253,7 +190,7 @@
                     {% else %}
                         <p class="event-venue">📍 Future Tech Auditorium</p>
                     {% endif %}
-                    <p>DAY 3 • TRANSFORMATION</p>
+                    <p>DAY 3</p>
                 </div>
                 {% if event.price != 0 %}
                     <a href="{{ event.redirect }}" class="event-btn">
@@ -274,16 +211,17 @@
         <h2 class="section-title">Visionary Speakers & Tech Leaders</h2>
         <div class="speakers-grid">
             {% for speaker in speakers %}
+            <div>
              <div class="speaker-card">
                 <div class="speaker-img">
                     <img src="{{ speaker.image.url}}" alt="{{ speaker.name }} - Technology Leader">
                 </div>
-                <div class="speaker-content">
-                    <h3>{{ speaker.name }}</h3>
-                    <p class="speaker-position">{{ speaker.position }}</p>
-                    <p>{{ speaker.description }}</p>
-                </div>
             </div>
+              <div class="speaker-content">
+                    <h3>{{ speaker.name }}</h3>
+                </div>
+        </div>
+            
             {% endfor %}
         </div>
     </section>
@@ -293,9 +231,9 @@
         <h2 class="section-title">Technology Timeline</h2>
         
         <div class="schedule-tabs">
-            <button class="tab-btn active" data-day="day1">Day 1 • Innovation</button>
-            <button class="tab-btn" data-day="day2">Day 2 • Collaboration</button>
-            <button class="tab-btn" data-day="day3">Day 3 • Transformation</button>
+            <button class="tab-btn active" data-day="day1">Day 1</button>
+            <button class="tab-btn" data-day="day2">Day 2</button>
+            <button class="tab-btn" data-day="day3">Day 3</button>
         </div>
 
         <!-- Day 1 Events -->
@@ -352,6 +290,50 @@
             {% endfor %}
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <!-- Removed the About link here as well -->
+                <a href="#events">Events</a>
+                <a href="#speakers">Speakers</a>
+                <a href="#schedule">Schedule</a>
+                <a href="mailto:hello@kotech.io">Contact Us</a>
+            </div>
+        
+            <div class="footer-social">
+                <a href="https://www.facebook.com/profile.php?id=61575986151266" aria-label="Facebook" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/kotech-fest" aria-label="LinkedIn" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/kotech_fest/" aria-label="Instagram" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@kotechfest" aria-label="YouTube" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+
+            <div class="footer-sponsors">
+                <h4>Technology Partners</h4>
+                <div class="sponsor-logos">
+                    <img class = "sponsor-img" src="{% static 'images/sponsor1.png' %}" alt="Technology Partner 1" style="height:40px; margin:0 10px;">
+                    <img class = "sponsor-img" src="{% static 'images/sponsor2.png' %}" alt="Technology Partner 2" style="height:40px; margin:0 10px;">
+                    <img class = "sponsor-img" src="{% static 'images/sponsor3.png' %}" alt="Technology Partner 3" style="height:40px; margin:0 10px;">
+                </div>
+            </div>
+            
+            <div class="footer-info">
+                <img class="footer-logo" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="KOTECH Logo" style="width:150px; height:auto; margin-bottom:1rem;">
+                <p>&copy; 2025 KOTECH TechFest. Pioneering the Future of Technology.</p>
+                <p>Empowering innovation through cutting-edge technology and global collaboration.</p>
+                <p>Connect: <a href="mailto:hello@kotech.io" style="color: var(--secondary); text-decoration: none;">hello@kotech.io</a></p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Enhanced Hero Parallax Scroll Effects
@@ -501,7 +483,6 @@
             // Hide window BIOS initially
             document.getElementById('windowBios').style.opacity = '0';
         });
-
     </script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -585,49 +566,123 @@
         });
     });
 </script>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#about">About TechFest</a>
-                <a href="#events">Events</a>
-                <a href="#speakers">Speakers</a>
-                <a href="#schedule">Schedule</a>
-                <a href="mailto:hello@kotech.io">Contact Us</a>
-            </div>
-        
-            <div class="footer-social">
-                <a href="https://www.facebook.com/profile.php?id=61575986151266" aria-label="Facebook" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/kotech-fest" aria-label="LinkedIn" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://www.instagram.com/kotech_fest/" aria-label="Instagram" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/@kotechfest" aria-label="YouTube" target="_blank">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </div>
-
-            <div class="footer-sponsors">
-                <h4>Technology Partners</h4>
-                <div class="sponsor-logos">
-                    <img class = "sponsor-img" src="{% static 'images/sponsor1.png' %}" alt="Technology Partner 1" style="height:40px; margin:0 10px;">
-                    <img class = "sponsor-img" src="{% static 'images/sponsor2.png' %}" alt="Technology Partner 2" style="height:40px; margin:0 10px;">
-                    <img class = "sponsor-img" src="{% static 'images/sponsor3.png' %}" alt="Technology Partner 3" style="height:40px; margin:0 10px;">
-                </div>
-            </div>
+    <script>
+        // Enhanced section title animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const sectionTitles = document.querySelectorAll('.section-title');
             
-            <div class="footer-info">
-                <img class="footer-logo" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="KOTECH Logo" style="width:150px; height:auto; margin-bottom:1rem;">
-                <p>&copy; 2025 KOTECH TechFest. Pioneering the Future of Technology.</p>
-                <p>Empowering innovation through cutting-edge technology and global collaboration.</p>
-                <p>Connect: <a href="mailto:hello@kotech.io" style="color: var(--secondary); text-decoration: none;">hello@kotech.io</a></p>
-            </div>
-        </div>
-    </footer>
+            sectionTitles.forEach(title => {
+                // Add terminal text animation class
+                title.classList.add('terminal-text');
+                
+                // Add scan line effect to section containers
+                const section = title.closest('.section');
+                if (section) {
+                    section.classList.add('scan-line-container');
+                }
+            });
+            
+            // Initialize enhanced scroll observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        
+                        // Add BIOS terminal sound effect for important elements
+                        if (entry.target.classList.contains('section-title') || 
+                            entry.target.classList.contains('event-card')) {
+                            playBiosSound(100 + Math.random() * 200);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Apply animations to all sections and their children
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                // Animate section title
+                const title = section.querySelector('.section-title');
+                if (title) {
+                    title.classList.add('scroll-animate', 'from-bottom');
+                    scrollObserver.observe(title);
+                }
+
+                // Apply staggered animations to cards
+                const cards = section.querySelectorAll('.event-card, .speaker-card, .feature-card');
+                cards.forEach((card, cardIndex) => {
+                    card.classList.add('scroll-animate', 'from-bottom', `stagger-${(cardIndex % 5) + 1}`);
+                    scrollObserver.observe(card);
+                });
+
+                // Animate schedule items with staggered delays
+                const scheduleItems = section.querySelectorAll('.schedule-item');
+                scheduleItems.forEach((item, itemIndex) => {
+                    item.classList.add('scroll-animate', `stagger-${(itemIndex % 5) + 1}`);
+                    scrollObserver.observe(item);
+                });
+
+                // Animate feature cards with alternating directions
+                const featureCards = section.querySelectorAll('.feature-card');
+                featureCards.forEach((card, idx) => {
+                    if (idx % 2 === 0) {
+                        card.classList.add('scroll-animate', 'from-left');
+                    } else {
+                        card.classList.add('scroll-animate', 'from-right');
+                    }
+                    scrollObserver.observe(card);
+                });
+            });
+            
+            // Simple BIOS sound effect function
+            function playBiosSound(freq) {
+                // Only play sounds if user has interacted with the page
+                if (document.documentElement.hasAttribute('data-user-interacted')) {
+                    try {
+                        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                        const oscillator = audioCtx.createOscillator();
+                        const gainNode = audioCtx.createGain();
+                        
+                        oscillator.type = 'square';
+                        oscillator.frequency.value = freq;
+                        gainNode.gain.value = 0.05; // Very quiet
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioCtx.destination);
+                        
+                        oscillator.start();
+                        
+                        // Short beep
+                        setTimeout(() => {
+                            oscillator.stop();
+                        }, 50);
+                    } catch (e) {
+                        console.log('Audio context not supported');
+                    }
+                }
+            }
+            
+            // Track user interaction to enable sounds
+            document.addEventListener('click', function() {
+                document.documentElement.setAttribute('data-user-interacted', 'true');
+            });
+            
+            // Add scroll position tracking for window BIOS sprite
+            window.addEventListener('scroll', function() {
+                const windowBios = document.getElementById('windowBios');
+                if (windowBios) {
+                    const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                    // Blink more rapidly when scrolled further down
+                    const blinkSpeed = 2 - (scrollPercent / 100);
+                    windowBios.style.animationDuration = blinkSpeed + 's';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

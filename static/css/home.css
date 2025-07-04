@@ -405,7 +405,7 @@ header {
 
 .event-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 16px 50px rgba(190, 108, 255, 0.3);
+    /* box-shadow: 0 16px 50px rgba(190, 108, 255, 0.3); */
     border-color: var(--secondary);
 }
 
@@ -431,7 +431,7 @@ header {
 
 .event-card:hover .event-img img {
     transform: scale(1.05);
-    filter: brightness(1) contrast(1.2);
+    /* filter: brightness(1) contrast(1.2); */
 }
 
 .event-content {
@@ -549,18 +549,18 @@ header {
 .speaker-card {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     color: var(--light);
-    border-radius: 16px;
+    border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     text-align: center;
     transition: transform 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
     backdrop-filter: blur(15px);
 }
 
 .speaker-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 16px 50px rgba(190, 108, 255, 0.3);
+    /* box-shadow: 0 16px 50px rgba(190, 108, 255, 0.3);     */
     border-color: var(--secondary);
 }
 
@@ -580,11 +580,11 @@ header {
 
 .speaker-card:hover .speaker-img img {
     transform: scale(1.1);
-    filter: brightness(1) saturate(1.2);
 }
 
 .speaker-content {
     padding: 1.5rem;
+    text-align: center;
 }
 
 .speaker-content h3 {
@@ -1148,5 +1148,286 @@ footer {
         left: 8px;
         bottom: 8px;
         font-size: 8px;
+    }
+}
+
+/* Scrolling Effects & Animations */
+.scroll-animate {
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.fade-in {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+}
+
+/* BIOS Terminal Style Reveal Animations */
+.from-bottom {
+    transform: translateY(30px);
+}
+
+.from-left {
+    transform: translateX(-30px);
+}
+
+.from-right {
+    transform: translateX(30px);
+}
+
+.zoom-fade {
+    transform: scale(0.95);
+}
+
+/* Staggered animation delays */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+
+/* Terminal typing effect for headlines */
+@keyframes terminal-typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes terminal-cursor {
+    from, to { border-right-color: transparent; }
+    50% { border-right-color: var(--secondary); }
+}
+
+.terminal-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    width: 0;
+    animation: 
+        terminal-typing 2.5s steps(40, end) forwards,
+        terminal-cursor 0.75s step-end infinite;
+    border-right: 3px solid var(--secondary);
+}
+
+/* BIOS-style scan line effect for sections */
+.scan-line-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.scan-line-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: rgba(190, 108, 255, 0.15);
+    animation: scan-line 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scan-line {
+    0% { 
+        top: -10px;
+        opacity: 0.5;
+    }
+    100% { 
+        top: 100%;
+        opacity: 0.5;
+    }
+}
+
+/* Enhanced event card effects */
+.events-grid .event-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.events-grid .event-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--secondary);
+}
+
+.events-grid .event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--secondary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.events-grid .event-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Enhance section titles with BIOS style reveal */
+.section-title {
+    position: relative;
+}
+
+.section-title::before {
+    content: '> ';
+    color: var(--secondary);
+    opacity: 0;
+}
+
+.section-title.fade-in::before {
+    opacity: 1;
+    animation: terminal-blink 1s step-start infinite;
+}
+
+@keyframes terminal-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Add digital noise effect to hero section */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAB3RJTUUH4AcGEAAdMvv9RwAAAFRJREFUaN7t18EJwCAURFEtxP23ZP81xI8KMcJbBx7Mnf7A6qraNaj7Nc/C7e7ufr0UjkCAAAECBAgQIECAAAECBAgQIECAAAECBAgQIO8/ZPsRnu4eTHoPKlRCLPcAAAAASUVORK5CYII=");
+    opacity: 0.03;
+    pointer-events: none;
+    animation: noise 0.5s steps(1) infinite;
+}
+
+@keyframes noise {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-1%, 1%); }
+    20% { transform: translate(1%, 1%); }
+    30% { transform: translate(-1%, -1%); }
+    40% { transform: translate(1%, -1%); }
+    50% { transform: translate(-1%, 1%); }
+    60% { transform: translate(1%, 1%); }
+    70% { transform: translate(-1%, -1%); }
+    80% { transform: translate(1%, -1%); }
+    90% { transform: translate(-1%, 1%); }
+}
+
+/* Schedule tabs entrance effect */
+.schedule-tabs .tab-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.schedule-tabs .tab-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(190, 108, 255, 0.1);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.schedule-tabs .tab-btn:hover::after {
+    width: 100%;
+}
+
+/* Schedule day scroll reveal */
+.schedule-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.schedule-item.fade-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* About feature cards hover effect */
+.feature-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(190, 108, 255, 0.05), transparent);
+    transition: top 0.5s ease;
+}
+
+.feature-card:hover::after {
+    top: 100%;
+}
+
+/* Speaker cards terminal effect */
+.speaker-card {
+    position: relative;
+}
+
+.speaker-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+}
+
+.speaker-card:hover::before {
+    border-color: var(--secondary);
+    animation: speaker-scan 2s linear;
+}
+
+@keyframes speaker-scan {
+    0% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+    25% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    50% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    75% { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); }
+    100% { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); }
+}
+
+/* Enhance window BIOS sprite with scroll effects */
+.window-bios {
+    transition: transform 0.3s ease, opacity 0.5s;
+}
+
+.window-bios:hover {
+    transform: scale(1.1);
+}
+
+/* Add scrollbar styling for BIOS theme */
+::-webkit-scrollbar {
+    width: 8px;
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Responsive adjustments for scroll effects */
+@media (max-width: 768px) {
+    .scan-line-container::after {
+        animation: none;
+    }
+
+    .events-grid .event-card::before {
+        display: none;
     }
 }
