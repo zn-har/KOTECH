@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),    
     # path('', include('Accounts.urls')),
-    path('',views.HomeView.as_view(), name='home'),
+    # path('',views.HomeView.as_view(), name='home'),
     path('register/ideathon', views.IdeathonRegistrationView.as_view(), name='Ideathon'),
     path('register/ideathon/', views.IdeathonRegistrationView.as_view(), name='Ideathon'),
     path('register/hackathon/', views.HackathonRegistrationView.as_view(), name='hackathon_registration'),
@@ -34,7 +34,7 @@ urlpatterns = [
     path('register/flashmob/', views.FlashMobRegistrationView.as_view(), name='flashmob_registration'),
     path('register/project_exhibition/', views.ExpoRegisterView.as_view(), name='register'),
     path('registration_success', views.registration_success, name="registration_success"),
-   # re_path(r'^.*$', views.under_construction, name='under_construction'),
+    re_path(r'^.*$', views.under_construction, name='under_construction'),
 ]
 
 if settings.DEBUG:
