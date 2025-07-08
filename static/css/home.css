@@ -1373,6 +1373,7 @@ footer {
 /* Speaker cards terminal effect */
 .speaker-card {
     position: relative;
+    max-width: 250px;
 }
 
 .speaker-card::before {
