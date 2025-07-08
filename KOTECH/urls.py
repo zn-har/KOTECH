@@ -30,7 +30,6 @@ urlpatterns = [
         
     
     path('register/media/', views.MediaRegisterView.as_view(), name='media'),
-    path('register/flashmob/', views.FlashMobRegistrationView.as_view(), name='flashmob_registration'),
     path('register/project_exhibition/', views.ExpoRegisterView.as_view(), name='register'),
     path('registration_success', views.registration_success, name="registration_success"),
     re_path(r'^.*$', views.under_construction, name='under_construction'),

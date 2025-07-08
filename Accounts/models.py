@@ -90,8 +90,7 @@ class Day(models.Model):
 
 class Speaker(models.Model):
     name = models.CharField(max_length=100)
-    position = models.CharField(max_length=100, default="")
-    description = models.TextField(default="")
+    role = models.CharField(max_length=100, default="")
     image = models.ImageField(upload_to="images/", null=True, blank=True)
 
     def __str__(self):
@@ -166,11 +165,3 @@ class MediaRegistration(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.intrested_area}"
-class FlashMobRegistration(models.Model):
-    name = models.CharField(max_length=100)
-    year = models.CharField(max_length=10)
-    contact_no = models.CharField(max_length=15)
-    department = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.name} - {self.department}"
