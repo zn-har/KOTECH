@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
-from Accounts.models import Speaker, Event, ProjectExhibitionRegistration, HackathonRegistration, IdeathonRegistration, MediaRegistration
+from Accounts.models import Speaker, Event, ProjectExhibitionRegistration, HackathonRegistration, IdeathonRegistration, MediaRegistration, ReadmissionRegistration
 import requests
 import re
 from django.conf import settings
@@ -164,7 +164,7 @@ class ReadmissionView(TemplateView):
             messages.error(request, 'All required fields must be filled!')
             return redirect('readmission')
         
-        MediaRegistration.objects.create(
+        ReadmissionRegistration.objects.create(
             name = name,
             department = department,
             muncipality = muncipality,
