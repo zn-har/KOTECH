@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="age">വയസ്സ്<span class="required-star">*</span></label>
-                <input type="text" name="age" required placeholder="വയസ്സ്">  
+                <input type="text" name="age" required pattern="[0-9]*" maxlength="3" minlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="വയസ്സ്">  
             </div>
             <div class="form-group">
                 <label for="contact_no">മൊബൈൽ നമ്പർ<span class="required-star">*</span></label>
