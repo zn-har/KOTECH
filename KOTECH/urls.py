@@ -25,14 +25,18 @@ urlpatterns = [
     # path('', include('Accounts.urls')),
     path('',views.HomeView.as_view(), name='home'),
     path('register/ideathon', views.IdeathonRegistrationView.as_view(), name='Ideathon'),
+    path('register/ideathon/', views.IdeathonRegistrationView.as_view(), name='Ideathon'),
     
     path('register/hackathon/', views.HackathonRegistrationView.as_view(), name='hackathon_registration'),
+    path('register/hackathon', views.HackathonRegistrationView.as_view(), name='hackathon_registration'),
+    path('register/readmission', views.ReadmissionView.as_view(), name='readmission'),
         
     
     path('register/media/', views.MediaRegisterView.as_view(), name='media'),
     path('register/project_exhibition/', views.ExpoRegisterView.as_view(), name='register'),
+    path('register/project_exhibition', views.ExpoRegisterView.as_view(), name='register'),
     path('registration_success', views.registration_success, name="registration_success"),
-    re_path(r'^.*$', views.under_construction, name='under_construction'),
+    # re_path(r'^.*$', views.under_construction, name='under_construction'),
 ]
 
 if settings.DEBUG:

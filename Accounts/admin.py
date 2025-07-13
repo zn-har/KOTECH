@@ -1,12 +1,13 @@
 from django.contrib import admin
 import re
-from Accounts.models import Speaker, Event, Venue, User, ProjectExhibitionRegistration, HackathonRegistration, IdeathonRegistration, MediaRegistration
+from Accounts.models import Speaker, Event, Venue, User, ProjectExhibitionRegistration, HackathonRegistration, IdeathonRegistration, MediaRegistration, ReadmissionRegistration
 
 admin.site.site_header = "KOTECH Administration"
 admin.site.site_title = "KOTECH Administration"
 admin.site.index_title = "Welcome to KOTECH Administration"
 
 admin.site.register(Speaker)
+admin.site.register(ReadmissionRegistration)
 admin.site.register(ProjectExhibitionRegistration)
 admin.site.register(IdeathonRegistration)
 admin.site.register(HackathonRegistration)

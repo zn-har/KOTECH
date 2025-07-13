@@ -99,7 +99,8 @@ class Speaker(models.Model):
 class Event(models.Model):
     name = models.CharField(max_length=100)
     time = models.TimeField(default=timezone.now)
-    date = models.DateField(default=timezone.now)
+    date = models.DateField(default=timezone.datetime(2025, 7, 25).date())
+    pin = models.BooleanField(_("Pin Event"), default=False)
     description = models.TextField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="images/", null=True, blank=True)
@@ -165,3 +166,14 @@ class MediaRegistration(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.intrested_area}"
+
+class ReadmissionRegistration(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.CharField(max_length=3)
+    contact_no = models.CharField(max_length=15)
+    department = models.CharField(max_length=100)
+    muncipality = models.CharField(max_length=100)
+    vard = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.name} - {self.age}"

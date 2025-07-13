@@ -135,6 +135,46 @@ class MediaRegisterView(TemplateView):
         return redirect('registration_success')
     def get(self, request):
         return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
+
+
+class ReadmissionView(TemplateView):
+    template_name = 'readmission.html'
+
+    def post(self,request):
+        name = request.POST.get('name')
+        age = request.POST.get('age')
+        contact_no = request.POST.get('contact_no')
+        department = request.POST.get('department')
+        muncipality = request.POST.get('muncipality')
+        vard = request.POST.get('vard')
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+
+        data = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+
+        if not result.get('success'):
+            messages.error(request, "Invalid reCAPTCHA. Please try again.")
+            return redirect('readmisson')
+        
+        if not all([name,age, department, muncipality,vard, contact_no]):
+            messages.error(request, 'All required fields must be filled!')
+            return redirect('readmission')
+        
+        MediaRegistration.objects.create(
+            name = name,
+            department = department,
+            muncipality = muncipality,
+            vard = vard,
+            age = age,
+            contact_no = contact_no,
+        )
+        return redirect('registration_success')
+    def get(self, request):
+        return render(request, self.template_name, {'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY})
        
 
 class IdeathonRegistrationView(TemplateView):

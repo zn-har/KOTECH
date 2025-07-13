@@ -577,6 +577,7 @@ header {
     object-fit: cover;
     transition: transform 0.3s ease;
     filter: brightness(0.9) saturate(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .speaker-card:hover .speaker-img img {
