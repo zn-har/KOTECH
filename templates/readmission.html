@@ -25,11 +25,11 @@
             </div>
             <div class="form-group">
                 <label for="contact_no">മൊബൈൽ നമ്പർ<span class="required-star">*</span></label>
-                <input type="text" id="contact_no" name="contact_no" required placeholder="മൊബൈൽ നമ്പർ">
+                <input type="text" id="contact_no" name="contact_no" pattern="[0-9]*" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required placeholder="മൊബൈൽ നമ്പർ">
             </div>
             <div class="form-group">
                 <label for="department">വിദ്യാഭാസ യോഗ്യത <span class="required-star">*</span></label>
-                <input type="text" id="department" name="department" pattern="[0-9]*" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required placeholder="വിദ്യാഭാസ യോഗ്യത">  
+                <input type="text" id="department" name="department" required placeholder="വിദ്യാഭാസ യോഗ്യത">  
             <div class="form-group">
                 <label for="muncipality">മുനിസിപ്പാലിറ്റി/പഞ്ചായത്തിന്റെ പേര് <span class="required-star">*</span></label>
                 <input type="text"  name="muncipality" required placeholder="മുനിസിപ്പാലിറ്റി/പഞ്ചായത്തിന്റെ പേര്">  
