@@ -111,7 +111,7 @@
             {% for event in day1_events %}
             <div class="event-card">
                 <div class="event-img">
-                    <img src="{{ event.image.url }}" alt="{{event.name}} Event">
+                    <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
                 </div>
                 <div class="event-content">
                     <h3>{{event.name}}</h3>
@@ -144,7 +144,7 @@
             {% for event in day2_events %}
             <div class="event-card">
                 <div class="event-img">
-                    <img src="{{ event.image.url }}" alt="{{event.name}} Event">
+                    <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
                 </div>
                 <div class="event-content">
                     <h3>{{event.name}}</h3>
@@ -175,7 +175,7 @@
             {% for event in day3_events %}
             <div class="event-card">
                 <div class="event-img">
-                    <img src="{{ event.image.url }}" alt="{{event.name}} Event">
+                    <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
                 </div>
                 <div class="event-content">
                     <h3>{{event.name}}</h3>
@@ -208,7 +208,7 @@
 
     <!-- Speakers Section -->
     <section class="section" id="speakers">
-        <h2 class="section-title">Visionary Speakers & Tech Leaders</h2>
+        <h2 class="section-title">Speakers</h2>
         <div class="speakers-grid">
             {% for speaker in speakers %}
             <div>
@@ -229,7 +229,7 @@
 
     <!-- Schedule Section -->
     <section class="section" id="schedule">
-        <h2 class="section-title">Technology Timeline</h2>
+        <h2 class="section-title">Timeline</h2>
         
         <div class="schedule-tabs">
             <button class="tab-btn active" data-day="day1">Day 1</button>
