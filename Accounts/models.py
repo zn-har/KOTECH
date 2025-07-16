@@ -103,7 +103,6 @@ class Event(models.Model):
     pin = models.BooleanField(_("Pin Event"), default=False)
     description = models.TextField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="images/", null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     redirect = models.CharField( max_length=100, default="")
     def __str__(self):
