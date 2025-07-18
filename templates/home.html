@@ -114,7 +114,7 @@
                     <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
                 </div>
                 <div class="event-content">
-                    <h3>{{event.name}}</h3>
+                    <h3>{{event.name | upper}}</h3>
                     <span class="event-date">
                         {{ event.time }}
                     </span>
@@ -147,7 +147,7 @@
                     <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
                 </div>
                 <div class="event-content">
-                    <h3>{{event.name}}</h3>
+                    <h3>{{event.name | upper}}</h3>
                     <span class="event-date">{{ event.time }}</span>
                     {% if event.description %}
                         <p class="event-description">{{ event.description }}</p>
@@ -178,7 +178,7 @@
                     <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
                 </div>
                 <div class="event-content">
-                    <h3>{{event.name}}</h3>
+                    <h3>{{ event.name|upper }}</h3>
                     <span class="event-date">{{ event.time }}</span>
                     {% if event.description %}
                         <p class="event-description">{{ event.description }}</p>
@@ -219,7 +219,7 @@
             </div>
               <div class="speaker-content">
                     <h3>{{ speaker.name }}</h3>
-                    <h2 class="speaker-role">{{ speaker.role }}</h2>
+                    <h5 class="speaker-role">{{ speaker.role }}</h2>
                 </div>
         </div>
             
