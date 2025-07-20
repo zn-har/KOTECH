@@ -108,7 +108,7 @@
     <section class="section" id="events">
         <h2 class="section-title">Events & Workshops</h2>
         <div class="events-grid">
-            {% for event in day1_events %}
+            {% for event in events_day1_pin %}
             <div class="event-card">
                 <div class="event-img">
                     <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
@@ -141,7 +141,7 @@
                 {% endif %}
             </div>
             {% endfor %}
-            {% for event in day2_events %}
+            {% for event in day2_events_pin %}
             <div class="event-card">
                 <div class="event-img">
                     <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
@@ -172,7 +172,7 @@
                 {% endif %}
             </div>
             {% endfor %}
-            {% for event in day3_events %}
+            {% for event in day3_events_pin %}
             <div class="event-card">
                 <div class="event-img">
                     <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">

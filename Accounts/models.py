@@ -100,7 +100,7 @@ class Event(models.Model):
     name = models.CharField(max_length=100)
     time = models.TimeField(default=timezone.now)
     date = models.DateField(default=timezone.datetime(2025, 7, 25).date())
-    pin = models.BooleanField(_("Pin Event"), default=False)
+    pin = models.BooleanField(default=False)
     description = models.TextField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)

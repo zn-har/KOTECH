@@ -125,6 +125,20 @@ body {
         height: 200px;
         width: 200px;
     }
+
+    .speaker-content {
+        margin: -2px;
+    }
+
+    .speaker-content h3 {
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        margin-bottom: 0.3rem;
+    }
+
+    .speaker-position {
+        font-size: clamp(0.65rem, 1.8vw, 0.75rem);
+        margin-bottom: 0.5rem;
+    }
 }
 
 /* Header Styles */
@@ -648,7 +662,6 @@ header {
 
 .speaker-content {
     text-align: center;
-    padding: 1rem 0.5rem;
 }
 
 .speaker-content h3 {
@@ -1578,7 +1591,17 @@ footer {
     }
 
     .speaker-content {
-        padding: 0.8rem 0.3rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .speaker-content h3 {
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        margin-bottom: 0.2rem;
+    }
+
+    .speaker-position {
+        font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+        margin-bottom: 0.3rem;
     }
 }
 

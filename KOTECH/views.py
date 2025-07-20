@@ -83,7 +83,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['speakers'] = Speaker.objects.all()
-        context['events'] = Event.objects.filter(pin=True).order_by('date', 'time')
+        context['events'] = Event.objects.filter(pin=True)
         base_date = date(2025, 7, 25)
 
         day1 = base_date
@@ -93,6 +93,9 @@ class HomeView(TemplateView):
         context['day1_events'] = Event.objects.filter(date=day1).order_by('time')
         context['day2_events'] = Event.objects.filter(date=day2).order_by('time')
         context['day3_events'] = Event.objects.filter(date=day3).order_by('time')
+        context['day1_events_pin'] = Event.objects.filter(date=day1, pin=True).order_by('time')
+        context['day2_events_pin'] = Event.objects.filter(date=day2, pin=True).order_by('time')
+        context['day3_events_pin'] = Event.objects.filter(date=day3, pin=True).order_by('time')
 
         return context
 
