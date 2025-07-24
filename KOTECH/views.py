@@ -6,7 +6,7 @@ import requests
 import re
 from django.conf import settings
 from django.contrib import messages
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
 class HackathonRegistrationView(TemplateView):
     template_name = 'hackathon.html'
@@ -90,13 +90,53 @@ class HomeView(TemplateView):
         day2 = base_date + timedelta(days=1)
         day3 = base_date + timedelta(days=2)
 
-        context['day1_events'] = Event.objects.filter(date=day1).order_by('time')
-        context['day2_events'] = Event.objects.filter(date=day2).order_by('time')
-        context['day3_events'] = Event.objects.filter(date=day3).order_by('time')
-        context['day1_events_pin'] = Event.objects.filter(date=day1, pin=True).order_by('time')
-        context['day2_events_pin'] = Event.objects.filter(date=day2, pin=True).order_by('time')
-        context['day3_events_pin'] = Event.objects.filter(date=day3, pin=True).order_by('time')
+        context['day1_events'] = Event.objects.filter(date=day1).order_by('start_time')
+        context['day2_events'] = Event.objects.filter(date=day2).order_by('start_time')
+        context['day3_events'] = Event.objects.filter(date=day3).order_by('start_time')
+        context['day1_events_pin'] = Event.objects.filter(date=day1, pin=True).order_by('start_time')
+        context['day2_events_pin'] = Event.objects.filter(date=day2, pin=True).order_by('start_time')
+        context['day3_events_pin'] = Event.objects.filter(date=day3, pin=True).order_by('start_time')
 
+        return context
+
+
+class LiveView(TemplateView):
+    template_name = 'live.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LiveView, self).get_context_data(**kwargs)
+        
+        # Get current date and time
+        now = datetime.now()
+        current_date = now.date()
+        current_time = now.time()
+        
+        # Get all events
+        all_events = Event.objects.all().order_by('date', 'start_time')
+        
+        live_events = []
+        upcoming_events = []
+        ended_events = []
+        
+        for event in all_events:
+            # Create start and end datetime objects for the event
+            event_start_datetime = datetime.combine(event.date, event.start_time)
+            event_end_datetime = datetime.combine(event.end_date, event.end_time)
+            
+            if event_start_datetime <= now <= event_end_datetime:
+                # Event is currently running
+                live_events.append(event)
+            elif event_start_datetime > now:
+                # Event is upcoming
+                upcoming_events.append(event)
+            else:
+                # Event has ended
+                ended_events.append(event)
+        
+        context['live_events'] = live_events
+        context['upcoming_events'] = upcoming_events[:6]  # Limit to next 6 upcoming events
+        context['ended_events'] = ended_events[:6]  # Limit to last 6 ended events
+        
         return context
 
 

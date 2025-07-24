@@ -1,0 +1,306 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block title %}KOTECH Live - Currently Running Events{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Live page specific styles */
+    .live-status {
+        display: inline-flex;
+        align-items: center;
+        background: var(--secondary);
+        color: var(--dark);
+        padding: 0.3rem 0.8rem;
+        font-family: 'Courier New', monospace;
+        font-weight: bold;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+    
+    .live-status::before {
+        content: '●';
+        color: #ff0000;
+        margin-right: 0.5rem;
+    }
+    
+    .live-event-card {
+        position: relative;
+        border: 2px solid #ff0000 !important;
+        background: linear-gradient(145deg, #000, #220241) !important;
+    }
+    
+    .live-time {
+        background: #ff0000 !important;
+        color: white !important;
+        font-weight: bold;
+    }
+    
+    .upcoming-event-card {
+        border: 2px solid var(--secondary) !important;
+        opacity: 0.8;
+    }
+    
+    .upcoming-status {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(190, 108, 255, 0.2);
+        border: 1px solid var(--secondary);
+        color: var(--secondary);
+        padding: 0.3rem 0.8rem;
+        font-family: 'Courier New', monospace;
+        font-weight: bold;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+    
+    .upcoming-status::before {
+        content: '⏱';
+        margin-right: 0.5rem;
+    }
+    
+    .ended-event-card {
+        border: 2px solid #666 !important;
+        opacity: 0.5;
+        filter: grayscale(0.5);
+    }
+    
+    .ended-status {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(102, 102, 102, 0.2);
+        border: 1px solid #666;
+        color: #999;
+        padding: 0.3rem 0.8rem;
+        font-family: 'Courier New', monospace;
+        font-weight: bold;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+    
+    .ended-status::before {
+        content: '✓';
+        margin-right: 0.5rem;
+    }
+    
+    .live-counter {
+        font-family: 'Courier New', monospace;
+        font-size: clamp(1.2rem, 4vw, 2rem);
+        color: var(--secondary);
+        text-align: center;
+        margin: 2rem 0;
+        padding: 1rem;
+        border: 2px solid var(--secondary);
+        background: rgba(190, 108, 255, 0.1);
+    }
+    
+    .status-filter {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--light);
+        padding: 0.8rem 1.5rem;
+        cursor: pointer;
+        font-family: 'Courier New', monospace;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        font-size: 0.8rem;
+    }
+    
+    .filter-btn.active {
+        background: var(--secondary);
+        color: var(--dark);
+        border-color: var(--secondary);
+    }
+    
+    .filter-btn:hover {
+        border-color: var(--secondary);
+        background: rgba(190, 108, 255, 0.2);
+    }
+
+    /* Hide BIOS loading screen on live page */
+    .bios-loading-screen {
+        display: none !important;
+    }
+    
+    /* Hide window BIOS sprite on live page */
+    .window-bios {
+        display: none !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <img class="logo-png1 hero-element" src="{% static 'images/KOTECH_LOGO-02.png' %}" alt="Logo" style="width:266px; height:auto; padding:0">
+        <h1 class="hero-element">LIVE</h1>
+        <div class="live-counter">
+            <div id="live-events-count">{{ live_events|length }}</div>
+            <div style="font-size: 0.6em; margin-top: 0.5rem;">EVENTS RUNNING NOW</div>
+        </div>
+        
+        <!-- Live Event Cards in Hero -->
+        {% if live_events %}
+            <div class="events-grid" style="margin-top: 2rem; max-width: 1200px;">
+                {% for event in live_events %}
+                <div class="event-card live-event-card" data-status="live">
+                    <div class="live-status">LIVE NOW</div>
+                    <div class="event-img">
+                        <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
+                    </div>
+                    <div class="event-content">
+                        <h3>{{event.name}}</h3>
+                        <span class="event-date live-time">{{ event.start_time }}</span>
+                        {% if event.description %}
+                            <p class="event-description">{{ event.description }}</p>
+                        {% else %}
+                            <p class="event-description">This event is currently running live! Join now to be part of the action.</p>
+                        {% endif %}
+                        {% if event.venue %}
+                            <p class="event-venue">📍 {{ event.venue.name }}</p>
+                        {% else %}
+                            <p class="event-venue">📍 Live Stream Available</p>
+                        {% endif %}
+                        <p>LIVE NOW</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="margin-top: 2rem; padding: 2rem; border: 2px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05); text-align: center; color: var(--light);">
+                <h3 style="color: var(--secondary); margin-bottom: 1rem;">No Live Events</h3>
+                <p>No events are currently running. Check back soon for live updates!</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Status Filter -->
+<section class="section">
+    <div class="status-filter">
+        <button class="filter-btn active" data-status="all">ALL EVENTS</button>
+        <button class="filter-btn" data-status="live">LIVE NOW</button>
+        <button class="filter-btn" data-status="upcoming">UPCOMING</button>
+        <button class="filter-btn" data-status="ended">COMPLETED</button>
+    </div>
+</section>
+
+<!-- Live Events Section -->
+<section class="section" id="live-events">
+    <h2 class="section-title">Event Status Monitor</h2>
+    <div class="events-grid">
+        <!-- Upcoming Events -->
+        {% for event in upcoming_events %}
+        <div class="event-card upcoming-event-card" data-status="upcoming">
+            <div class="upcoming-status">STARTING SOON</div>
+            <div class="event-img">
+                <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
+            </div>
+            <div class="event-content">
+                <h3>{{event.name}}</h3>
+                <span class="event-date">{{ event.start_time }}</span>
+                {% if event.description %}
+                    <p class="event-description">{{ event.description }}</p>
+                {% else %}
+                    <p class="event-description">Get ready! This event will start soon. Make sure you're prepared to join.</p>
+                {% endif %}
+                {% if event.venue %}
+                    <p class="event-venue">📍 {{ event.venue.name }}</p>
+                {% else %}
+                    <p class="event-venue">📍 Event Hall</p>
+                {% endif %}
+                <p>UPCOMING</p>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Ended Events -->
+        {% for event in ended_events %}
+        <div class="event-card ended-event-card" data-status="ended">
+            <div class="ended-status">COMPLETED</div>
+            <div class="event-img">
+                <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
+            </div>
+            <div class="event-content">
+                <h3>{{event.name}}</h3>
+                <span class="event-date">{{ event.start_time }}</span>
+                {% if event.description %}
+                    <p class="event-description">{{ event.description }}</p>
+                {% else %}
+                    <p class="event-description">This event has been completed successfully. Check back for recordings or highlights.</p>
+                {% endif %}
+                {% if event.venue %}
+                    <p class="event-venue">📍 {{ event.venue.name }}</p>
+                {% else %}
+                    <p class="event-venue">📍 Event Completed</p>
+                {% endif %}
+                <p>COMPLETED</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Status filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const eventCards = document.querySelectorAll('.event-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const status = btn.getAttribute('data-status');
+
+                eventCards.forEach(card => {
+                    if (status === 'all') {
+                        card.style.display = 'flex';
+                    } else {
+                        if (card.getAttribute('data-status') === status) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Update live counter every 30 seconds
+        setInterval(() => {
+            // This would typically fetch updated data from the server
+            // For now, we'll just add a visual pulse effect
+            const counter = document.getElementById('live-events-count');
+            if (counter) {
+                counter.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    counter.style.transform = 'scale(1)';
+                }, 200);
+            }
+        }, 30000);
+    });
+</script>
+{% endblock %}

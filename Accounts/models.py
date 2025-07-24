@@ -98,8 +98,10 @@ class Speaker(models.Model):
 
 class Event(models.Model):
     name = models.CharField(max_length=100)
-    time = models.TimeField(default=timezone.now)
+    start_time = models.TimeField(default=timezone.now)
+    end_time = models.TimeField(default=timezone.now)
     date = models.DateField(default=timezone.datetime(2025, 7, 25).date())
+    end_date = models.DateField(default=timezone.datetime(2025, 7, 27).date())
     pin = models.BooleanField(default=False)
     description = models.TextField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)

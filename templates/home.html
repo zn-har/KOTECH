@@ -14,8 +14,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>TechFest 2025</title>
+    <title>{% block title %}KOTECH 2025{% endblock %}</title>
     <link rel="stylesheet" href="{% static "css/home.css" %}">
+    {% block extra_css %}{% endblock %}
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static "images/favicon-32x32.png" %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "images/favicon-16x16.png" %}">
@@ -56,7 +57,7 @@
                 </div>
                 
                 <div class="bios-line">
-                    <span>Loading Speaker Database...</span>
+                    <span>Loading Guests Database...</span>
                     <span class="bios-status">READY</span>
                 </div>
                 
@@ -90,6 +91,7 @@
         </ul>
     </nav>
 
+    {% block content %}
     <!-- Hero Section -->
     <section class="hero">
 
@@ -116,7 +118,7 @@
                 <div class="event-content">
                     <h3>{{event.name | upper}}</h3>
                     <span class="event-date">
-                        {{ event.time }}
+                        {{ event.start_time }}
                     </span>
                     {% if event.description %}
                         <p class="event-description">{{ event.description }}</p>
@@ -126,7 +128,7 @@
                     {% if event.venue %}
                         <p class="event-venue">📍 {{ event.venue.name }}</p>
                     {% else %}
-                        <p class="event-venue">📍 Main Conference Hall</p>
+                        <p class="event-venue">📍 Main Stage</p>
                     {% endif %}
                     <p>DAY 1</p>
                 </div>
@@ -148,7 +150,7 @@
                 </div>
                 <div class="event-content">
                     <h3>{{event.name | upper}}</h3>
-                    <span class="event-date">{{ event.time }}</span>
+                    <span class="event-date">{{ event.start_time }}</span>
                     {% if event.description %}
                         <p class="event-description">{{ event.description }}</p>
                     {% else %}
@@ -179,7 +181,7 @@
                 </div>
                 <div class="event-content">
                     <h3>{{ event.name|upper }}</h3>
-                    <span class="event-date">{{ event.time }}</span>
+                    <span class="event-date">{{ event.start_time }}</span>
                     {% if event.description %}
                         <p class="event-description">{{ event.description }}</p>
                     {% else %}
@@ -208,7 +210,7 @@
 
     <!-- Speakers Section -->
     <section class="section" id="speakers">
-        <h2 class="section-title">Speakers</h2>
+        <h2 class="section-title">Guests</h2>
         <div class="speakers-grid">
             {% for speaker in speakers %}
             <div>
@@ -242,7 +244,7 @@
             {% for event in day1_events %}
             <div class="schedule-item">
                 <div class="schedule-time">
-                    <span>{{ event.time }}</span>
+                    <span>{{ event.start_time }}</span>
                 </div>
                 <div class="schedule-info">
                     <h3>{{ event.name }}</h3>
@@ -260,7 +262,7 @@
             {% for event in day2_events %}
             <div class="schedule-item">
                 <div class="schedule-time">
-                    <span>{{ event.time }}</span>
+                    <span>{{ event.start_time }}</span>
                 </div>
                 <div class="schedule-info">
                     <h3>{{ event.name }}</h3>
@@ -278,7 +280,7 @@
             {% for event in day3_events %}
             <div class="schedule-item">
                 <div class="schedule-time">
-                    <span>{{ event.time }}</span>
+                    <span>{{ event.start_time }}</span>
                 </div>
                 <div class="schedule-info">
                     <h3>{{ event.name }}</h3>
@@ -291,6 +293,7 @@
             {% endfor %}
         </div>
     </section>
+    {% endblock content %}
 
     <!-- Footer -->
     <footer>
@@ -298,7 +301,7 @@
             <div class="footer-links">
                 <!-- Removed the About link here as well -->
                 <a href="#events">Events</a>
-                <a href="#speakers">Speakers</a>
+                <a href="#speakers">Guests</a>
                 <a href="#schedule">Schedule</a>
                 <a href="mailto:hello@kotech.io">Contact Us</a>
             </div>
@@ -688,5 +691,6 @@
             });
         });
     </script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

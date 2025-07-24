@@ -21,9 +21,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),    
+    path('admin/', admin.site.urls), 
     # path('', include('Accounts.urls')),
     path('',views.HomeView.as_view(), name='home'),
+    path('live/', views.LiveView.as_view(), name='live'),
     path('register/ideathon', views.IdeathonRegistrationView.as_view(), name='Ideathon'),
     path('register/ideathon/', views.IdeathonRegistrationView.as_view(), name='Ideathon'),
     
