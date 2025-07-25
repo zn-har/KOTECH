@@ -108,11 +108,16 @@ class LiveView(TemplateView):
         
         # Get current date and time
         now = datetime.now()
-        current_date = now.date()
-        current_time = now.time()
         
-        # Get all events
-        all_events = Event.objects.all().order_by('date', 'start_time')
+        # Define the event date range for KOTECH (July 25-27, 2025)
+        event_start_date = date(2025, 7, 25)
+        event_end_date = date(2025, 7, 27)
+        
+        # Get all events within the KOTECH event period
+        all_events = Event.objects.filter(
+            date__gte=event_start_date,
+            date__lte=event_end_date
+        ).order_by('date', 'start_time')
         
         live_events = []
         upcoming_events = []
@@ -121,8 +126,15 @@ class LiveView(TemplateView):
         for event in all_events:
             # Create start and end datetime objects for the event
             event_start_datetime = datetime.combine(event.date, event.start_time)
-            event_end_datetime = datetime.combine(event.end_date, event.end_time)
             
+            # Handle end_date logic: if end_date is different from start date, use it
+            # Otherwise, assume the event ends on the same day
+            if event.end_date and event.end_date != event.date:
+                event_end_datetime = datetime.combine(event.end_date, event.end_time)
+            else:
+                event_end_datetime = datetime.combine(event.date, event.end_time)
+            
+            # Check if event is currently running
             if event_start_datetime <= now <= event_end_datetime:
                 # Event is currently running
                 live_events.append(event)
@@ -133,9 +145,23 @@ class LiveView(TemplateView):
                 # Event has ended
                 ended_events.append(event)
         
-        context['live_events'] = live_events
-        context['upcoming_events'] = upcoming_events[:6]  # Limit to next 6 upcoming events
-        context['ended_events'] = ended_events[:6]  # Limit to last 6 ended events
+        # Sort events by start time for better organization
+        live_events.sort(key=lambda x: (x.date, x.start_time))
+        upcoming_events.sort(key=lambda x: (x.date, x.start_time))
+        ended_events.sort(key=lambda x: (x.date, x.start_time), reverse=True)  # Recent first
+        
+        context['live_events'] = live_events[:2]  # Limit to 2 live events for hero
+        context['all_live_events'] = live_events  # All live events for other sections if needed
+        context['upcoming_events'] = upcoming_events[:12]  # Show more upcoming events for 3-day event
+        context['ended_events'] = ended_events[:12]  # Show more ended events for 3-day event
+        context['hero_upcoming_event'] = upcoming_events[0] if upcoming_events else None  # First upcoming event for hero
+        
+        # Add additional context for debugging/display
+        context['current_datetime'] = now
+        context['event_dates'] = {
+            'start': event_start_date,
+            'end': event_end_date
+        }
         
         return context
 

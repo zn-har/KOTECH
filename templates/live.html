@@ -142,6 +142,29 @@
     .window-bios {
         display: none !important;
     }
+    
+    /* Hero events grid optimization for 2 events */
+    .hero .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        justify-items: center;
+        align-items: start;
+    }
+    
+    @media (min-width: 1024px) {
+        .hero .events-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 1000px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .hero .events-grid {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+        }
+    }
 </style>
 {% endblock %}
 
@@ -158,27 +181,29 @@
         
         <!-- Live Event Cards in Hero -->
         {% if live_events %}
-            <div class="events-grid" style="margin-top: 2rem; max-width: 1200px;">
+            <div class="events-grid" style="margin-top: 2rem; max-width: 1000px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
                 {% for event in live_events %}
                 <div class="event-card live-event-card" data-status="live">
                     <div class="live-status">LIVE NOW</div>
-                    <div class="event-img">
-                        <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
+                    <div class="event-img" style = "min-height: 100px; overflow: hidden;">
+                        <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event" style="width: 100%; height: 90px; object-fit: cover;">
                     </div>
                     <div class="event-content">
-                        <h3>{{event.name}}</h3>
-                        <span class="event-date live-time">{{ event.start_time }}</span>
-                        {% if event.description %}
-                            <p class="event-description">{{ event.description }}</p>
-                        {% else %}
-                            <p class="event-description">This event is currently running live! Join now to be part of the action.</p>
-                        {% endif %}
+                        <h2>{{event.name|upper }}</h2>
+                        <div class="event-timing">
+                            <span class="event-date live-time">{{ event.date|date:"M d" }} - {{ event.start_time }}</span>
+                            {% if event.end_date and event.end_date != event.date %}
+                                <small style="display: block; color: #ccc; margin-top: 0.2rem;">Ends: {{ event.end_date|date:"M d" }} - {{ event.end_time }}</small>
+                            {% else %}
+                                <small style="display: block; color: #ccc; margin-top: 0.2rem;">Ends: {{ event.end_time }}</small>
+                            {% endif %}
+                        </div>
                         {% if event.venue %}
                             <p class="event-venue">📍 {{ event.venue.name }}</p>
                         {% else %}
                             <p class="event-venue">📍 Live Stream Available</p>
                         {% endif %}
-                        <p>LIVE NOW</p>
+                        <p style="font-weight: bold; color: #ff0000;">● LIVE NOW</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -187,6 +212,10 @@
             <div style="margin-top: 2rem; padding: 2rem; border: 2px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05); text-align: center; color: var(--light);">
                 <h3 style="color: var(--secondary); margin-bottom: 1rem;">No Live Events</h3>
                 <p>No events are currently running. Check back soon for live updates!</p>
+                <div style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;">
+                    <p>KOTECH 2025: July 25-27</p>
+                    <p>Current Time: {{ current_datetime|date:"M d, Y H:i" }}</p>
+                </div>
             </div>
         {% endif %}
     </div>
@@ -214,8 +243,15 @@
                 <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
             </div>
             <div class="event-content">
-                <h3>{{event.name}}</h3>
-                <span class="event-date">{{ event.start_time }}</span>
+                <h2>{{event.name}}</h2>
+                <div class="event-timing">
+                    <span class="event-date">{{ event.date|date:"M d" }} - {{ event.start_time }}</span>
+                    {% if event.end_date and event.end_date != event.date %}
+                        <small style="display: block; color: #ccc; margin-top: 0.2rem;">Ends: {{ event.end_date|date:"M d" }} - {{ event.end_time }}</small>
+                    {% else %}
+                        <small style="display: block; color: #ccc; margin-top: 0.2rem;">Ends: {{ event.end_time }}</small>
+                    {% endif %}
+                </div>
                 {% if event.description %}
                     <p class="event-description">{{ event.description }}</p>
                 {% else %}
@@ -239,8 +275,15 @@
                 <img src="{% static 'images/barcode.png' %}" alt="{{event.name}} Event">
             </div>
             <div class="event-content">
-                <h3>{{event.name}}</h3>
-                <span class="event-date">{{ event.start_time }}</span>
+                <h2>{{event.name | upper}}</h2>
+                <div class="event-timing">
+                    <span class="event-date">{{ event.date|date:"M d" }} - {{ event.start_time }}</span>
+                    {% if event.end_date and event.end_date != event.date %}
+                        <small style="display: block; color: #ccc; margin-top: 0.2rem;">Ended: {{ event.end_date|date:"M d" }} - {{ event.end_time }}</small>
+                    {% else %}
+                        <small style="display: block; color: #ccc; margin-top: 0.2rem;">Ended: {{ event.end_time }}</small>
+                    {% endif %}
+                </div>
                 {% if event.description %}
                     <p class="event-description">{{ event.description }}</p>
                 {% else %}
