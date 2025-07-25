@@ -163,6 +163,626 @@
         .hero .events-grid {
             grid-template-columns: 1fr;
             max-width: 400px;
+            gap: 1.5rem;
+        }
+    }
+    
+    /* Comprehensive Responsive Design */
+    @media (max-width: 480px) {
+        .hero {
+            height: auto;
+            min-height: 70vh;
+            margin: 0 8px;
+            border-radius: 15px;
+            padding: 1rem 0.5rem;
+        }
+        
+        .hero-content {
+            max-width: 100%;
+            padding: 0 0.5rem;
+        }
+        
+        .hero h1 {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 0.8rem;
+        }
+        
+        .live-counter {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin: 1.5rem 0;
+            padding: 0.8rem;
+        }
+        
+        .hero .events-grid {
+            max-width: 100%;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .live-event-card {
+            min-width: 280px;
+            max-width: 320px;
+            height: auto;
+            min-height: 400px;
+        }
+        
+        .event-content h2 {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+        }
+        
+        .event-timing {
+            font-size: 0.8rem;
+        }
+        
+        .event-venue {
+            font-size: 0.7rem;
+        }
+        
+        .status-filter {
+            gap: 0.5rem;
+            padding: 0 1rem;
+        }
+        
+        .filter-btn {
+            padding: 0.6rem 1rem;
+            font-size: 0.7rem;
+            margin: 0.2rem;
+        }
+        
+        .section {
+            padding: 3rem 0.5rem;
+        }
+        
+        .section-title {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 2rem;
+        }
+        
+        .events-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding: 0 0.5rem;
+        }
+        
+        .event-card {
+            max-width: 100%;
+            min-width: 280px;
+            height: auto;
+            min-height: 420px;
+            margin: 0 auto;
+        }
+        
+        .event-img {
+            height: 160px;
+            min-height: 80px;
+        }
+        
+        .event-content {
+            padding: 1rem;
+            gap: 0.8rem;
+        }
+        
+        .event-content h2 {
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        }
+        
+        .event-timing .event-date {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.6rem;
+        }
+        
+        .event-timing small {
+            font-size: 0.65rem;
+        }
+        
+        .event-description {
+            font-size: 0.8rem;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+        }
+        
+        .event-venue {
+            font-size: 0.7rem;
+            padding: 0.3rem 0;
+        }
+    }
+    
+    @media (min-width: 481px) and (max-width: 768px) {
+        .hero {
+            height: auto;
+            min-height: 75vh;
+            margin: 0 12px;
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
+        }
+        
+        .hero-content {
+            max-width: 90%;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 7vw, 3rem);
+        }
+        
+        .live-counter {
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+            margin: 2rem 0;
+        }
+        
+        .hero .events-grid {
+            max-width: 500px;
+            gap: 1.5rem;
+        }
+        
+        .live-event-card {
+            max-width: 400px;
+        }
+        
+        .status-filter {
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.7rem 1.2rem;
+            font-size: 0.75rem;
+        }
+        
+        .section {
+            padding: 4rem 1rem;
+        }
+        
+        .events-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .event-card {
+            max-width: 380px;
+        }
+        
+        .event-content h2 {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+        }
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .hero {
+            height: 85vh;
+            margin: 0 15px;
+            border-radius: 25px;
+        }
+        
+        .hero-content {
+            max-width: 80%;
+        }
+        
+        .live-counter {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+        }
+        
+        .hero .events-grid {
+            max-width: 800px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+        
+        .status-filter {
+            gap: 1.2rem;
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 1.4rem;
+            font-size: 0.8rem;
+        }
+        
+        .events-grid {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+        
+        .event-card {
+            max-width: 400px;
+        }
+    }
+    
+    @media (min-width: 1025px) and (max-width: 1440px) {
+        .hero {
+            height: 88vh;
+        }
+        
+        .hero .events-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 1000px;
+        }
+        
+        .events-grid {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .event-card {
+            max-width: 420px;
+        }
+    }
+    
+    @media (min-width: 1441px) {
+        .hero .events-grid {
+            max-width: 1200px;
+        }
+        
+        .events-grid {
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .event-card {
+            max-width: 450px;
+        }
+    }
+    
+    /* Enhanced Responsive for Bigger Devices */
+    @media (min-width: 1600px) {
+        .hero {
+            height: 90vh;
+            margin: 0 20px;
+            border-radius: 35px;
+        }
+        
+        .hero-content {
+            max-width: 1000px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .live-counter {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+        }
+        
+        .hero .events-grid {
+            max-width: 1300px;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .live-event-card {
+            max-width: 500px;
+            min-height: 520px;
+        }
+        
+        .event-content h2 {
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+        }
+        
+        .event-timing .event-date {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .event-timing small {
+            font-size: 0.9rem;
+        }
+        
+        .event-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .event-venue {
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+        }
+        
+        .status-filter {
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-btn {
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+        }
+        
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+        }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 4rem;
+        }
+        
+        .events-grid {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            padding: 0 1rem;
+        }
+        
+        .event-card {
+            max-width: 480px;
+            min-height: 550px;
+        }
+        
+        .event-img {
+            height: 220px;
+            min-height: 200px;
+        }
+        
+        .event-content {
+            padding: 2rem;
+            gap: 1.2rem;
+        }
+    }
+    
+    @media (min-width: 1920px) {
+        .hero {
+            height: 92vh;
+            margin: 0 25px;
+            border-radius: 40px;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(3.5rem, 6vw, 6rem);
+            margin-bottom: 2rem;
+        }
+        
+        .live-counter {
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            margin: 3rem 0;
+            padding: 2rem;
+        }
+        
+        .hero .events-grid {
+            max-width: 1500px;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+        
+        .live-event-card {
+            max-width: 600px;
+            min-height: 580px;
+        }
+        
+        .event-content h2 {
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            margin-bottom: 1rem;
+        }
+        
+        .event-timing .event-date {
+            font-size: 1.1rem;
+            padding: 0.6rem 1.2rem;
+        }
+        
+        .event-timing small {
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .event-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .event-venue {
+            font-size: 1rem;
+            padding: 0.6rem 0;
+        }
+        
+        .status-filter {
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .filter-btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        .section {
+            padding: 7rem 3rem;
+            max-width: 1600px;
+        }
+        
+        .section-title {
+            font-size: clamp(3rem, 5vw, 4rem);
+            margin-bottom: 5rem;
+        }
+        
+        .events-grid {
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 4rem;
+            padding: 0 2rem;
+        }
+        
+        .event-card {
+            max-width: 550px;
+            min-height: 600px;
+        }
+        
+        .event-img {
+            height: 250px;
+            min-height: 220px;
+        }
+        
+        .event-content {
+            padding: 2.5rem;
+            gap: 1.5rem;
+        }
+        
+        .event-content h2 {
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+        }
+    }
+    
+    @media (min-width: 2560px) {
+        .hero {
+            height: 95vh;
+            margin: 0 30px;
+            border-radius: 50px;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(4rem, 6vw, 7rem);
+            margin-bottom: 2.5rem;
+        }
+        
+        .live-counter {
+            font-size: clamp(3rem, 4vw, 5rem);
+            margin: 4rem 0;
+            padding: 3rem;
+        }
+        
+        .hero .events-grid {
+            max-width: 1800px;
+            gap: 5rem;
+            margin-top: 5rem;
+        }
+        
+        .live-event-card {
+            max-width: 700px;
+            min-height: 650px;
+        }
+        
+        .event-content h2 {
+            font-size: clamp(2rem, 2.5vw, 2.8rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .event-timing .event-date {
+            font-size: 1.3rem;
+            padding: 0.8rem 1.5rem;
+        }
+        
+        .event-timing small {
+            font-size: 1.2rem;
+            margin-top: 0.4rem;
+        }
+        
+        .event-description {
+            font-size: 1.3rem;
+            line-height: 1.8;
+        }
+        
+        .event-venue {
+            font-size: 1.2rem;
+            padding: 0.8rem 0;
+        }
+        
+        .status-filter {
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+        
+        .filter-btn {
+            padding: 1.5rem 3rem;
+            font-size: 1.2rem;
+            letter-spacing: 2.5px;
+        }
+        
+        .section {
+            padding: 8rem 4rem;
+            max-width: 2000px;
+        }
+        
+        .section-title {
+            font-size: clamp(3.5rem, 5vw, 5rem);
+            margin-bottom: 6rem;
+        }
+        
+        .events-grid {
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 5rem;
+            padding: 0 3rem;
+        }
+        
+        .event-card {
+            max-width: 650px;
+            min-height: 700px;
+        }
+        
+        .event-img {
+            height: 300px;
+            min-height: 280px;
+        }
+        
+        .event-content {
+            padding: 3rem;
+            gap: 2rem;
+        }
+        
+        .event-content h2 {
+            font-size: clamp(1.6rem, 2vw, 2.2rem);
+        }
+    }
+    
+    /* Status badges for bigger devices */
+    @media (min-width: 1600px) {
+        .live-status,
+        .upcoming-status,
+        .ended-status {
+            font-size: 0.9rem;
+            padding: 0.4rem 1rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1.5px;
+        }
+        
+        .live-status::before,
+        .upcoming-status::before,
+        .ended-status::before {
+            margin-right: 0.6rem;
+            font-size: 1rem;
+        }
+    }
+    
+    @media (min-width: 2560px) {
+        .live-status,
+        .upcoming-status,
+        .ended-status {
+            font-size: 1.1rem;
+            padding: 0.6rem 1.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .live-status::before,
+        .upcoming-status::before,
+        .ended-status::before {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+    }
+    
+    /* Logo responsive for bigger devices */
+    @media (min-width: 1600px) {
+        .logo-png1 {
+            width: 320px !important;
+        }
+    }
+    
+    @media (min-width: 1920px) {
+        .logo-png1 {
+            width: 380px !important;
+        }
+    }
+    
+    @media (min-width: 2560px) {
+        .logo-png1 {
+            width: 450px !important;
         }
     }
 </style>
